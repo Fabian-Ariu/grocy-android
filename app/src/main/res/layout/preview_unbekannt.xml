@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent" android:layout_height="match_parent" android:background="#F2F0EB">
+
+  <View android:layout_width="320dp" android:layout_height="320dp" android:layout_gravity="end|top"
+      android:layout_marginEnd="-110dp" android:layout_marginTop="-20dp" android:background="@drawable/blob_orange" />
+  <View android:layout_width="300dp" android:layout_height="300dp" android:layout_gravity="start|bottom"
+      android:layout_marginStart="-90dp" android:layout_marginBottom="120dp" android:background="@drawable/blob_blue" />
+
+  <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent"
+      android:orientation="vertical" android:paddingStart="16dp" android:paddingEnd="16dp" android:paddingTop="16dp" android:paddingBottom="16dp">
+
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical">
+      <FrameLayout android:layout_width="44dp" android:layout_height="44dp" android:background="@drawable/glass_circle" android:tag="preview_home" android:clickable="true" android:focusable="true">
+        <ImageView android:layout_width="22dp" android:layout_height="22dp" android:layout_gravity="center" android:src="@drawable/ic_round_expand_more" app:tint="#0062CC" android:rotation="90"/>
+      </FrameLayout>
+      <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginStart="14dp" android:text="Code zuordnen" android:textColor="#1F1E1D" android:textSize="26sp" android:textStyle="bold"/>
+    </LinearLayout>
+
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal"
+        android:gravity="center_vertical" android:background="@drawable/glass_card" android:padding="16dp" android:layout_marginTop="14dp">
+      <FrameLayout android:layout_width="44dp" android:layout_height="44dp" android:background="@drawable/icon_circle_orange">
+        <ImageView android:layout_width="22dp" android:layout_height="22dp" android:layout_gravity="center" android:src="@drawable/ic_round_barcode" app:tint="#C8781E"/>
+      </FrameLayout>
+      <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical" android:layout_marginStart="14dp">
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Unbekannter Code · EAN-13" android:textColor="#1F1E1D" android:textSize="17sp" android:textStyle="bold"/>
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="In 3 Online-Quellen nichts gefunden" android:textColor="#6A6A6A" android:textSize="13sp"/>
+      </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout android:layout_width="match_parent" android:layout_height="48dp" android:layout_marginTop="14dp"
+        android:orientation="horizontal" android:background="@drawable/glass_pill" android:padding="4dp">
+      <TextView android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:gravity="center"
+          android:text="Bestehendes Produkt" android:textColor="#1F1E1D" android:textSize="14sp" android:textStyle="bold" android:background="@drawable/glass_chip"/>
+      <TextView android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:gravity="center" android:text="Neues Produkt" android:textColor="#5A5F6A" android:textSize="14sp"/>
+    </LinearLayout>
+
+    <LinearLayout android:layout_width="match_parent" android:layout_height="52dp" android:layout_marginTop="12dp"
+        android:orientation="horizontal" android:gravity="center_vertical" android:paddingStart="16dp" android:paddingEnd="16dp" android:background="@drawable/glass_pill">
+      <ImageView android:layout_width="20dp" android:layout_height="20dp" android:src="@drawable/ic_round_barcode" app:tint="#6A6A6A"/>
+      <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:layout_marginStart="12dp" android:text="Sunlu" android:textColor="#1F1E1D" android:textSize="16sp"/>
+    </LinearLayout>
+
+    <ScrollView android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" android:scrollbars="none"
+        android:layout_marginTop="12dp" android:clipToPadding="false">
+      <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:background="@drawable/glass_card">
+        <LinearLayout style="@style/PreviewRow">
+          <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical">
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Sunlu PLA+ Schwarz 1 kg" android:textColor="#1F1E1D" android:textSize="16sp" android:textStyle="bold"/>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="3D-Druck · Werkstatt · 2 Codes" android:textColor="#6A6A6A" android:textSize="13sp"/>
+          </LinearLayout>
+          <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Zuordnen" android:textColor="#0062CC" android:textSize="14sp" android:textStyle="bold" android:background="@drawable/badge_blue" android:paddingStart="14dp" android:paddingEnd="14dp" android:paddingTop="8dp" android:paddingBottom="8dp"/>
+        </LinearLayout>
+        <View style="@style/PreviewDivider"/>
+        <LinearLayout style="@style/PreviewRow">
+          <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical">
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Sunlu PLA+ Weiss 1 kg" android:textColor="#1F1E1D" android:textSize="16sp" android:textStyle="bold"/>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="3D-Druck · Werkstatt · 1 Code" android:textColor="#6A6A6A" android:textSize="13sp"/>
+          </LinearLayout>
+          <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Zuordnen" android:textColor="#0062CC" android:textSize="14sp" android:textStyle="bold" android:background="@drawable/badge_blue" android:paddingStart="14dp" android:paddingEnd="14dp" android:paddingTop="8dp" android:paddingBottom="8dp"/>
+        </LinearLayout>
+        <View style="@style/PreviewDivider"/>
+        <LinearLayout style="@style/PreviewRow">
+          <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical">
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Sunlu PETG Grau 1 kg" android:textColor="#1F1E1D" android:textSize="16sp" android:textStyle="bold"/>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="3D-Druck · Werkstatt · 1 Code" android:textColor="#6A6A6A" android:textSize="13sp"/>
+          </LinearLayout>
+          <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Zuordnen" android:textColor="#0062CC" android:textSize="14sp" android:textStyle="bold" android:background="@drawable/badge_blue" android:paddingStart="14dp" android:paddingEnd="14dp" android:paddingTop="8dp" android:paddingBottom="8dp"/>
+        </LinearLayout>
+      </LinearLayout>
+    </ScrollView>
+
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center_horizontal" android:layout_marginTop="12dp"
+        android:text="Produkt antippen, um den Code zuzuordnen" android:textColor="#6A6A6A" android:textSize="14sp"/>
+
+  </LinearLayout>
+</FrameLayout>
