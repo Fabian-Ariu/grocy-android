@@ -390,7 +390,7 @@ public class BottomScrollBehavior {
           }
           if (scrollY > topScrollLimit && provideTopScroll) {
             if (fabTopScroll.isOrWillBeHidden()) {
-              fabTopScroll.show();
+              fabTopScroll.hide(); // Scanory: kein Nach-oben-Pfeil (ueberlagert den FAB)
             }
           }
         }
@@ -427,7 +427,7 @@ public class BottomScrollBehavior {
             }
             if (scrollAbsoluteY > topScrollLimit && provideTopScroll) {
               if (fabTopScroll.isOrWillBeHidden()) {
-                fabTopScroll.show();
+                fabTopScroll.hide(); // Scanory: kein Nach-oben-Pfeil (ueberlagert den FAB)
               }
             }
           }

@@ -71,6 +71,16 @@ public class EquipmentFragment extends BaseFragment {
     sbb.applyAppBarInsetOnContainer(false); sbb.applyStatusBarInsetOnContainer(false); sbb.setUp();
     activity.setSystemBarBehavior(sbb);
     binding.toolbar.setNavigationOnClickListener(v -> activity.navUtil.navigateUp());
+    binding.buttonCalendar.setOnClickListener(v -> viewModel.fetchCalendarLink(url -> {
+      if (url == null || url.isEmpty() || getContext() == null) return;
+      android.content.ClipboardManager cm = (android.content.ClipboardManager) activity.getSystemService(android.content.Context.CLIPBOARD_SERVICE);
+      if (cm != null) cm.setPrimaryClip(android.content.ClipData.newPlainText("Grocy iCal", url));
+      android.content.Intent send = new android.content.Intent(android.content.Intent.ACTION_SEND);
+      send.setType("text/plain");
+      send.putExtra(android.content.Intent.EXTRA_SUBJECT, getString(R.string.calendar_subscribe));
+      send.putExtra(android.content.Intent.EXTRA_TEXT, getString(R.string.calendar_share_text, url));
+      startActivity(android.content.Intent.createChooser(send, getString(R.string.calendar_subscribe)));
+    }));
     binding.swipe.setOnRefreshListener(() -> viewModel.downloadData());
     viewModel.getIsLoadingLive().observe(getViewLifecycleOwner(), l -> { if (binding != null) binding.swipe.setRefreshing(l != null && l); });
     viewModel.getEquipmentLive().observe(getViewLifecycleOwner(), e -> render());

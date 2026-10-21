@@ -85,6 +85,8 @@
     android:id="@+id/fab_main_scroll"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    android:visibility="gone"
+    android:alpha="0"
     android:layout_marginBottom="16dp"
     android:layout_marginEnd="16dp"
     android:layout_gravity="bottom|end"

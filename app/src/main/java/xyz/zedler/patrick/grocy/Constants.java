@@ -269,7 +269,7 @@ public final class Constants {
 
     public final static class BEHAVIOR {
 
-      public final static boolean BEGINNER_MODE = true;
+      public final static boolean BEGINNER_MODE = false;
       public final static boolean HAPTIC = true;
       public final static boolean FOOD_FACTS = true;
       public final static boolean SHOW_MAIN_MENU_BUTTON = true;

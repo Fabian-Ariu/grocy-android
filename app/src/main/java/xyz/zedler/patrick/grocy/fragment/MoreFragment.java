@@ -72,7 +72,10 @@ public class MoreFragment extends BaseFragment {
     activity.getScrollBehavior().setBottomBarVisibility(true);
     activity.updateBottomAppBar(false, R.menu.menu_empty);
 
-    binding.cardInventory.setOnClickListener(v -> go(R.string.deep_link_inventoryFragment));
+    binding.cardInventory.setOnClickListener(v -> {
+      if (clickUtil.isDisabled()) return;
+      activity.navUtil.navigate(R.id.inventorySwipeFragment);
+    });
     binding.cardMealPlan.setOnClickListener(v -> go(R.string.deep_link_mealPlanFragment));
     binding.cardChores.setOnClickListener(v -> go(R.string.deep_link_choresFragment));
     binding.cardTasks.setOnClickListener(v -> go(R.string.deep_link_tasksFragment));

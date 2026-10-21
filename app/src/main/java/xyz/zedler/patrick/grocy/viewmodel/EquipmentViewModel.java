@@ -151,6 +151,14 @@ public class EquipmentViewModel extends BaseViewModel {
         error -> { Log.e(TAG, "createEquipment: " + error); showNetworkErrorMessage(error); });
   }
 
+  /** Holt den iCal-Abo-Link des Grocy-Kalenders (fuer Apple-/Familienkalender). */
+  public void fetchCalendarLink(java.util.function.Consumer<String> onLink) {
+    dlHelper.get(grocyApi.getCalendarIcalSharingLink(), TAG, response -> {
+      try { onLink.accept(new JSONObject(response).optString("url", "")); }
+      catch (Exception e) { Log.e(TAG, "calendar link: ", e); showErrorMessage(); }
+    }, error -> { Log.e(TAG, "calendar link: " + error); showNetworkErrorMessage(error); });
+  }
+
   public MutableLiveData<List<Equipment>> getEquipmentLive() { return equipmentLive; }
   public MutableLiveData<Map<Integer, List<Maintenance>>> getMaintenanceLive() { return maintenanceLive; }
   public MutableLiveData<Boolean> getIsLoadingLive() { return isLoadingLive; }

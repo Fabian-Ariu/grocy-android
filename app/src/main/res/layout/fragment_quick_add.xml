@@ -15,11 +15,6 @@
       android:id="@+id/toolbar"
       style="@style/Widget.Grocy.Toolbar.Back"
       app:title="@string/quick_add_title" />
-    <TextView
-      android:layout_width="match_parent" android:layout_height="wrap_content"
-      android:paddingStart="20dp" android:paddingEnd="20dp" android:paddingBottom="6dp"
-      android:textColor="?attr/colorOnSurfaceVariant" android:textSize="13sp"
-      android:text="@string/quick_add_hint" />
     <LinearLayout
       android:layout_width="match_parent" android:layout_height="48dp"
       android:layout_marginStart="16dp" android:layout_marginEnd="16dp" android:layout_marginBottom="8dp"

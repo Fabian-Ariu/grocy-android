@@ -523,9 +523,25 @@ public class StockOverviewItemAdapter extends
         holder.binding.flexboxLayout.getChildCount() > 0 ? View.VISIBLE : View.GONE
     );
 
-    // Vorlage: Vorratszeilen textbasiert ohne Produktbild (Menge rechts statt Thumbnail)
-    holder.binding.picture.setVisibility(View.GONE);
-    holder.binding.picturePlaceholder.setVisibility(View.GONE);
+    String pictureFileName = stockItem.getProduct().getPictureFileName();
+    if (activeFields.contains(StockOverviewViewModel.FIELD_PICTURE)
+        && pictureFileName != null && !pictureFileName.isEmpty()) {
+      holder.binding.picture.layout(0, 0, 0, 0);
+      PictureUtil.loadPicture(
+          holder.binding.picture,
+          null,
+          holder.binding.picturePlaceholder,
+          grocyApi.getProductPictureServeSmall(pictureFileName),
+          grocyAuthHeaders,
+          false
+      );
+    } else if (activeFields.contains(StockOverviewViewModel.FIELD_PICTURE) && containsPictures) {
+      holder.binding.picture.setVisibility(View.GONE);
+      holder.binding.picturePlaceholder.setVisibility(View.VISIBLE);
+    } else {
+      holder.binding.picture.setVisibility(View.GONE);
+      holder.binding.picturePlaceholder.setVisibility(View.GONE);
+    }
 
     // CONTAINER
 

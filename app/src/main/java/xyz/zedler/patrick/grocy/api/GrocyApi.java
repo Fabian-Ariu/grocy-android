@@ -426,6 +426,11 @@ public class GrocyApi {
     return getUrl("/batteries/" + batteryId + "/charge");
   }
 
+  /** Grocy-Kalender (Hausarbeiten/Wartungen, Aufgaben, Speiseplan) als iCal-Abo-Link */
+  public String getCalendarIcalSharingLink() {
+    return getUrl("/calendar/ical/sharing-link");
+  }
+
   public String getChores() {
     return getUrl("/chores");
   }

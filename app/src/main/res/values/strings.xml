@@ -582,6 +582,20 @@
 
   <string name="title_overview">Overview</string>
   <string name="title_more">More</string>
+  <string name="inv_progress">%1$d of %2$d checked \u00b7 %3$d corrected</string>
+  <string name="inv_scanned">Product</string>
+  <string name="inv_according_to_grocy">According to Grocy: %1$s</string>
+  <string name="inv_state_ok">matches</string>
+  <string name="inv_state_corrected">corrected</string>
+  <string name="inv_ok">Matches \u00b7 next</string>
+  <string name="inv_ok_corrected">Save \u00b7 next</string>
+  <string name="inv_gone">Gone</string>
+  <string name="inv_ok_label">MATCHES</string>
+  <string name="inv_gone_label">GONE</string>
+  <string name="inv_hint">Swipe right = matches \u00b7 left = gone \u00b7 \u00b1 corrects</string>
+  <string name="inv_finished">Inventory done \u2713</string>
+  <string name="calendar_subscribe">Add to family calendar</string>
+  <string name="calendar_share_text">Grocy calendar (chores, maintenance, tasks, meal plan). Subscribe to this iCal link in Apple Calendar (Family): %1$s</string>
   <string name="title_equipment">Equipment</string>
   <string name="equipment_hint">Maintenance as Grocy chores: due items also appear under chores and on the wall panel.</string>
   <string name="equipment_empty">No equipment yet. Add one with the + button.</string>

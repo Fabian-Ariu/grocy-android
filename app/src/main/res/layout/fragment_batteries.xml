@@ -15,15 +15,6 @@
       android:id="@+id/toolbar"
       style="@style/Widget.Grocy.Toolbar.Back"
       app:title="@string/title_batteries" />
-    <TextView
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:paddingStart="20dp"
-      android:paddingEnd="20dp"
-      android:paddingBottom="8dp"
-      android:textColor="?attr/colorOnSurfaceVariant"
-      android:textSize="13sp"
-      android:text="@string/batteries_hint" />
   </com.google.android.material.appbar.AppBarLayout>
   <xyz.zedler.patrick.grocy.view.swiperefreshlayout.CustomSwipeRefreshLayout
     android:id="@+id/swipe"

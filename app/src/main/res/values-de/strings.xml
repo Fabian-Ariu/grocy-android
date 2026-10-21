@@ -575,6 +575,20 @@
 
   <string name="title_overview">Übersicht</string>
   <string name="title_more">Mehr</string>
+  <string name="inv_progress">%1$d von %2$d geprüft \u00b7 %3$d korrigiert</string>
+  <string name="inv_scanned">Produkt</string>
+  <string name="inv_according_to_grocy">Laut Grocy: %1$s</string>
+  <string name="inv_state_ok">stimmt</string>
+  <string name="inv_state_corrected">korrigiert</string>
+  <string name="inv_ok">Stimmt \u00b7 weiter</string>
+  <string name="inv_ok_corrected">Speichern \u00b7 weiter</string>
+  <string name="inv_gone">Weg</string>
+  <string name="inv_ok_label">STIMMT</string>
+  <string name="inv_gone_label">WEG</string>
+  <string name="inv_hint">Rechts wischen = stimmt \u00b7 links = weg \u00b7 \u00b1 korrigiert</string>
+  <string name="inv_finished">Inventur abgeschlossen \u2713</string>
+  <string name="calendar_subscribe">In Familienkalender übernehmen</string>
+  <string name="calendar_share_text">Grocy-Kalender (Hausarbeiten, Wartungen, Aufgaben, Speiseplan). Diesen iCal-Link in Apple Kalender (Familie) abonnieren: %1$s</string>
   <string name="title_equipment">Geräte</string>
   <string name="equipment_hint">Wartung als Grocy-Hausarbeit: Fälliges erscheint auch unter Hausarbeiten und auf dem Wandpanel.</string>
   <string name="equipment_empty">Noch keine Geräte. Mit + anlegen.</string>
