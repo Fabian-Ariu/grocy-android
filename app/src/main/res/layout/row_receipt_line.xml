@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Scanory: Kassenzettel-Position (Vorlage 07) -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:foreground="?attr/selectableItemBackground" android:clickable="true" android:focusable="true">
+  <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical" android:paddingStart="12dp" android:paddingEnd="16dp" android:paddingTop="10dp" android:paddingBottom="10dp" android:minHeight="60dp">
+    <com.google.android.material.checkbox.MaterialCheckBox android:id="@+id/check" android:layout_width="wrap_content" android:layout_height="wrap_content" app:buttonTint="@color/receipt_check" android:minWidth="0dp" android:minHeight="0dp"/>
+    <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical" android:layout_marginStart="8dp">
+      <TextView android:id="@+id/name" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textSize="15sp" android:textStyle="bold" android:maxLines="1" android:ellipsize="end" tools:text="Haferflocken"/>
+      <TextView android:id="@+id/raw" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textSize="11sp" android:fontFamily="monospace" android:textColor="?attr/colorOnSurfaceVariant" android:maxLines="1" android:ellipsize="end" tools:text="HAFERFL. 500G"/>
+    </LinearLayout>
+    <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content" android:orientation="vertical" android:gravity="end" android:layout_marginStart="8dp">
+      <TextView android:id="@+id/qty" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textSize="13sp" android:textStyle="bold" android:textColor="?attr/colorOnSurface" tools:text="2 Pkg."/>
+      <TextView android:id="@+id/price" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textSize="12sp" android:textColor="?attr/colorOnSurfaceVariant" tools:text="2.58"/>
+    </LinearLayout>
+    <TextView android:id="@+id/button_assign" android:layout_width="wrap_content" android:layout_height="34dp" android:layout_marginStart="10dp" android:paddingStart="14dp" android:paddingEnd="14dp" android:gravity="center" android:text="@string/receipt_assign" android:textSize="13sp" android:textStyle="bold" android:textColor="@color/receipt_unknown" android:background="@drawable/glass_pill" android:visibility="gone" tools:visibility="visible"/>
+  </LinearLayout>
+  <View android:id="@+id/divider" android:layout_width="match_parent" android:layout_height="1dp" android:layout_marginStart="48dp" android:background="?attr/colorOutlineVariant"/>
+</LinearLayout>

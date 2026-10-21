@@ -582,6 +582,21 @@
 
   <string name="title_overview">Overview</string>
   <string name="title_more">More</string>
+  <string name="title_receipt">Receipt</string>
+  <string name="more_sub_receipt">Photo, recognise, add to stock</string>
+  <string name="receipt_title">Receipt</string>
+  <string name="receipt_photo">Take photo</string>
+  <string name="receipt_empty_title">Photograph receipt</string>
+  <string name="receipt_empty_sub">Lines are recognised and matched to your products</string>
+  <string name="receipt_unknown">Unknown</string>
+  <string name="receipt_assign">Assign</string>
+  <string name="receipt_deposit">Deposit \u00b7 ignored</string>
+  <string name="receipt_nothing">No positions recognised</string>
+  <string name="receipt_ocr_failed">Text recognition failed</string>
+  <string name="receipt_none_checked">Nothing selected</string>
+  <string name="receipt_no_camera">No camera app available</string>
+  <plurals name="receipt_button_n"><item quantity="one">Add %d position</item><item quantity="other">Add %d positions</item></plurals>
+  <plurals name="receipt_done"><item quantity="one">%d position added to stock</item><item quantity="other">%d positions added to stock</item></plurals>
   <string name="quick_add_frequent">Frequent</string>
   <string name="quick_add_other">Others</string>
   <string name="home_tile_due">Due</string>

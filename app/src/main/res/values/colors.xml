@@ -646,4 +646,8 @@
   <color name="glass_chip_bg">#80FFFFFF</color>
   <color name="glass_card_fill">#BDFFFFFF</color>
   <color name="glass_card_stroke">#59FFFFFF</color>
+  <color name="receipt_text">#1C1B1F</color>
+  <color name="receipt_muted">#79747E</color>
+  <color name="receipt_unknown">#A0522D</color>
+  <color name="receipt_check">#1F7A4D</color>
 </resources>

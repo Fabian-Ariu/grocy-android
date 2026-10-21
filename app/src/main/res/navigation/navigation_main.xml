@@ -352,6 +352,15 @@
     <deepLink app:uri="grocy://homemadeFragment" />
   </fragment>
   <fragment
+    android:id="@+id/receiptFragment"
+    android:name="xyz.zedler.patrick.grocy.fragment.ReceiptFragment"
+    android:label="ReceiptFragment"
+    tools:layout="@layout/fragment_receipt">
+    <argument android:name="path" app:argType="string" app:nullable="true" android:defaultValue="@null" />
+    <deepLink app:uri="grocy://receiptFragment" />
+    <deepLink app:uri="grocy://receiptFragment?path={path}" />
+  </fragment>
+  <fragment
     android:id="@+id/maintenanceEditFragment"
     android:name="xyz.zedler.patrick.grocy.fragment.MaintenanceEditFragment"
     android:label="MaintenanceEditFragment"

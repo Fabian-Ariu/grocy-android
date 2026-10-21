@@ -86,6 +86,10 @@ public class MoreFragment extends BaseFragment {
       if (clickUtil.isDisabled()) return;
       activity.navUtil.navigate(R.id.equipmentFragment);
     });
+    binding.cardReceipt.setOnClickListener(v -> {
+      if (clickUtil.isDisabled()) return;
+      activity.navUtil.navigate(R.id.receiptFragment);
+    });
     binding.cardBatteries.setOnClickListener(v -> {
       if (clickUtil.isDisabled()) return;
       activity.navUtil.navigate(R.id.batteriesFragment);

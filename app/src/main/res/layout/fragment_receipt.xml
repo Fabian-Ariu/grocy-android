@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Scanory: Kassenzettel mit Texterkennung (Vorlage 07) -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical">
+  <com.google.android.material.appbar.AppBarLayout android:id="@+id/app_bar" android:background="@android:color/transparent" android:layout_width="match_parent" android:layout_height="wrap_content">
+    <com.google.android.material.appbar.MaterialToolbar android:id="@+id/toolbar" android:layout_width="match_parent" android:layout_height="?attr/actionBarSize" style="@style/Widget.Grocy.Toolbar.Back" app:title="@string/receipt_title" app:menu="@menu/menu_receipt"/>
+    <TextView android:id="@+id/text_subtitle" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginStart="16dp" android:layout_marginEnd="16dp" android:layout_marginBottom="8dp" android:textSize="13sp" android:textColor="?attr/colorOnSurfaceVariant" android:visibility="gone" tools:visibility="visible" tools:text="Supermarkt · 21.10.2026"/>
+  </com.google.android.material.appbar.AppBarLayout>
+  <FrameLayout android:id="@+id/container" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1">
+    <androidx.recyclerview.widget.RecyclerView android:id="@+id/recycler" style="@style/Widget.Grocy.RecyclerView" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginStart="16dp" android:layout_marginEnd="16dp" android:layout_marginTop="4dp" android:paddingTop="4dp" android:paddingBottom="4dp" android:clipToPadding="false"/>
+    <LinearLayout android:id="@+id/empty" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginStart="16dp" android:layout_marginEnd="16dp" android:layout_marginTop="12dp" android:orientation="vertical" android:gravity="center" android:padding="28dp" android:background="@drawable/glass_card" android:foreground="?attr/selectableItemBackground" android:clickable="true" android:focusable="true">
+      <FrameLayout android:layout_width="72dp" android:layout_height="72dp" android:background="@drawable/icon_circle_green">
+        <ImageView android:layout_width="34dp" android:layout_height="34dp" android:layout_gravity="center" android:src="@drawable/ic_round_photo_camera" app:tint="#1F7A4D" tools:ignore="ContentDescription"/>
+      </FrameLayout>
+      <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="14dp" android:text="@string/receipt_empty_title" android:textColor="?attr/colorOnSurface" android:textSize="17sp" android:textStyle="bold"/>
+      <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="4dp" android:gravity="center" android:text="@string/receipt_empty_sub" android:textColor="?attr/colorOnSurfaceVariant" android:textSize="13sp"/>
+    </LinearLayout>
+    <com.google.android.material.progressindicator.CircularProgressIndicator android:id="@+id/progress" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center" android:indeterminate="true" android:visibility="gone"/>
+  </FrameLayout>
+  <LinearLayout android:id="@+id/bottom" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:paddingStart="16dp" android:paddingEnd="16dp" android:paddingBottom="@dimen/global_bottom_bar_padding">
+    <TextView android:id="@+id/button_add" android:layout_width="match_parent" android:layout_height="56dp" android:gravity="center" android:textColor="#FFFFFF" android:textSize="17sp" android:textStyle="bold" android:background="@drawable/green_primary" android:clickable="true" android:focusable="true" android:enabled="false" android:alpha="0.5" tools:text="3 Positionen einlagern"/>
+  </LinearLayout>
+</LinearLayout>

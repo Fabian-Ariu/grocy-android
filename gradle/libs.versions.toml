@@ -23,6 +23,7 @@ work = "2.11.2"
 #noinspection NewerVersionAvailable
 zxing-core = "3.3.0"
 zxing-android-embedded = "4.3.0"
+mlkit-text-recognition = "16.0.1"
 desugar = "2.1.5"
 exifinterface = "1.4.2"
 
@@ -63,6 +64,8 @@ work-runtime = { module = "androidx.work:work-runtime", version.ref = "work" }
 # ZXing for barcode scanning
 zxing-core = { module = "com.google.zxing:core", version.ref = "zxing-core" }
 zxing-android-embedded = { module = "com.journeyapps:zxing-android-embedded", version.ref = "zxing-android-embedded" }
+# ML Kit Texterkennung, gebuendeltes Modell (laeuft ohne Google-Dienste, z. B. Zebra non-GMS)
+mlkit-text-recognition = { module = "com.google.mlkit:text-recognition", version.ref = "mlkit-text-recognition" }
 # https://github.com/journeyapps/zxing-android-embedded#option-2-desugaring-advanced
 # prevents bug https://github.com/patzly/grocy-android/issues/425
 desugar = { module = "com.android.tools:desugar_jdk_libs", version.ref = "desugar" }

@@ -125,6 +125,8 @@ dependencies {
     // ZXing for barcode scanning
     implementation(libs.zxing.core)
     implementation(libs.zxing.android.embedded)
+    // Kassenzettel-OCR
+    implementation(libs.mlkit.text.recognition)
     // For image rotation
     implementation(libs.exifinterface)
     // https://github.com/journeyapps/zxing-android-embedded#option-2-desugaring-advanced

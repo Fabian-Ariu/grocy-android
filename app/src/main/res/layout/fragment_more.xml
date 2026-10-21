@@ -39,6 +39,29 @@
         android:paddingTop="8dp"
         android:paddingBottom="@dimen/global_scroll_bottom_padding">
 
+        <!-- Kassenzettel (Vorlage 07), volle Breite -->
+        <LinearLayout
+          android:id="@+id/card_receipt"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:orientation="horizontal"
+          android:gravity="center_vertical"
+          android:padding="14dp"
+          android:layout_marginBottom="12dp"
+          android:background="@drawable/glass_card"
+          android:foreground="?attr/selectableItemBackground"
+          android:clickable="true"
+          android:focusable="true">
+          <FrameLayout android:layout_width="48dp" android:layout_height="48dp" android:background="@drawable/icon_circle_orange">
+            <ImageView android:layout_width="24dp" android:layout_height="24dp" android:layout_gravity="center" android:src="@drawable/ic_round_receipt_long" app:tint="#C8781E" tools:ignore="ContentDescription" />
+          </FrameLayout>
+          <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical" android:layout_marginStart="14dp">
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/title_receipt" android:textColor="?attr/colorOnSurface" android:textSize="18sp" android:textStyle="bold" />
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/more_sub_receipt" android:textColor="?attr/colorOnSurfaceVariant" android:textSize="13sp" />
+          </LinearLayout>
+          <ImageView android:layout_width="24dp" android:layout_height="24dp" android:src="@drawable/ic_round_chevron_right" app:tint="?attr/colorOutline" tools:ignore="ContentDescription" />
+        </LinearLayout>
+
         <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:baselineAligned="false" android:layout_marginBottom="12dp">
           <LinearLayout
             android:id="@+id/card_inventory"

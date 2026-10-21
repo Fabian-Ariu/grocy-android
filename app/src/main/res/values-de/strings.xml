@@ -575,6 +575,21 @@
 
   <string name="title_overview">Übersicht</string>
   <string name="title_more">Mehr</string>
+  <string name="title_receipt">Kassenzettel</string>
+  <string name="more_sub_receipt">Foto, erkennen, einlagern</string>
+  <string name="receipt_title">Kassenzettel</string>
+  <string name="receipt_photo">Fotografieren</string>
+  <string name="receipt_empty_title">Kassenzettel fotografieren</string>
+  <string name="receipt_empty_sub">Positionen werden erkannt und deinen Produkten zugeordnet</string>
+  <string name="receipt_unknown">Unbekannt</string>
+  <string name="receipt_assign">Zuordnen</string>
+  <string name="receipt_deposit">Pfand \u00b7 wird ignoriert</string>
+  <string name="receipt_nothing">Keine Positionen erkannt</string>
+  <string name="receipt_ocr_failed">Text konnte nicht erkannt werden</string>
+  <string name="receipt_none_checked">Nichts ausgewählt</string>
+  <string name="receipt_no_camera">Keine Kamera-App vorhanden</string>
+  <plurals name="receipt_button_n"><item quantity="one">%d Position einlagern</item><item quantity="other">%d Positionen einlagern</item></plurals>
+  <plurals name="receipt_done"><item quantity="one">%d Position eingelagert</item><item quantity="other">%d Positionen eingelagert</item></plurals>
   <string name="quick_add_frequent">Häufig</string>
   <string name="quick_add_other">Weitere</string>
   <string name="home_tile_due">Fällig</string>
