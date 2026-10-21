@@ -8,7 +8,7 @@
     android:top="1dp"
     android:bottom="1dp">
     <shape android:shape="rectangle">
-      <solid android:color="?attr/colorSurface" />
+      <solid android:color="@android:color/transparent" />
       <corners
         android:topLeftRadius="16dp"
         android:bottomLeftRadius="16dp" />

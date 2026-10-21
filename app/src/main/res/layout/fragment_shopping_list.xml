@@ -39,12 +39,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?attr/colorSurface"
     android:animateLayoutChanges="true"
     app:transitionTypeChanging="@{true}">
 
     <com.google.android.material.appbar.AppBarLayout
       android:id="@+id/app_bar"
+      android:background="@android:color/transparent"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:layout_alignParentTop="true"
@@ -63,8 +63,7 @@
           <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/toolbar"
             style="@style/Widget.Grocy.Toolbar.Back"
-            app:title="@string/title_shopping_list"
-            app:titleCentered="true"
+            app:title="@string/tab_shopping"
             app:titleMarginEnd="48dp" />
 
           <com.google.android.material.button.MaterialButton

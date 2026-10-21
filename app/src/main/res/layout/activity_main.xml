@@ -25,7 +25,7 @@
   android:id="@+id/coordinator_main"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
-  android:background="?attr/colorSurface">
+  android:background="@drawable/app_ambient_bg">
 
   <androidx.fragment.app.FragmentContainerView
     android:id="@+id/fragment_main_nav_host"
@@ -52,8 +52,18 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_gravity="bottom"
-    android:background="?attr/colorSurfaceContainer"
-    app:elevation="3dp"
+    android:layout_marginStart="16dp"
+    android:layout_marginEnd="16dp"
+    android:layout_marginBottom="10dp"
+    android:background="@drawable/nav_pill"
+    app:elevation="6dp"
+    app:paddingBottomSystemWindowInsets="false"
+    app:itemActiveIndicatorStyle="@style/Widget.Grocy.NavActiveIndicator"
+    app:itemIconTint="@color/nav_item_tint"
+    app:itemTextColor="@color/nav_item_tint"
+    app:itemIconSize="22dp"
+    app:itemPaddingTop="8dp"
+    app:itemPaddingBottom="10dp"
     app:labelVisibilityMode="labeled"
     app:menu="@menu/menu_bottom_tabs" />
 
@@ -67,6 +77,8 @@
     android:layout_marginBottom="16dp"
     android:src="@drawable/ic_round_barcode_scan"
     android:contentDescription="@string/action_scan"
+    app:backgroundTint="?attr/colorPrimary"
+    app:tint="?attr/colorOnPrimary"
     app:fabSize="auto" />
 
   <com.google.android.material.floatingactionbutton.FloatingActionButton

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Vorlage: schwebende Tab-Leiste als Glas-Pill -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android" android:shape="rectangle">
+  <corners android:radius="32dp"/>
+  <gradient android:angle="225" android:startColor="#E6FFFFFF" android:endColor="#BFFFFFFF"/>
+  <stroke android:width="1dp" android:color="#1F000000"/>
+</shape>

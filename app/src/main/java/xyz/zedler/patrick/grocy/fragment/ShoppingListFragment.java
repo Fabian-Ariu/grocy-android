@@ -124,7 +124,7 @@ public class ShoppingListFragment extends BaseFragment implements
     systemBarBehavior.setUp();
     activity.setSystemBarBehavior(systemBarBehavior);
 
-    binding.toolbar.setNavigationOnClickListener(v -> activity.performOnBackPressed());
+    binding.toolbar.setNavigationIcon(null); // Tab-Wurzel: kein Zurueck-Pfeil (Vorlage)
     binding.toolbar.setOnClickListener(v -> showShoppingListsBottomSheet());
 
     infoFullscreenHelper = new InfoFullscreenHelper(binding.frame);

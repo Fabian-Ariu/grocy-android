@@ -124,7 +124,7 @@ public class StockOverviewFragment extends BaseFragment implements
     systemBarBehavior.setUp();
     activity.setSystemBarBehavior(systemBarBehavior);
 
-    binding.toolbarDefault.setNavigationOnClickListener(v -> activity.navUtil.navigateUp());
+    binding.toolbarDefault.setNavigationIcon(null); // Tab-Wurzel: kein Zurueck-Pfeil (Vorlage)
 
     // APP BAR BEHAVIOR
 

@@ -77,9 +77,10 @@ public class FilterChip extends LinearLayout {
     int bgColorFrom = binding.card.getCardBackgroundColor().getColorForState(
         EMPTY_STATE_SET, Color.TRANSPARENT
     );
+    // Vorlage: aktiver Filter = dunkle Pill, inaktiv = Glas-Pill
     int bgColorTo = data.isActive()
-        ? ResUtil.getColor(getContext(), R.attr.colorSecondaryContainer)
-        : Color.TRANSPARENT;
+        ? ResUtil.getColor(getContext(), R.attr.colorOnSurface)
+        : 0x80FFFFFF;
     ValueAnimator colorAnimation = ValueAnimator.ofArgb(bgColorFrom, bgColorTo);
     colorAnimation.setDuration(250);
     colorAnimation.addUpdateListener(
@@ -92,14 +93,14 @@ public class FilterChip extends LinearLayout {
 
     // text color
     binding.text.setTextColor(ResUtil.getColor(getContext(), data.isActive()
-        ? R.attr.colorOnSecondaryContainer
+        ? R.attr.colorSurface
         : R.attr.colorOnSurface
     ));
 
     // expand icon color
     binding.imageIconExpand.setImageTintList(ColorStateList.valueOf(
         ResUtil.getColor(getContext(), data.isActive()
-                ? R.attr.colorOnSecondaryContainer
+                ? R.attr.colorSurface
                 : R.attr.colorOnSurfaceVariant
         )
     ));

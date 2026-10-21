@@ -66,6 +66,19 @@
 
   </LinearLayout>
 
+  <!-- Vorlage: Menge rechtsbuendig, fett -->
+  <TextView
+    android:id="@+id/text_amount"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_vertical"
+    android:layout_marginStart="12dp"
+    android:layout_marginEnd="4dp"
+    android:textSize="16sp"
+    android:textStyle="bold"
+    android:textColor="?attr/colorOnSurface"
+    android:visibility="gone"
+    tools:text="1 kg" />
   <xyz.zedler.patrick.grocy.view.RoundedCornerImageView
     android:id="@+id/picture"
     android:layout_width="56dp"

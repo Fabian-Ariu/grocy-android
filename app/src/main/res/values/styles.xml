@@ -53,11 +53,12 @@
   <!-- Toolbar -->
 
   <style name="Widget.Grocy.Toolbar" parent="@style/Widget.Material3Expressive.Toolbar.OnSurface">
+    <item name="android:background">@android:color/transparent</item>
     <item name="android:layout_width">match_parent</item>
     <item name="android:layout_height">?attr/actionBarSize</item>
-    <item name="titleTextAppearance">@style/TextAppearance.Grocy.TitleLarge</item>
-    <item name="titleMarginStart">0dp</item>
-    <item name="titleCentered">true</item>
+    <item name="titleTextAppearance">@style/TextAppearance.Grocy.ToolbarTitle</item>
+    <item name="titleMarginStart">4dp</item>
+    <item name="titleCentered">false</item>
     <item name="contentInsetStartWithNavigation">0dp</item>
     <item name="android:actionOverflowMenuStyle">@style/ThemeOverlay.Grocy.OverFlow</item>
   </style>
@@ -799,6 +800,7 @@
     <item name="android:layout_height">wrap_content</item>
     <item name="android:textAppearance">?attr/textAppearanceBodyLarge</item>
     <item name="android:textColor">?attr/colorOnSurface</item>
+    <item name="android:textStyle">bold</item>
   </style>
 
   <style name="Widget.Grocy.TextView.ListItem.Description" parent="Widget.Grocy.TextView">
@@ -854,4 +856,28 @@
     <item name="fontFamily">@font/google_sans_flex</item>
   </style>
 
+
+  <!-- Vorlage: grosse, linksbuendige Titel -->
+  <style name="TextAppearance.Grocy.ToolbarTitle" parent="TextAppearance.Material3.TitleLarge">
+    <item name="android:textSize">24sp</item>
+    <item name="android:textStyle">bold</item>
+    <item name="android:textColor">?attr/colorOnSurface</item>
+  </style>
+  <!-- Vorlage: Kopfbereich transparent ueber dem Ambient-Hintergrund -->
+  <style name="Widget.Grocy.AppBarLayout" parent="Widget.Material3.AppBarLayout">
+    <item name="android:background">@android:color/transparent</item>
+    <item name="liftOnScroll">false</item>
+    <item name="elevation">0dp</item>
+  </style>
+  <!-- Vorlage: aktiver Tab als weisser Chip -->
+  <style name="Widget.Grocy.NavActiveIndicator" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
+    <item name="android:color">@android:color/white</item>
+    <item name="android:width">64dp</item>
+    <item name="android:height">36dp</item>
+    <item name="shapeAppearance">@style/ShapeAppearance.Grocy.NavIndicator</item>
+  </style>
+  <style name="ShapeAppearance.Grocy.NavIndicator" parent="">
+    <item name="cornerFamily">rounded</item>
+    <item name="cornerSize">14dp</item>
+  </style>
 </resources>

@@ -640,6 +640,15 @@ public class MainActivity extends AppCompatActivity {
     if (navController != null) {
       navController.addOnDestinationChangedListener((c, dest, args) -> updateSelectedTab(dest.getId()));
     }
+    // Schwebende Pill: unterer Rand = System-Inset + 10dp (die Leiste selbst bleibt kompakt)
+    androidx.core.view.ViewCompat.setOnApplyWindowInsetsListener(binding.bottomNavigation, (v, insets) -> {
+      int bottom = insets.getInsets(androidx.core.view.WindowInsetsCompat.Type.systemBars()).bottom;
+      androidx.coordinatorlayout.widget.CoordinatorLayout.LayoutParams lp =
+          (androidx.coordinatorlayout.widget.CoordinatorLayout.LayoutParams) v.getLayoutParams();
+      int wanted = bottom + UiUtil.dpToPx(this, 10);
+      if (lp.bottomMargin != wanted) { lp.bottomMargin = wanted; v.setLayoutParams(lp); }
+      return insets;
+    });
     // Tab-Leiste gelayoutet: Haupt-FAB ueber UiUtil (absolute Y) neu platzieren, Scroll-FAB per
     // Rand ueber die Tabs heben. Nur bei Hoehenaenderung, damit keine Layout-Schleife entsteht.
     binding.bottomNavigation.getViewTreeObserver().addOnGlobalLayoutListener(() -> {

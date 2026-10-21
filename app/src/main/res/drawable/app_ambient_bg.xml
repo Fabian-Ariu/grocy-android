@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Vorlage: cremefarbener Grund mit weichen Farbflecken (Annaeherung an blur) -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+  <item><shape android:shape="rectangle"><solid android:color="?attr/colorSurface"/></shape></item>
+  <item android:drawable="@drawable/blob_blue" android:width="340dp" android:height="340dp" android:gravity="top|end" android:top="40dp" android:right="-130dp"/>
+  <item android:drawable="@drawable/blob_green" android:width="300dp" android:height="300dp" android:gravity="bottom|start" android:bottom="60dp" android:left="-110dp"/>
+  <item android:drawable="@drawable/blob_orange" android:width="260dp" android:height="260dp" android:gravity="center_vertical|end" android:right="-140dp"/>
+</layer-list>

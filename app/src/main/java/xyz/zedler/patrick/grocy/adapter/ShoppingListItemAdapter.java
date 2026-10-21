@@ -440,6 +440,7 @@ public class ShoppingListItemAdapter extends
     // AMOUNT
 
     Double amountInItemUnit = shoppingListItemAmountsHashMap.get(item.getId());
+    binding.textAmount.setVisibility(View.GONE);
     if (activeFields.contains(ShoppingListViewModel.FIELD_AMOUNT)) {
       StringBuilder stringBuilderAmount = new StringBuilder();
       if (product != null && amountInItemUnit != null) {
@@ -469,21 +470,19 @@ public class ShoppingListItemAdapter extends
       } else {
         stringBuilderAmount.append(NumUtil.trimAmount(item.getAmountDouble(), maxDecimalPlacesAmount));
       }
-      Chip chipAmount = createChip(context, stringBuilderAmount.toString());
-      if (item.hasProduct() && missingProductIds.contains(item.getProductIdInt())) {
-        chipAmount.setTextColor(ResUtil.getColor(context, R.attr.colorOnCustomBlueContainer));
-        chipAmount.setChipBackgroundColor(ColorStateList.valueOf(
-            ResUtil.getColor(context, R.attr.colorCustomBlueContainer)
-        ));
-      }
+      // Vorlage: Menge rechts als Text, nicht als Chip
+      binding.textAmount.setText(stringBuilderAmount.toString());
+      binding.textAmount.setTextColor(ResUtil.getColor(context,
+          item.hasProduct() && missingProductIds.contains(item.getProductIdInt())
+              ? R.attr.colorPrimary : R.attr.colorOnSurface));
       if (item.isUndone()) {
-        chipAmount.setPaintFlags(chipAmount.getPaintFlags() & (~Paint.STRIKE_THRU_TEXT_FLAG));
-        chipAmount.setAlpha(1);
+        binding.textAmount.setPaintFlags(binding.textAmount.getPaintFlags() & (~Paint.STRIKE_THRU_TEXT_FLAG));
+        binding.textAmount.setAlpha(1);
       } else {
-        chipAmount.setPaintFlags(chipAmount.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
-        chipAmount.setAlpha(0.61f);
+        binding.textAmount.setPaintFlags(binding.textAmount.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+        binding.textAmount.setAlpha(0.61f);
       }
-      binding.flexboxLayout.addView(chipAmount);
+      binding.textAmount.setVisibility(View.VISIBLE);
     }
 
     // NOTE

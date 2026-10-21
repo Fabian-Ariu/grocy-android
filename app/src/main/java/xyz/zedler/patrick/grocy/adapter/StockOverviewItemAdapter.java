@@ -373,6 +373,7 @@ public class StockOverviewItemAdapter extends
         stockItem.getProduct().getQuIdStockInt()
     );
 
+    holder.binding.textAmount.setVisibility(View.GONE);
     if (activeFields.contains(StockOverviewViewModel.FIELD_AMOUNT)) {
       int colorBlueContainer = ResUtil.getColor(context, R.attr.colorCustomBlueContainer);
       int colorOnBlueContainer = ResUtil.getColor(context, R.attr.colorOnCustomBlueContainer);
@@ -380,12 +381,14 @@ public class StockOverviewItemAdapter extends
       if (!stockItem.getProduct().getNoOwnStockBoolean()) {
         AmountUtil.addStockAmountNormalInfo(context, pluralUtil, stringBuilderAmount, stockItem,
             quantityUnitStock, maxDecimalPlacesAmount);
-        Chip chipAmount = createChip(context, stringBuilderAmount.toString());
-        if (missingItemsProductIds.contains(stockItem.getProductId())) {
-          chipAmount.setTextColor(colorOnBlueContainer);
-          chipAmount.setChipBackgroundColor(ColorStateList.valueOf(colorBlueContainer));
-        }
-        holder.binding.flexboxLayout.addView(chipAmount);
+        // Vorlage: Menge rechts als Text, nicht als Chip
+        holder.binding.textAmount.setText(stringBuilderAmount.toString());
+        holder.binding.textAmount.setTextColor(
+            missingItemsProductIds.contains(stockItem.getProductId())
+                ? ResUtil.getColor(context, R.attr.colorPrimary)
+                : ResUtil.getColor(context, R.attr.colorOnSurface)
+        );
+        holder.binding.textAmount.setVisibility(View.VISIBLE);
       }
       StringBuilder stringBuilderAmountAggregated = new StringBuilder();
       AmountUtil.addStockAmountAggregatedInfo(context, pluralUtil, stringBuilderAmountAggregated,
@@ -520,26 +523,9 @@ public class StockOverviewItemAdapter extends
         holder.binding.flexboxLayout.getChildCount() > 0 ? View.VISIBLE : View.GONE
     );
 
-    String pictureFileName = stockItem.getProduct().getPictureFileName();
-    if (activeFields.contains(StockOverviewViewModel.FIELD_PICTURE)
-        && pictureFileName != null && !pictureFileName.isEmpty()) {
-      holder.binding.picture.layout(0, 0, 0, 0);
-
-      PictureUtil.loadPicture(
-          holder.binding.picture,
-          null,
-          holder.binding.picturePlaceholder,
-          grocyApi.getProductPictureServeSmall(pictureFileName),
-          grocyAuthHeaders,
-          false
-      );
-    } else if (activeFields.contains(StockOverviewViewModel.FIELD_PICTURE) && containsPictures) {
-      holder.binding.picture.setVisibility(View.GONE);
-      holder.binding.picturePlaceholder.setVisibility(View.VISIBLE);
-    } else {
-      holder.binding.picture.setVisibility(View.GONE);
-      holder.binding.picturePlaceholder.setVisibility(View.GONE);
-    }
+    // Vorlage: Vorratszeilen textbasiert ohne Produktbild (Menge rechts statt Thumbnail)
+    holder.binding.picture.setVisibility(View.GONE);
+    holder.binding.picturePlaceholder.setVisibility(View.GONE);
 
     // CONTAINER
 

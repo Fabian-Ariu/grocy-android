@@ -33,10 +33,10 @@
   <com.google.android.material.card.MaterialCardView
     android:id="@+id/card"
     android:layout_width="wrap_content"
-    android:layout_height="32dp"
-    app:cardCornerRadius="8dp"
+    android:layout_height="36dp"
+    app:cardCornerRadius="18dp"
     app:strokeWidth="1dp"
-    app:strokeColor="?attr/colorOutline"
+    app:strokeColor="#14000000"
     app:cardElevation="0dp"
     app:cardBackgroundColor="@color/transparent">
 
