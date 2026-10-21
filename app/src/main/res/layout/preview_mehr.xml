@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent" android:layout_height="match_parent" android:background="#F2F0EB">
+
+  <View android:layout_width="320dp" android:layout_height="320dp" android:layout_gravity="end|top"
+      android:layout_marginEnd="-110dp" android:layout_marginTop="-20dp" android:background="@drawable/blob_blue" />
+  <View android:layout_width="280dp" android:layout_height="280dp" android:layout_gravity="start|bottom"
+      android:layout_marginStart="-90dp" android:layout_marginBottom="160dp" android:background="@drawable/blob_green" />
+
+  <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent"
+      android:orientation="vertical" android:paddingStart="16dp" android:paddingEnd="16dp" android:paddingTop="16dp" android:paddingBottom="12dp">
+
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical">
+      <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Mehr" android:textColor="#1F1E1D" android:textSize="30sp" android:textStyle="bold"/>
+      <TextView android:layout_width="wrap_content" android:layout_height="44dp" android:gravity="center" android:paddingStart="18dp" android:paddingEnd="18dp"
+          android:text="Anpassen" android:textColor="#0062CC" android:textSize="15sp" android:textStyle="bold" android:background="@drawable/glass_pill"/>
+    </LinearLayout>
+
+    <ScrollView android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" android:scrollbars="none"
+        android:layout_marginTop="14dp" android:clipToPadding="false" android:paddingBottom="12dp">
+      <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical">
+
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:layout_marginBottom="12dp">
+          <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical"
+              android:background="@drawable/glass_card" android:padding="16dp" android:layout_marginEnd="12dp" android:minHeight="110dp">
+            <FrameLayout android:layout_width="44dp" android:layout_height="44dp" android:background="@drawable/icon_circle_blue">
+              <ImageView android:layout_width="22dp" android:layout_height="22dp" android:layout_gravity="center" android:src="@drawable/ic_round_inventory" app:tint="#0062CC"/></FrameLayout>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="12dp" android:text="Inventur" android:textColor="#1F1E1D" android:textSize="18sp" android:textStyle="bold"/>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Zuletzt vor 6 Tagen" android:textColor="#6A6A6A" android:textSize="13sp"/>
+          </LinearLayout>
+          <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical"
+              android:background="@drawable/glass_card" android:padding="16dp" android:minHeight="110dp">
+            <FrameLayout android:layout_width="44dp" android:layout_height="44dp" android:background="@drawable/icon_circle_green">
+              <ImageView android:layout_width="22dp" android:layout_height="22dp" android:layout_gravity="center" android:src="@drawable/ic_round_barcode" app:tint="#1F7A4D"/></FrameLayout>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="12dp" android:text="Kassenzettel" android:textColor="#1F1E1D" android:textSize="18sp" android:textStyle="bold"/>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Foto statt Einzelscan" android:textColor="#6A6A6A" android:textSize="13sp"/>
+          </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:layout_marginBottom="12dp">
+          <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical"
+              android:background="@drawable/glass_card" android:padding="16dp" android:layout_marginEnd="12dp" android:minHeight="110dp">
+            <FrameLayout android:layout_width="44dp" android:layout_height="44dp" android:background="@drawable/icon_circle_orange">
+              <ImageView android:layout_width="22dp" android:layout_height="22dp" android:layout_gravity="center" android:src="@drawable/ic_round_restaurant_menu" app:tint="#C8781E"/></FrameLayout>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="12dp" android:text="Speiseplan" android:textColor="#1F1E1D" android:textSize="18sp" android:textStyle="bold"/>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Heute: Linsencurry" android:textColor="#6A6A6A" android:textSize="13sp"/>
+          </LinearLayout>
+          <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical"
+              android:background="@drawable/glass_card" android:padding="16dp" android:minHeight="110dp">
+            <FrameLayout android:layout_width="44dp" android:layout_height="44dp" android:background="@drawable/icon_circle_blue">
+              <ImageView android:layout_width="22dp" android:layout_height="22dp" android:layout_gravity="center" android:src="@drawable/ic_round_widgets" app:tint="#0062CC"/></FrameLayout>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="12dp" android:text="Geräte" android:textColor="#1F1E1D" android:textSize="18sp" android:textStyle="bold"/>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Anleitungen &amp; Garantie" android:textColor="#6A6A6A" android:textSize="13sp"/>
+          </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:layout_marginBottom="12dp">
+          <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical"
+              android:background="@drawable/glass_card" android:padding="16dp" android:layout_marginEnd="12dp" android:minHeight="110dp">
+            <FrameLayout android:layout_width="44dp" android:layout_height="44dp" android:background="@drawable/icon_circle_green">
+              <ImageView android:layout_width="22dp" android:layout_height="22dp" android:layout_gravity="center" android:src="@drawable/ic_round_hourglass_bottom" app:tint="#1F7A4D"/></FrameLayout>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="12dp" android:text="Hausarbeiten" android:textColor="#1F1E1D" android:textSize="18sp" android:textStyle="bold"/>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="2 fällig" android:textColor="#6A6A6A" android:textSize="13sp"/>
+          </LinearLayout>
+          <View android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1"/>
+        </LinearLayout>
+
+        <!-- Verwaltung, volle Breite -->
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal"
+            android:gravity="center_vertical" android:background="@drawable/glass_card" android:padding="14dp">
+          <FrameLayout android:layout_width="48dp" android:layout_height="48dp" android:background="@drawable/icon_circle_dark">
+            <ImageView android:layout_width="24dp" android:layout_height="24dp" android:layout_gravity="center" android:src="@drawable/ic_round_more_vert" app:tint="#FFFFFF"/></FrameLayout>
+          <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical" android:layout_marginStart="14dp">
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Verwaltung" android:textColor="#1F1E1D" android:textSize="18sp" android:textStyle="bold"/>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Server, Stammdaten, Quellen, Hinweise" android:textColor="#6A6A6A" android:textSize="13sp"/>
+          </LinearLayout>
+          <ImageView android:layout_width="24dp" android:layout_height="24dp" android:src="@drawable/ic_round_expand_more" app:tint="#8A8A8A" android:rotation="270"/>
+        </LinearLayout>
+
+      </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout android:layout_width="match_parent" android:layout_height="74dp" android:orientation="horizontal"
+        android:background="@drawable/glass_card" android:gravity="center_vertical" android:paddingTop="4dp" android:paddingBottom="4dp">
+      <LinearLayout android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:orientation="vertical" android:gravity="center">
+        <ImageView android:layout_width="22dp" android:layout_height="22dp" android:src="@drawable/ic_round_barcode_scan" app:tint="#5A5F6A"/>
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Scannen" android:textSize="11sp" android:textColor="#5A5F6A"/>
+      </LinearLayout>
+      <LinearLayout android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:orientation="vertical" android:gravity="center">
+        <ImageView android:layout_width="22dp" android:layout_height="22dp" android:src="@drawable/ic_round_inventory" app:tint="#5A5F6A"/>
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Vorrat" android:textSize="11sp" android:textColor="#5A5F6A"/>
+      </LinearLayout>
+      <LinearLayout android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:orientation="vertical" android:gravity="center">
+        <ImageView android:layout_width="22dp" android:layout_height="22dp" android:src="@drawable/ic_round_local_grocery_store" app:tint="#5A5F6A"/>
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Einkauf" android:textSize="11sp" android:textColor="#5A5F6A"/>
+      </LinearLayout>
+      <LinearLayout android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:orientation="vertical" android:gravity="center">
+        <ImageView android:layout_width="22dp" android:layout_height="22dp" android:src="@drawable/ic_round_restaurant_menu" app:tint="#5A5F6A"/>
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Rezepte" android:textSize="11sp" android:textColor="#5A5F6A"/>
+      </LinearLayout>
+      <LinearLayout android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:orientation="vertical" android:gravity="center" android:background="@drawable/glass_chip">
+        <ImageView android:layout_width="22dp" android:layout_height="22dp" android:src="@drawable/ic_round_widgets" app:tint="#0062CC"/>
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Mehr" android:textSize="11sp" android:textColor="#0062CC"/>
+      </LinearLayout>
+    </LinearLayout>
+
+  </LinearLayout>
+</FrameLayout>
