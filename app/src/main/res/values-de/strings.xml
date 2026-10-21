@@ -575,6 +575,13 @@
 
   <string name="title_overview">Übersicht</string>
   <string name="title_more">Mehr</string>
+  <string name="more_sub_inventory">Bestand zählen und korrigieren</string>
+  <string name="more_sub_meal_plan">Die Woche planen</string>
+  <string name="more_sub_chores">Fällige Arbeiten im Haushalt</string>
+  <string name="more_sub_tasks">Offene Aufgaben</string>
+  <string name="more_sub_master_data">Produkte, Orte, Einheiten</string>
+  <string name="more_sub_shopping_mode">Grosse Ansicht für den Laden</string>
+  <string name="more_sub_settings">Server, Scanner, Darstellung, Benachrichtigungen</string>
   <string name="tab_stock">Vorrat</string>
   <string name="tab_shopping">Einkauf</string>
   <string name="home_chip_produce">Obst &amp; Gemüse</string>

@@ -632,8 +632,8 @@ public class MainActivity extends AppCompatActivity {
         navUtil.navigateDeepLink(getString(R.string.deep_link_recipesFragment));
         return true;
       } else if (id == R.id.menu_tab_more) {
-        navUtil.navigate(NavigationMainDirections.actionGlobalDrawerBottomSheetDialogFragment());
-        return false;
+        navUtil.navigate(R.id.moreFragment);
+        return true;
       }
       return false;
     });
@@ -674,6 +674,8 @@ public class MainActivity extends AppCompatActivity {
       itemId = R.id.menu_tab_shopping;
     } else if (destId == R.id.recipesFragment) {
       itemId = R.id.menu_tab_recipes;
+    } else if (destId == R.id.moreFragment) {
+      itemId = R.id.menu_tab_more;
     } else {
       return;
     }

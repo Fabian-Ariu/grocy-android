@@ -309,6 +309,11 @@
     android:name="xyz.zedler.patrick.grocy.fragment.OverviewStartFragment"
     android:label="OverviewStartFragment"
     tools:layout="@layout/fragment_overview_start" />
+  <fragment
+    android:id="@+id/moreFragment"
+    android:name="xyz.zedler.patrick.grocy.fragment.MoreFragment"
+    android:label="MoreFragment"
+    tools:layout="@layout/fragment_more" />
   <navigation
     android:id="@+id/navigation_login"
     app:startDestination="@id/loginIntroFragment">

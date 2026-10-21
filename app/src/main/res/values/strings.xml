@@ -582,6 +582,13 @@
 
   <string name="title_overview">Overview</string>
   <string name="title_more">More</string>
+  <string name="more_sub_inventory">Count and correct stock</string>
+  <string name="more_sub_meal_plan">Plan the week</string>
+  <string name="more_sub_chores">Due tasks around the house</string>
+  <string name="more_sub_tasks">Open to-dos</string>
+  <string name="more_sub_master_data">Products, locations, units</string>
+  <string name="more_sub_shopping_mode">Large view for the store</string>
+  <string name="more_sub_settings">Server, scanner, appearance, notifications</string>
   <string name="tab_stock">Stock</string>
   <string name="tab_shopping">Shopping</string>
   <string name="home_chip_produce">Fruit &amp; vegetables</string>
