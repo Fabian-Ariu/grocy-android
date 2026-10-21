@@ -582,6 +582,13 @@
 
   <string name="title_overview">Overview</string>
   <string name="title_more">More</string>
+  <string name="title_batteries">Batteries</string>
+  <string name="batteries_hint">Tap \u201cCharged\u201d after charging; Grocy tracks the cycle.</string>
+  <string name="action_charged">Charged</string>
+  <string name="batteries_interval">Charge every %1$d days</string>
+  <string name="batteries_no_interval">No charge interval</string>
+  <string name="batteries_empty">No batteries in Grocy</string>
+  <string name="more_sub_batteries">Log charging</string>
   <string name="more_sub_inventory">Count and correct stock</string>
   <string name="more_sub_meal_plan">Plan the week</string>
   <string name="more_sub_chores">Due tasks around the house</string>

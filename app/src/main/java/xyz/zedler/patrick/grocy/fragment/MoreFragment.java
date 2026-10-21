@@ -79,6 +79,10 @@ public class MoreFragment extends BaseFragment {
     binding.cardMasterData.setOnClickListener(v -> go(R.string.deep_link_masterDataOverviewFragment));
     binding.cardShoppingMode.setOnClickListener(v -> go(R.string.deep_link_shoppingModeFragment));
     binding.cardSettings.setOnClickListener(v -> go(R.string.deep_link_settingsFragment));
+    binding.cardBatteries.setOnClickListener(v -> {
+      if (clickUtil.isDisabled()) return;
+      activity.navUtil.navigate(R.id.batteriesFragment);
+    });
     binding.rowAbout.setOnClickListener(v -> go(R.string.deep_link_aboutFragment));
     binding.rowHelp.setOnClickListener(v -> {
       if (clickUtil.isDisabled()) return;

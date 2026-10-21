@@ -417,6 +417,15 @@ public class GrocyApi {
   /**
    * Returns all chores incl. the next estimated execution time per chore
    */
+  /** Batterien mit Ladezustand (Scanory) */
+  public String getBatteries() {
+    return getUrl("/batteries");
+  }
+
+  public String chargeBattery(int batteryId) {
+    return getUrl("/batteries/" + batteryId + "/charge");
+  }
+
   public String getChores() {
     return getUrl("/chores");
   }

@@ -575,6 +575,13 @@
 
   <string name="title_overview">Übersicht</string>
   <string name="title_more">Mehr</string>
+  <string name="title_batteries">Akkus</string>
+  <string name="batteries_hint">Nach dem Laden auf \u00abGeladen\u00bb tippen, Grocy protokolliert den Zyklus.</string>
+  <string name="action_charged">Geladen</string>
+  <string name="batteries_interval">Laden alle %1$d Tage</string>
+  <string name="batteries_no_interval">Kein Ladeintervall</string>
+  <string name="batteries_empty">Keine Akkus in Grocy</string>
+  <string name="more_sub_batteries">Ladungen protokollieren</string>
   <string name="more_sub_inventory">Bestand zählen und korrigieren</string>
   <string name="more_sub_meal_plan">Die Woche planen</string>
   <string name="more_sub_chores">Fällige Arbeiten im Haushalt</string>
