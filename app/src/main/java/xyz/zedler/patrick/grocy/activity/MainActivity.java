@@ -662,21 +662,8 @@ public class MainActivity extends AppCompatActivity {
   }
 
   public void updateBottomNavigationMenuButton() {
-    if (sharedPrefs.getBoolean(BEHAVIOR.SHOW_MAIN_MENU_BUTTON,
-        SETTINGS_DEFAULT.BEHAVIOR.SHOW_MAIN_MENU_BUTTON)) {
-      binding.bottomAppBar.setNavigationIcon(
-          AppCompatResources.getDrawable(this, R.drawable.ic_round_menu_anim)
-      );
-      binding.bottomAppBar.setNavigationOnClickListener(v -> {
-        if (clickUtil.isDisabled()) {
-          return;
-        }
-        ViewUtil.startIcon(binding.bottomAppBar.getNavigationIcon());
-        navUtil.navigate(NavigationMainDirections.actionGlobalDrawerBottomSheetDialogFragment());
-      });
-    } else {
-      binding.bottomAppBar.setNavigationIcon(null);
-    }
+    // Neues 5-Tab-Design: der Menue-Knopf (Schublade) wird durch den Tab "Mehr" ersetzt.
+    binding.bottomAppBar.setNavigationIcon(null);
   }
 
   public boolean hasBottomNavigationIcon() {

@@ -154,6 +154,12 @@ public class UiUtil {
         binding.fabMain.hide();
       }
 
+      // Neues 5-Tab-Design: die untere App-Bar dient nur noch als Aktionsleiste
+      // ueber der Tab-Leiste und erscheint nur, wenn ein Screen eigene Menuepunkte hat.
+      binding.bottomAppBar.setVisibility(
+          newMenuId == R.menu.menu_empty ? View.GONE : View.VISIBLE
+      );
+
       Drawable overflowIcon = binding.bottomAppBar.getOverflowIcon();
 
       // IF ANIMATIONS DISABLED
