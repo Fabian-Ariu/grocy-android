@@ -221,7 +221,10 @@ public class InventoryFragment extends BaseFragment implements BarcodeListener, 
     activity.getScrollBehavior().setNestedOverScrollFixEnabled(true);
     activity.getScrollBehavior().setUpScroll(binding.appBar, false, binding.scroll);
     activity.getScrollBehavior().setBottomBarVisibility(true);
-    activity.updateBottomAppBar(true, R.menu.menu_inventory, this::onMenuItemClick);
+    activity.updateBottomAppBar(true, R.menu.menu_empty);
+    // 5-Tab-Design: Screen-Aktionen in der oberen Toolbar statt in der ausgeblendeten unteren App-Bar
+    binding.toolbar.inflateMenu(R.menu.menu_inventory);
+    binding.toolbar.setOnMenuItemClickListener(this::onMenuItemClick);
     activity.updateFab(
         R.drawable.ic_round_inventory,
         R.string.action_inventory,

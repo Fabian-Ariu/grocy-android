@@ -243,7 +243,10 @@ public class TransferFragment extends BaseFragment implements BarcodeListener, H
     activity.getScrollBehavior().setNestedOverScrollFixEnabled(true);
     activity.getScrollBehavior().setUpScroll(binding.appBar, false, binding.scroll);
     activity.getScrollBehavior().setBottomBarVisibility(true);
-    activity.updateBottomAppBar(true, R.menu.menu_transfer, this::onMenuItemClick);
+    activity.updateBottomAppBar(true, R.menu.menu_empty);
+    // 5-Tab-Design: Screen-Aktionen in der oberen Toolbar statt in der ausgeblendeten unteren App-Bar
+    binding.toolbar.inflateMenu(R.menu.menu_transfer);
+    binding.toolbar.setOnMenuItemClickListener(this::onMenuItemClick);
     activity.updateFab(
         R.drawable.ic_round_swap_horiz,
         R.string.action_transfer,

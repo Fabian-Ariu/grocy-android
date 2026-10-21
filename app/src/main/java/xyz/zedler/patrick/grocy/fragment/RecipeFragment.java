@@ -282,7 +282,10 @@ public class RecipeFragment extends BaseFragment implements
         binding.appBar, false, binding.scroll, true, false
     );
     activity.getScrollBehavior().setBottomBarVisibility(true);
-    activity.updateBottomAppBar(true, R.menu.menu_recipe, this::onMenuItemClick);
+    activity.updateBottomAppBar(true, R.menu.menu_empty);
+    // 5-Tab-Design: Screen-Aktionen in der oberen Toolbar statt in der ausgeblendeten unteren App-Bar
+    binding.toolbar.inflateMenu(R.menu.menu_recipe);
+    binding.toolbar.setOnMenuItemClickListener(this::onMenuItemClick);
     activity.updateFab(
         R.drawable.ic_round_countertops,
         R.string.title_preparation_mode,

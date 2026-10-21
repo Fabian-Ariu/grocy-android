@@ -224,7 +224,10 @@ public class MealPlanFragment extends BaseFragment {
 
     activity.getScrollBehavior().setUpScroll(binding.appBar, false, null);
     activity.getScrollBehavior().setBottomBarVisibility(true);
-    activity.updateBottomAppBar(false, R.menu.menu_meal_plan, this::onMenuItemClick);
+    activity.updateBottomAppBar(false, R.menu.menu_empty);
+    // 5-Tab-Design: Screen-Aktionen in der oberen Toolbar statt in der ausgeblendeten unteren App-Bar
+    binding.toolbarDefault.inflateMenu(R.menu.menu_meal_plan);
+    binding.toolbarDefault.setOnMenuItemClickListener(this::onMenuItemClick);
   }
 
   private boolean onMenuItemClick(MenuItem item) {

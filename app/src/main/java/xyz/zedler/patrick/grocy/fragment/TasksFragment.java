@@ -231,7 +231,10 @@ public class TasksFragment extends BaseFragment implements
         binding.appBar, false, binding.recycler, true, true
     );
     activity.getScrollBehavior().setBottomBarVisibility(true);
-    activity.updateBottomAppBar(true, R.menu.menu_tasks, this::onMenuItemClick);
+    activity.updateBottomAppBar(true, R.menu.menu_empty);
+    // 5-Tab-Design: Screen-Aktionen in der oberen Toolbar statt in der ausgeblendeten unteren App-Bar
+    binding.toolbarDefault.inflateMenu(R.menu.menu_tasks);
+    binding.toolbarDefault.setOnMenuItemClickListener(this::onMenuItemClick);
     activity.updateFab(
         R.drawable.ic_round_add_anim,
         R.string.title_task_new,

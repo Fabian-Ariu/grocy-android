@@ -280,7 +280,13 @@ public class StockOverviewFragment extends BaseFragment implements
         binding.appBar, false, binding.recycler, true, true
     );
     activity.getScrollBehavior().setBottomBarVisibility(true);
-    activity.updateBottomAppBar(false, R.menu.menu_stock, this::onMenuItemClick);
+    // 5-Tab-Design: Screen-Aktionen (Suche, Journal, Eintraege) liegen in der oberen
+    // Toolbar, nicht mehr in der ausgeblendeten unteren App-Bar.
+    activity.updateBottomAppBar(false, R.menu.menu_empty);
+    if (binding.toolbarDefault.getMenu().size() == 0) {
+      binding.toolbarDefault.inflateMenu(R.menu.menu_stock);
+    }
+    binding.toolbarDefault.setOnMenuItemClickListener(this::onMenuItemClick);
   }
 
   @Override

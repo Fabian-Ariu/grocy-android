@@ -247,11 +247,10 @@ public class ShoppingListFragment extends BaseFragment implements
         binding.appBar, false, binding.recycler, true, true
     );
     activity.getScrollBehavior().setBottomBarVisibility(true);
-    activity.updateBottomAppBar(
-        true,
-        R.menu.menu_shopping_list,
-        getBottomMenuClickListener()
-    );
+    activity.updateBottomAppBar(true, R.menu.menu_empty);
+    // 5-Tab-Design: Listen-Aktionen in der oberen Toolbar statt in der ausgeblendeten unteren App-Bar
+    binding.toolbar.inflateMenu(R.menu.menu_shopping_list);
+    binding.toolbar.setOnMenuItemClickListener(getBottomMenuClickListener());
     activity.updateFab(
         R.drawable.ic_round_add_anim,
         R.string.title_entry_new,

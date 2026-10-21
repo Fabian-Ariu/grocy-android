@@ -82,7 +82,10 @@ public class LogFragment extends BaseFragment {
         binding.appBar, false, binding.scroll, true
     );
     activity.getScrollBehavior().setBottomBarVisibility(true);
-    activity.updateBottomAppBar(false, R.menu.menu_log, this::onMenuItemClick);
+    activity.updateBottomAppBar(false, R.menu.menu_empty);
+    // 5-Tab-Design: Screen-Aktionen in der oberen Toolbar statt in der ausgeblendeten unteren App-Bar
+    binding.toolbar.inflateMenu(R.menu.menu_log);
+    binding.toolbar.setOnMenuItemClickListener(this::onMenuItemClick);
 
     String server = PreferenceManager.getDefaultSharedPreferences(requireContext())
         .getString(Constants.PREF.SERVER_URL, null);
