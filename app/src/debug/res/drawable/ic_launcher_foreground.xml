@@ -1,52 +1,8 @@
-<!--
-  ~ This file is part of Grocy Android.
-  ~
-  ~ Grocy Android is free software: you can redistribute it and/or modify
-  ~ it under the terms of the GNU General Public License as published by
-  ~ the Free Software Foundation, either version 3 of the License, or
-  ~ (at your option) any later version.
-  ~
-  ~ Grocy Android is distributed in the hope that it will be useful,
-  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
-  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-  ~ GNU General Public License for more details.
-  ~
-  ~ You should have received a copy of the GNU General Public License
-  ~ along with Grocy Android. If not, see http://www.gnu.org/licenses/.
-  ~
-  ~ Copyright (c) 2020-2024 by Patrick Zedler and Dominic Zedler
-  ~ Copyright (c) 2024-2026 by Patrick Zedler
-  -->
-
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Scanory: eigenes Launcher-Icon (Fork von Grocy Android, GPLv3) -->
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
-    android:width="108dp"
-    android:height="108dp"
-    android:viewportWidth="108"
-    android:viewportHeight="108">
-  <path
-      android:pathData="M54,35.33L54,35.33A9.33,9.33 0,0 1,63.33 44.67L63.33,51.67A9.33,9.33 0,0 1,54 61L54,61A9.33,9.33 0,0 1,44.67 51.67L44.67,44.67A9.33,9.33 0,0 1,54 35.33z"
-      android:strokeWidth="2.91667"
-      android:fillColor="#00000000"
-      android:strokeColor="#1a1c18"
-      android:strokeLineCap="round"/>
-  <path
-      android:pathData="m29.03,52.2 l3.96,14.47A11.32,11.32 0,0 0,43.91 75H64.09A11.32,11.32 0,0 0,75 66.67L78.97,52.2A4.12,4.12 0,0 0,75 47H33a4.12,4.12 0,0 0,-3.97 5.2z"
-      android:strokeWidth="2.91667"
-      android:fillColor="#b8f397"
-      android:strokeColor="#1a1c18"/>
-  <path
-      android:pathData="M58.67,51.67H50.5c-2.5,0 -4.67,2.17 -4.67,4.67v9.33A4.67,4.67 0,0 0,50.5 70.33h7a4.67,4.67 0,0 0,4.67 -4.67v-2.33c0.02,-2.52 -2.17,-4.67 -4.69,-4.67h-2.31c-3.15,0 -3.03,4.67 0,4.67H57.5v2.33h-7l-0.02,-9.33h8.19c3.15,0 3.1,-4.67 0,-4.67z"
-      android:strokeAlpha="0.8"
-      android:strokeWidth="2.33333"
-      android:fillColor="#072100"
-      android:fillAlpha="0.8"/>
-  <path
-      android:pathData="m66.13,56.33 l4.66,4.66 -4.66,4.68m-24.36,-9.33 l-4.66,4.66 4.66,4.68"
-      android:strokeAlpha="0.8"
-      android:strokeLineJoin="round"
-      android:strokeWidth="3.12551"
-      android:fillColor="#00000000"
-      android:strokeColor="#072100"
-      android:fillAlpha="0.8"
-      android:strokeLineCap="round"/>
+  android:width="108dp" android:height="108dp" android:viewportWidth="108" android:viewportHeight="108">
+  <group android:translateX="25.2" android:translateY="25.2" android:scaleX="2.4" android:scaleY="2.4">
+    <path android:fillColor="#FFFFFF" android:pathData="M2,2C0.8954,2 0,2.8954 0,4L0,7A1,1 0,0 0,1 8A1,1 0,0 0,2 7L2,4L5,4A1,1 0,0 0,6 3A1,1 0,0 0,5 2L2,2zM19,2A1,1 0,0 0,18 3A1,1 0,0 0,19 4L22,4L22,7A1,1 0,0 0,23 8A1,1 0,0 0,24 7L24,4C24,2.8954 23.1046,2 22,2L19,2zM4,6L4,18L6,18L6,6L4,6zM7,6L7,18L8,18L8,6L7,6zM9,6L9,18L12,18L12,6L9,6zM13,6L13,18L14,18L14,6L13,6zM16,6L16,18L18,18L18,6L16,6zM19,6L19,18L20,18L20,6L19,6zM1,16A1,1 0,0 0,0 17L0,20C0,21.1046 0.8954,22 2,22L5,22A1,1 0,0 0,6 21A1,1 0,0 0,5 20L2,20L2,17A1,1 0,0 0,1 16zM23,16A1,1 0,0 0,22 17L22,20L19,20A1,1 0,0 0,18 21A1,1 0,0 0,19 22L22,22C23.1046,22 24,21.1046 24,20L24,17A1,1 0,0 0,23 16z"/>
+  </group>
 </vector>
