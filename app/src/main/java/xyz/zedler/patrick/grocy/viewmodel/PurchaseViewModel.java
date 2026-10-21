@@ -497,6 +497,10 @@ public class PurchaseViewModel extends BaseViewModel {
 
   public void onBarcodeRecognized(String barcode) {
     if (barcodes == null) {
+      // Data not loaded yet (e.g. first scan after app wake-up, see upstream #993):
+      // remember the barcode and process it once loading has finished, instead of
+      // discarding this first scan.
+      queueEmptyAction = () -> onBarcodeRecognized(barcode);
       loadFromDatabase(true);
       return;
     }
