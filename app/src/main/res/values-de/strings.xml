@@ -575,6 +575,15 @@
 
   <string name="title_overview">Übersicht</string>
   <string name="title_more">Mehr</string>
+  <string name="quick_add_title">Obst &amp; Gemüse</string>
+  <string name="quick_add_hint">Antippen = +1 \u00b7 lang drücken = \u22121 \u00b7 Haltbarkeit automatisch</string>
+  <string name="quick_add_search">Sorte suchen</string>
+  <string name="quick_add_all">Alle</string>
+  <string name="quick_add_no_due">ohne Datum</string>
+  <string name="quick_add_button">Einlagern</string>
+  <string name="quick_add_done">%1$d Artikel eingelagert</string>
+  <plurals name="quick_add_days"><item quantity="one">%d Tag</item><item quantity="other">%d Tage</item></plurals>
+  <plurals name="quick_add_button_n"><item quantity="one">%d Artikel einlagern</item><item quantity="other">%d Artikel einlagern</item></plurals>
   <string name="title_batteries">Akkus</string>
   <string name="batteries_hint">Nach dem Laden auf \u00abGeladen\u00bb tippen, Grocy protokolliert den Zyklus.</string>
   <string name="action_charged">Geladen</string>

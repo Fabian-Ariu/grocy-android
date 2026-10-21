@@ -237,7 +237,7 @@
                 android:background="@drawable/glass_card"
                 android:clickable="true"
                 android:focusable="true"
-                android:onClick="@{() -> activity.navUtil.navigate(R.id.purchaseFragment)}">
+                android:onClick="@{() -> activity.navUtil.navigate(R.id.quickAddFragment)}">
                 <FrameLayout android:layout_width="30dp" android:layout_height="30dp" android:background="@drawable/icon_circle_green">
                   <ImageView android:layout_width="18dp" android:layout_height="18dp" android:layout_gravity="center" android:src="@drawable/ic_round_restaurant_menu" app:tint="#1F7A4D" tools:ignore="ContentDescription" />
                 </FrameLayout>

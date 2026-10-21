@@ -323,6 +323,13 @@
     tools:layout="@layout/fragment_batteries">
     <deepLink app:uri="grocy://batteriesFragment" />
   </fragment>
+  <fragment
+    android:id="@+id/quickAddFragment"
+    android:name="xyz.zedler.patrick.grocy.fragment.QuickAddFragment"
+    android:label="QuickAddFragment"
+    tools:layout="@layout/fragment_quick_add">
+    <deepLink app:uri="grocy://quickAddFragment" />
+  </fragment>
   <navigation
     android:id="@+id/navigation_login"
     app:startDestination="@id/loginIntroFragment">
