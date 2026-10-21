@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent" android:layout_height="match_parent" android:background="#F2F0EB">
+
+  <View android:layout_width="320dp" android:layout_height="320dp" android:layout_gravity="start|top"
+      android:layout_marginStart="-100dp" android:layout_marginTop="-30dp" android:background="@drawable/blob_green" />
+  <View android:layout_width="280dp" android:layout_height="280dp" android:layout_gravity="end|bottom"
+      android:layout_marginEnd="-90dp" android:layout_marginBottom="140dp" android:background="@drawable/blob_blue" />
+
+  <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent"
+      android:orientation="vertical" android:paddingStart="16dp" android:paddingEnd="16dp" android:paddingTop="16dp" android:paddingBottom="12dp">
+
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical">
+      <FrameLayout android:layout_width="44dp" android:layout_height="44dp" android:background="@drawable/glass_circle" android:tag="preview_einkauf" android:clickable="true" android:focusable="true">
+        <ImageView android:layout_width="22dp" android:layout_height="22dp" android:layout_gravity="center" android:src="@drawable/ic_round_arrow_back" app:tint="#1F7A4D"/>
+      </FrameLayout>
+      <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical" android:layout_marginStart="14dp">
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Kassenzettel" android:textColor="#1F1E1D" android:textSize="24sp" android:textStyle="bold"/>
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Supermarkt · 21.10.2026 · vom Server gelesen" android:textColor="#6A6A6A" android:textSize="13sp"/>
+      </LinearLayout>
+      <FrameLayout android:layout_width="44dp" android:layout_height="44dp" android:background="@drawable/icon_circle_green">
+        <ImageView android:layout_width="22dp" android:layout_height="22dp" android:layout_gravity="center" android:src="@drawable/ic_round_camera_front" app:tint="#1F7A4D"/>
+      </FrameLayout>
+    </LinearLayout>
+
+    <ScrollView android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" android:scrollbars="none" android:layout_marginTop="14dp" android:clipToPadding="false" android:paddingBottom="8dp">
+      <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical">
+
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:background="@drawable/kassen_green_bg">
+
+          <LinearLayout android:layout_width="match_parent" android:layout_height="68dp" android:orientation="horizontal" android:gravity="center_vertical" android:paddingStart="16dp" android:paddingEnd="16dp">
+            <FrameLayout android:layout_width="26dp" android:layout_height="26dp" android:background="@drawable/checkbox_green"><ImageView android:layout_width="16dp" android:layout_height="16dp" android:layout_gravity="center" android:src="@drawable/ic_round_done" app:tint="#FFFFFF"/></FrameLayout>
+            <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical" android:layout_marginStart="14dp">
+              <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Haferflocken" android:textColor="#1F1E1D" android:textSize="17sp" android:textStyle="bold"/>
+              <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="HAFERFL. 500G" android:textColor="#6A6A6A" android:textSize="12sp"/>
+            </LinearLayout>
+            <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content" android:orientation="vertical" android:gravity="end">
+              <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="2 Pkg." android:textColor="#1F1E1D" android:textSize="15sp" android:textStyle="bold"/>
+              <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="2,58 €" android:textColor="#6A6A6A" android:textSize="14sp"/>
+            </LinearLayout>
+          </LinearLayout>
+          <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#14000000"/>
+
+          <LinearLayout android:layout_width="match_parent" android:layout_height="68dp" android:orientation="horizontal" android:gravity="center_vertical" android:paddingStart="16dp" android:paddingEnd="16dp">
+            <FrameLayout android:layout_width="26dp" android:layout_height="26dp" android:background="@drawable/checkbox_green"><ImageView android:layout_width="16dp" android:layout_height="16dp" android:layout_gravity="center" android:src="@drawable/ic_round_done" app:tint="#FFFFFF"/></FrameLayout>
+            <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical" android:layout_marginStart="14dp">
+              <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Milch" android:textColor="#1F1E1D" android:textSize="17sp" android:textStyle="bold"/>
+              <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="H-MILCH 3,5% 1L" android:textColor="#6A6A6A" android:textSize="12sp"/>
+            </LinearLayout>
+            <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content" android:orientation="vertical" android:gravity="end">
+              <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="2 l" android:textColor="#1F1E1D" android:textSize="15sp" android:textStyle="bold"/>
+              <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="2,38 €" android:textColor="#6A6A6A" android:textSize="14sp"/>
+            </LinearLayout>
+          </LinearLayout>
+          <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#14000000"/>
+
+          <LinearLayout android:layout_width="match_parent" android:layout_height="68dp" android:orientation="horizontal" android:gravity="center_vertical" android:paddingStart="16dp" android:paddingEnd="16dp">
+            <FrameLayout android:layout_width="26dp" android:layout_height="26dp" android:background="@drawable/checkbox_green"><ImageView android:layout_width="16dp" android:layout_height="16dp" android:layout_gravity="center" android:src="@drawable/ic_round_done" app:tint="#FFFFFF"/></FrameLayout>
+            <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical" android:layout_marginStart="14dp">
+              <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Bananen" android:textColor="#1F1E1D" android:textSize="17sp" android:textStyle="bold"/>
+              <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="BIO BANANEN" android:textColor="#6A6A6A" android:textSize="12sp"/>
+            </LinearLayout>
+            <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content" android:orientation="vertical" android:gravity="end">
+              <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="1,1 kg" android:textColor="#1F1E1D" android:textSize="15sp" android:textStyle="bold"/>
+              <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="2,19 €" android:textColor="#6A6A6A" android:textSize="14sp"/>
+            </LinearLayout>
+          </LinearLayout>
+          <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#14000000"/>
+
+          <LinearLayout android:layout_width="match_parent" android:layout_height="68dp" android:orientation="horizontal" android:gravity="center_vertical" android:paddingStart="16dp" android:paddingEnd="16dp" android:background="@drawable/row_selected_green">
+            <FrameLayout android:layout_width="26dp" android:layout_height="26dp" android:background="@drawable/checkbox_green"><ImageView android:layout_width="16dp" android:layout_height="16dp" android:layout_gravity="center" android:src="@drawable/ic_round_done" app:tint="#FFFFFF"/></FrameLayout>
+            <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical" android:layout_marginStart="14dp">
+              <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Unbekannt" android:textColor="#C8781E" android:textSize="17sp" android:textStyle="bold"/>
+              <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="KAFFEE GANZE BOHNE 1KG" android:textColor="#6A6A6A" android:textSize="12sp"/>
+            </LinearLayout>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:tag="preview_unbekannt" android:clickable="true" android:focusable="true" android:text="Zuordnen" android:textColor="#1F7A4D" android:textSize="14sp" android:textStyle="bold" android:background="@drawable/badge_green" android:paddingStart="14dp" android:paddingEnd="14dp" android:paddingTop="8dp" android:paddingBottom="8dp"/>
+          </LinearLayout>
+          <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#14000000"/>
+
+          <LinearLayout android:layout_width="match_parent" android:layout_height="68dp" android:orientation="horizontal" android:gravity="center_vertical" android:paddingStart="16dp" android:paddingEnd="16dp">
+            <View android:layout_width="26dp" android:layout_height="26dp" android:background="@drawable/checkbox_ring"/>
+            <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical" android:layout_marginStart="14dp">
+              <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Pfand · wird ignoriert" android:textColor="#9AA0A8" android:textSize="17sp" android:textStyle="bold"/>
+              <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="PFAND 0,25" android:textColor="#9AA0A8" android:textSize="12sp"/>
+            </LinearLayout>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="0,25 €" android:textColor="#9AA0A8" android:textSize="14sp"/>
+          </LinearLayout>
+
+        </LinearLayout>
+
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="14dp" android:paddingStart="4dp" android:paddingEnd="4dp"
+            android:text="Preise und Geschäft gehen mit nach Grocy. Zugeordnete Bezeichnungen werden beim nächsten Kassenzettel wiedererkannt." android:textColor="#6A6A6A" android:textSize="14sp" android:lineSpacingExtra="3dp"/>
+
+      </LinearLayout>
+    </ScrollView>
+
+    <TextView android:layout_width="match_parent" android:layout_height="58dp" android:gravity="center" android:tag="preview_vorrat" android:clickable="true" android:focusable="true" android:layout_marginTop="4dp"
+        android:text="3 Positionen einlagern" android:textColor="#FFFFFF" android:textSize="18sp" android:textStyle="bold" android:background="@drawable/green_primary"/>
+
+  </LinearLayout>
+</FrameLayout>

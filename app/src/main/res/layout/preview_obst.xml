@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent" android:layout_height="match_parent" android:background="#F2F0EB">
+
+  <View android:layout_width="320dp" android:layout_height="320dp" android:layout_gravity="start|top"
+      android:layout_marginStart="-100dp" android:layout_marginTop="-20dp" android:background="@drawable/blob_green" />
+  <View android:layout_width="300dp" android:layout_height="300dp" android:layout_gravity="end|bottom"
+      android:layout_marginEnd="-110dp" android:layout_marginBottom="120dp" android:background="@drawable/blob_orange" />
+
+  <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent"
+      android:orientation="vertical" android:paddingStart="16dp" android:paddingEnd="16dp" android:paddingTop="16dp" android:paddingBottom="12dp">
+
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical">
+      <FrameLayout android:layout_width="44dp" android:layout_height="44dp" android:background="@drawable/glass_circle" android:tag="preview_home" android:clickable="true" android:focusable="true">
+        <ImageView android:layout_width="22dp" android:layout_height="22dp" android:layout_gravity="center" android:src="@drawable/ic_round_expand_more" app:tint="#0062CC" android:rotation="90"/>
+      </FrameLayout>
+      <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical" android:layout_marginStart="14dp">
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Obst &amp; Gemüse" android:textColor="#1F1E1D" android:textSize="24sp" android:textStyle="bold"/>
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Antippen = +1 · Haltbarkeit automatisch" android:textColor="#6A6A6A" android:textSize="13sp"/>
+      </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout android:layout_width="match_parent" android:layout_height="48dp" android:layout_marginTop="12dp"
+        android:orientation="horizontal" android:gravity="center_vertical" android:paddingStart="16dp" android:background="@drawable/glass_pill">
+      <ImageView android:layout_width="18dp" android:layout_height="18dp" android:src="@drawable/ic_round_barcode" app:tint="#6A6A6A"/>
+      <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:layout_marginStart="12dp" android:text="Sorte suchen" android:textColor="#8A8A8A" android:textSize="16sp"/>
+    </LinearLayout>
+
+    <ScrollView android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" android:scrollbars="none"
+        android:layout_marginTop="8dp" android:clipToPadding="false" android:paddingBottom="8dp">
+      <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical">
+
+        <TextView style="@style/PreviewSectionHeader" android:text="HÄUFIG"/>
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:layout_marginBottom="8dp">
+          <FrameLayout android:layout_width="0dp" android:layout_height="74dp" android:layout_weight="1" android:background="@drawable/card_selected" android:layout_marginEnd="8dp">
+            <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical" android:gravity="center_vertical" android:padding="12dp">
+              <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Äpfel" android:textColor="#1F1E1D" android:textSize="15sp" android:textStyle="bold"/>
+              <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="14 Tage" android:textColor="#6A6A6A" android:textSize="12sp"/>
+            </LinearLayout>
+            <TextView android:layout_width="22dp" android:layout_height="22dp" android:layout_gravity="end|top" android:layout_margin="8dp" android:gravity="center" android:text="3" android:textColor="#FFFFFF" android:textSize="12sp" android:textStyle="bold" android:background="@drawable/count_badge"/>
+          </FrameLayout>
+          <LinearLayout android:layout_width="0dp" android:layout_height="74dp" android:layout_weight="1" android:orientation="vertical" android:gravity="center_vertical" android:padding="12dp" android:background="@drawable/glass_card" android:layout_marginEnd="8dp">
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Bananen" android:textColor="#1F1E1D" android:textSize="15sp" android:textStyle="bold"/>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="5 Tage" android:textColor="#6A6A6A" android:textSize="12sp"/>
+          </LinearLayout>
+          <FrameLayout android:layout_width="0dp" android:layout_height="74dp" android:layout_weight="1" android:background="@drawable/card_selected">
+            <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical" android:gravity="center_vertical" android:padding="12dp">
+              <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Karotten" android:textColor="#1F1E1D" android:textSize="15sp" android:textStyle="bold"/>
+              <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="21 Tage" android:textColor="#6A6A6A" android:textSize="12sp"/>
+            </LinearLayout>
+            <TextView android:layout_width="22dp" android:layout_height="22dp" android:layout_gravity="end|top" android:layout_margin="8dp" android:gravity="center" android:text="1" android:textColor="#FFFFFF" android:textSize="12sp" android:textStyle="bold" android:background="@drawable/count_badge"/>
+          </FrameLayout>
+        </LinearLayout>
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal">
+          <LinearLayout android:layout_width="0dp" android:layout_height="74dp" android:layout_weight="1" android:orientation="vertical" android:gravity="center_vertical" android:padding="12dp" android:background="@drawable/glass_card" android:layout_marginEnd="8dp">
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Tomaten" android:textColor="#1F1E1D" android:textSize="15sp" android:textStyle="bold"/>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="7 Tage" android:textColor="#6A6A6A" android:textSize="12sp"/>
+          </LinearLayout>
+          <LinearLayout android:layout_width="0dp" android:layout_height="74dp" android:layout_weight="1" android:orientation="vertical" android:gravity="center_vertical" android:padding="12dp" android:background="@drawable/glass_card" android:layout_marginEnd="8dp">
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Kartoffeln" android:textColor="#1F1E1D" android:textSize="15sp" android:textStyle="bold"/>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="30 Tage" android:textColor="#6A6A6A" android:textSize="12sp"/>
+          </LinearLayout>
+          <LinearLayout android:layout_width="0dp" android:layout_height="74dp" android:layout_weight="1" android:orientation="vertical" android:gravity="center_vertical" android:padding="12dp" android:background="@drawable/glass_card">
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Gurke" android:textColor="#1F1E1D" android:textSize="15sp" android:textStyle="bold"/>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="7 Tage" android:textColor="#6A6A6A" android:textSize="12sp"/>
+          </LinearLayout>
+        </LinearLayout>
+
+        <TextView style="@style/PreviewSectionHeader" android:text="ALLE SORTEN"/>
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:layout_marginBottom="8dp">
+          <TextView android:layout_width="0dp" android:layout_height="52dp" android:layout_weight="1" android:gravity="center" android:text="Kernobst" android:textColor="#1F1E1D" android:textSize="14sp" android:textStyle="bold" android:background="@drawable/glass_card" android:layout_marginEnd="8dp"/>
+          <TextView android:layout_width="0dp" android:layout_height="52dp" android:layout_weight="1" android:gravity="center" android:text="Steinobst" android:textColor="#1F1E1D" android:textSize="14sp" android:textStyle="bold" android:background="@drawable/glass_card" android:layout_marginEnd="8dp"/>
+          <TextView android:layout_width="0dp" android:layout_height="52dp" android:layout_weight="1" android:gravity="center" android:text="Beeren" android:textColor="#1F1E1D" android:textSize="14sp" android:textStyle="bold" android:background="@drawable/glass_card"/>
+        </LinearLayout>
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:layout_marginBottom="8dp">
+          <TextView android:layout_width="0dp" android:layout_height="52dp" android:layout_weight="1" android:gravity="center" android:text="Südfrüchte" android:textColor="#1F1E1D" android:textSize="14sp" android:textStyle="bold" android:background="@drawable/glass_card" android:layout_marginEnd="8dp"/>
+          <TextView android:layout_width="0dp" android:layout_height="52dp" android:layout_weight="1" android:gravity="center" android:text="Fruchtgem." android:textColor="#1F1E1D" android:textSize="14sp" android:textStyle="bold" android:background="@drawable/glass_card" android:layout_marginEnd="8dp"/>
+          <TextView android:layout_width="0dp" android:layout_height="52dp" android:layout_weight="1" android:gravity="center" android:text="Wurzeln" android:textColor="#1F1E1D" android:textSize="14sp" android:textStyle="bold" android:background="@drawable/glass_card"/>
+        </LinearLayout>
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal">
+          <TextView android:layout_width="0dp" android:layout_height="52dp" android:layout_weight="1" android:gravity="center" android:text="Zwiebeln" android:textColor="#1F1E1D" android:textSize="14sp" android:textStyle="bold" android:background="@drawable/glass_card" android:layout_marginEnd="8dp"/>
+          <TextView android:layout_width="0dp" android:layout_height="52dp" android:layout_weight="1" android:gravity="center" android:text="Kohl" android:textColor="#1F1E1D" android:textSize="14sp" android:textStyle="bold" android:background="@drawable/glass_card" android:layout_marginEnd="8dp"/>
+          <TextView android:layout_width="0dp" android:layout_height="52dp" android:layout_weight="1" android:gravity="center" android:text="Salat" android:textColor="#1F1E1D" android:textSize="14sp" android:textStyle="bold" android:background="@drawable/glass_card"/>
+        </LinearLayout>
+
+      </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout android:layout_width="match_parent" android:layout_height="44dp" android:orientation="horizontal" android:gravity="center_vertical"
+        android:paddingStart="16dp" android:paddingEnd="12dp" android:background="@drawable/glass_pill" android:layout_marginTop="4dp" android:layout_marginBottom="10dp">
+      <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Äpfel 3 · Karotten 1" android:textColor="#1F1E1D" android:textSize="15sp"/>
+      <ImageView android:layout_width="20dp" android:layout_height="20dp" android:src="@drawable/ic_round_expand_more" app:tint="#6A6A6A" android:rotation="180"/>
+    </LinearLayout>
+    <TextView android:layout_width="match_parent" android:layout_height="56dp" android:gravity="center" android:tag="preview_home" android:clickable="true" android:focusable="true"
+        android:text="4 Artikel einlagern" android:textColor="#FFFFFF" android:textSize="18sp" android:textStyle="bold" android:background="@drawable/green_primary"/>
+
+  </LinearLayout>
+</FrameLayout>

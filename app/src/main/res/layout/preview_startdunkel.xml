@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent" android:layout_height="match_parent" android:background="@drawable/home_bg_dark">
+
+  <View android:layout_width="320dp" android:layout_height="320dp" android:layout_gravity="start|top"
+      android:layout_marginStart="-100dp" android:layout_marginTop="-40dp" android:background="@drawable/blob_blue" android:alpha="0.55"/>
+  <View android:layout_width="300dp" android:layout_height="300dp" android:layout_gravity="end|bottom"
+      android:layout_marginEnd="-90dp" android:layout_marginBottom="-80dp" android:background="@drawable/blob_orange" android:alpha="0.45"/>
+
+  <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent"
+      android:orientation="vertical" android:paddingStart="20dp" android:paddingEnd="20dp" android:paddingTop="16dp" android:paddingBottom="12dp">
+
+    <FrameLayout android:layout_width="38dp" android:layout_height="38dp" android:layout_gravity="end" android:background="@drawable/glass_chip_dark" android:tag="preview_home" android:clickable="true" android:focusable="true">
+      <View android:layout_width="12dp" android:layout_height="12dp" android:layout_gravity="center" android:background="@drawable/status_dot_green"/>
+    </FrameLayout>
+
+    <Space android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1"/>
+
+    <FrameLayout android:layout_width="132dp" android:layout_height="132dp" android:layout_gravity="center_horizontal" android:background="@drawable/scan_home_button_ring">
+      <FrameLayout android:layout_width="90dp" android:layout_height="90dp" android:layout_gravity="center" android:background="@drawable/scan_home_button_inner">
+        <ImageView android:layout_width="40dp" android:layout_height="40dp" android:layout_gravity="center" android:src="@drawable/ic_round_barcode_scan" app:tint="#FFFFFF"/>
+      </FrameLayout>
+    </FrameLayout>
+
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center_horizontal" android:layout_marginTop="8dp"
+        android:text="Scannen" android:textColor="#FFFFFF" android:textSize="26sp" android:textStyle="bold"/>
+
+    <LinearLayout android:layout_width="wrap_content" android:layout_height="30dp" android:layout_gravity="center_horizontal" android:layout_marginTop="10dp"
+        android:orientation="horizontal" android:gravity="center" android:paddingStart="10dp" android:paddingEnd="12dp" android:background="@drawable/glass_chip_dark">
+      <ImageView android:layout_width="16dp" android:layout_height="16dp" android:src="@drawable/ic_round_barcode" app:tint="#C7CDD6"/>
+      <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginStart="6dp" android:text="Seitentaste" android:textColor="#C7CDD6" android:textSize="12sp"/>
+    </LinearLayout>
+
+    <Space android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1"/>
+
+    <LinearLayout android:layout_width="match_parent" android:layout_height="54dp" android:orientation="horizontal">
+      <LinearLayout android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:orientation="horizontal" android:gravity="center_vertical"
+          android:paddingStart="12dp" android:paddingEnd="12dp" android:background="@drawable/glass_card_dark" android:layout_marginEnd="10dp" android:tag="preview_obst" android:clickable="true" android:focusable="true">
+        <FrameLayout android:layout_width="30dp" android:layout_height="30dp" android:background="@drawable/icon_circle_green">
+          <ImageView android:layout_width="18dp" android:layout_height="18dp" android:layout_gravity="center" android:src="@drawable/ic_round_restaurant_menu" app:tint="#5BD39A"/></FrameLayout>
+        <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:layout_marginStart="10dp" android:text="Obst &amp; Gemüse" android:textColor="#F2F2F2" android:maxLines="2" android:textSize="13sp" android:textStyle="bold"/>
+      </LinearLayout>
+      <LinearLayout android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:orientation="horizontal" android:gravity="center_vertical"
+          android:paddingStart="12dp" android:paddingEnd="12dp" android:background="@drawable/glass_card_dark" android:tag="preview_selbst" android:clickable="true" android:focusable="true">
+        <FrameLayout android:layout_width="30dp" android:layout_height="30dp" android:background="@drawable/icon_circle_brown">
+          <ImageView android:layout_width="18dp" android:layout_height="18dp" android:layout_gravity="center" android:src="@drawable/ic_round_inventory" app:tint="#D9A54A"/></FrameLayout>
+        <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:layout_marginStart="10dp" android:text="Selbstgemacht" android:textColor="#F2F2F2" android:maxLines="1" android:ellipsize="end" android:textSize="13sp" android:textStyle="bold"/>
+      </LinearLayout>
+    </LinearLayout>
+
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="14dp" android:layout_marginStart="4dp" android:text="ZULETZT"
+        android:textColor="#8A8F98" android:textSize="12sp" android:textStyle="bold" android:letterSpacing="0.08"/>
+
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:layout_marginTop="10dp" android:background="@drawable/glass_card_dark">
+      <LinearLayout android:layout_width="match_parent" android:layout_height="52dp" android:orientation="horizontal" android:gravity="center_vertical" android:paddingStart="12dp" android:paddingEnd="16dp" android:tag="preview_nach_scan" android:clickable="true" android:focusable="true">
+        <FrameLayout android:layout_width="28dp" android:layout_height="28dp" android:background="@drawable/icon_circle_blue">
+          <ImageView android:layout_width="16dp" android:layout_height="16dp" android:layout_gravity="center" android:src="@drawable/ic_round_add_shopping_cart" app:tint="#5AA6FF"/></FrameLayout>
+        <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:layout_marginStart="12dp" android:text="Haferflocken" android:textColor="#F2F2F2" android:textSize="16sp"/>
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="+2" android:textColor="#5AA6FF" android:textSize="15sp" android:textStyle="bold"/>
+      </LinearLayout>
+      <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#1FFFFFFF"/>
+      <LinearLayout android:layout_width="match_parent" android:layout_height="52dp" android:orientation="horizontal" android:gravity="center_vertical" android:paddingStart="12dp" android:paddingEnd="16dp">
+        <FrameLayout android:layout_width="28dp" android:layout_height="28dp" android:background="@drawable/icon_circle_violet">
+          <ImageView android:layout_width="16dp" android:layout_height="16dp" android:layout_gravity="center" android:src="@drawable/ic_round_swap_horiz" app:tint="#A991FF"/></FrameLayout>
+        <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:layout_marginStart="12dp" android:text="Passata" android:textColor="#F2F2F2" android:textSize="16sp"/>
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Keller → Küche" android:textColor="#9BA0A8" android:textSize="14sp"/>
+      </LinearLayout>
+    </LinearLayout>
+
+    <Space android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1.4"/>
+
+    <LinearLayout android:layout_width="match_parent" android:layout_height="64dp" android:orientation="horizontal" android:background="@drawable/glass_card_dark" android:gravity="center_vertical" android:paddingTop="3dp" android:paddingBottom="3dp">
+      <LinearLayout android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:orientation="vertical" android:gravity="center" android:layout_marginStart="6dp" android:background="@drawable/glass_chip_dark">
+        <ImageView android:layout_width="22dp" android:layout_height="22dp" android:src="@drawable/ic_round_barcode_scan" app:tint="#5AA6FF"/>
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Scannen" android:textSize="11sp" android:textColor="#5AA6FF"/>
+      </LinearLayout>
+      <LinearLayout android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:orientation="vertical" android:gravity="center" android:tag="preview_vorrat" android:clickable="true" android:focusable="true">
+        <ImageView android:layout_width="22dp" android:layout_height="22dp" android:src="@drawable/ic_round_inventory" app:tint="#9BA0A8"/>
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Vorrat" android:textSize="11sp" android:textColor="#9BA0A8"/>
+      </LinearLayout>
+      <LinearLayout android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:orientation="vertical" android:gravity="center" android:tag="preview_einkauf" android:clickable="true" android:focusable="true">
+        <ImageView android:layout_width="22dp" android:layout_height="22dp" android:src="@drawable/ic_round_local_grocery_store" app:tint="#9BA0A8"/>
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Einkauf" android:textSize="11sp" android:textColor="#9BA0A8"/>
+      </LinearLayout>
+      <LinearLayout android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:orientation="vertical" android:gravity="center" android:tag="preview_rezepte" android:clickable="true" android:focusable="true">
+        <ImageView android:layout_width="22dp" android:layout_height="22dp" android:src="@drawable/ic_round_restaurant_menu" app:tint="#9BA0A8"/>
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Rezepte" android:textSize="11sp" android:textColor="#9BA0A8"/>
+      </LinearLayout>
+      <LinearLayout android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:orientation="vertical" android:gravity="center" android:layout_marginEnd="6dp" android:tag="preview_mehr" android:clickable="true" android:focusable="true">
+        <ImageView android:layout_width="22dp" android:layout_height="22dp" android:src="@drawable/ic_round_widgets" app:tint="#9BA0A8"/>
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Mehr" android:textSize="11sp" android:textColor="#9BA0A8"/>
+      </LinearLayout>
+    </LinearLayout>
+
+  </LinearLayout>
+</FrameLayout>

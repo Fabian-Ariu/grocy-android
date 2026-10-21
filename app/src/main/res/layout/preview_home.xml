@@ -60,7 +60,8 @@
     <LinearLayout android:layout_width="match_parent" android:layout_height="54dp" android:orientation="horizontal">
       <LinearLayout android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1"
           android:orientation="horizontal" android:gravity="center_vertical" android:paddingStart="12dp"
-          android:paddingEnd="12dp" android:background="@drawable/glass_card" android:layout_marginEnd="10dp">
+          android:paddingEnd="12dp" android:background="@drawable/glass_card" android:layout_marginEnd="10dp"
+          android:tag="preview_obst" android:clickable="true" android:focusable="true">
         <FrameLayout android:layout_width="30dp" android:layout_height="30dp" android:background="@drawable/icon_circle_green">
           <ImageView android:layout_width="18dp" android:layout_height="18dp" android:layout_gravity="center"
               android:src="@drawable/ic_round_restaurant_menu" app:tint="#1F7A4D"/></FrameLayout>
@@ -70,7 +71,8 @@
       </LinearLayout>
       <LinearLayout android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1"
           android:orientation="horizontal" android:gravity="center_vertical" android:paddingStart="12dp"
-          android:paddingEnd="12dp" android:background="@drawable/glass_card">
+          android:paddingEnd="12dp" android:background="@drawable/glass_card"
+          android:tag="preview_selbst" android:clickable="true" android:focusable="true">
         <FrameLayout android:layout_width="30dp" android:layout_height="30dp" android:background="@drawable/icon_circle_brown">
           <ImageView android:layout_width="18dp" android:layout_height="18dp" android:layout_gravity="center"
               android:src="@drawable/ic_round_inventory" app:tint="#8A5A00"/></FrameLayout>

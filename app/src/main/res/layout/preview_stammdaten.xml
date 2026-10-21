@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent" android:layout_height="match_parent" android:background="#F2F0EB">
+
+  <View android:layout_width="320dp" android:layout_height="320dp" android:layout_gravity="start|top"
+      android:layout_marginStart="-100dp" android:layout_marginTop="-30dp" android:background="@drawable/blob_blue" />
+  <View android:layout_width="300dp" android:layout_height="300dp" android:layout_gravity="end|bottom"
+      android:layout_marginEnd="-90dp" android:layout_marginBottom="100dp" android:background="@drawable/blob_green" />
+
+  <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent"
+      android:orientation="vertical" android:paddingStart="16dp" android:paddingEnd="16dp" android:paddingTop="16dp" android:paddingBottom="12dp">
+
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical">
+      <FrameLayout android:layout_width="44dp" android:layout_height="44dp" android:background="@drawable/glass_circle" android:tag="preview_verwaltung" android:clickable="true" android:focusable="true">
+        <ImageView android:layout_width="22dp" android:layout_height="22dp" android:layout_gravity="center" android:src="@drawable/ic_round_arrow_back" app:tint="#0062CC"/>
+      </FrameLayout>
+      <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginStart="14dp" android:text="Stammdaten" android:textColor="#1F1E1D" android:textSize="26sp" android:textStyle="bold"/>
+    </LinearLayout>
+
+    <LinearLayout android:layout_width="match_parent" android:layout_height="48dp" android:layout_marginTop="14dp" android:orientation="horizontal" android:background="@drawable/glass_pill" android:padding="4dp">
+      <TextView android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:gravity="center" android:text="Produkte" android:textColor="#5A5F6A" android:textSize="14sp"/>
+      <TextView android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:gravity="center" android:text="Orte" android:textColor="#5A5F6A" android:textSize="14sp"/>
+      <TextView android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:gravity="center" android:text="Einheiten" android:textColor="#1F1E1D" android:textSize="14sp" android:textStyle="bold" android:background="@drawable/white_chip"/>
+      <TextView android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:gravity="center" android:text="Gruppen" android:textColor="#5A5F6A" android:textSize="14sp"/>
+    </LinearLayout>
+
+    <ScrollView android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" android:scrollbars="none" android:layout_marginTop="14dp" android:clipToPadding="false" android:paddingBottom="8dp">
+      <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical">
+
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:background="@drawable/glass_card">
+          <LinearLayout android:layout_width="match_parent" android:layout_height="60dp" android:orientation="horizontal" android:gravity="center_vertical" android:paddingStart="16dp" android:paddingEnd="16dp">
+            <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical">
+              <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Stück" android:textColor="#1F1E1D" android:textSize="17sp" android:textStyle="bold"/>
+              <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Stk. · Mehrzahl Stück" android:textColor="#6A6A6A" android:textSize="13sp"/>
+            </LinearLayout>
+            <ImageView android:layout_width="22dp" android:layout_height="22dp" android:src="@drawable/ic_round_chevron_right" app:tint="#9AA0A8"/>
+          </LinearLayout>
+          <View style="@style/PreviewDivider"/>
+          <LinearLayout android:layout_width="match_parent" android:layout_height="60dp" android:orientation="horizontal" android:gravity="center_vertical" android:paddingStart="16dp" android:paddingEnd="16dp" android:tag="preview_einheit" android:clickable="true" android:focusable="true">
+            <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical">
+              <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Packung" android:textColor="#1F1E1D" android:textSize="17sp" android:textStyle="bold"/>
+              <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Pkg. · Mehrzahl Packungen" android:textColor="#6A6A6A" android:textSize="13sp"/>
+            </LinearLayout>
+            <ImageView android:layout_width="22dp" android:layout_height="22dp" android:src="@drawable/ic_round_chevron_right" app:tint="#9AA0A8"/>
+          </LinearLayout>
+          <View style="@style/PreviewDivider"/>
+          <LinearLayout android:layout_width="match_parent" android:layout_height="60dp" android:orientation="horizontal" android:gravity="center_vertical" android:paddingStart="16dp" android:paddingEnd="16dp">
+            <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical">
+              <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Glas" android:textColor="#1F1E1D" android:textSize="17sp" android:textStyle="bold"/>
+              <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Mehrzahl Gläser" android:textColor="#6A6A6A" android:textSize="13sp"/>
+            </LinearLayout>
+            <ImageView android:layout_width="22dp" android:layout_height="22dp" android:src="@drawable/ic_round_chevron_right" app:tint="#9AA0A8"/>
+          </LinearLayout>
+          <View style="@style/PreviewDivider"/>
+          <LinearLayout android:layout_width="match_parent" android:layout_height="60dp" android:orientation="horizontal" android:gravity="center_vertical" android:paddingStart="16dp" android:paddingEnd="16dp">
+            <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical">
+              <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Portion" android:textColor="#1F1E1D" android:textSize="17sp" android:textStyle="bold"/>
+              <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Mehrzahl Portionen" android:textColor="#6A6A6A" android:textSize="13sp"/>
+            </LinearLayout>
+            <ImageView android:layout_width="22dp" android:layout_height="22dp" android:src="@drawable/ic_round_chevron_right" app:tint="#9AA0A8"/>
+          </LinearLayout>
+          <View style="@style/PreviewDivider"/>
+          <LinearLayout android:layout_width="match_parent" android:layout_height="60dp" android:orientation="horizontal" android:gravity="center_vertical" android:paddingStart="16dp" android:paddingEnd="16dp">
+            <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical">
+              <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Gramm" android:textColor="#1F1E1D" android:textSize="17sp" android:textStyle="bold"/>
+              <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="g · 1 kg = 1000 g" android:textColor="#6A6A6A" android:textSize="13sp"/>
+            </LinearLayout>
+            <ImageView android:layout_width="22dp" android:layout_height="22dp" android:src="@drawable/ic_round_chevron_right" app:tint="#9AA0A8"/>
+          </LinearLayout>
+          <View style="@style/PreviewDivider"/>
+          <LinearLayout android:layout_width="match_parent" android:layout_height="60dp" android:orientation="horizontal" android:gravity="center_vertical" android:paddingStart="16dp" android:paddingEnd="16dp">
+            <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical">
+              <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Liter" android:textColor="#1F1E1D" android:textSize="17sp" android:textStyle="bold"/>
+              <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="l · 1 l = 1000 ml" android:textColor="#6A6A6A" android:textSize="13sp"/>
+            </LinearLayout>
+            <ImageView android:layout_width="22dp" android:layout_height="22dp" android:src="@drawable/ic_round_chevron_right" app:tint="#9AA0A8"/>
+          </LinearLayout>
+        </LinearLayout>
+
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="14dp" android:paddingStart="4dp" android:paddingEnd="4dp"
+            android:text="Umrechnungen gelten je Produkt, z. B. 1 Pkg. Haferflocken = 500 g." android:textColor="#6A6A6A" android:textSize="14sp" android:lineSpacingExtra="2dp"/>
+
+      </LinearLayout>
+    </ScrollView>
+
+  </LinearLayout>
+
+  <FrameLayout android:layout_width="60dp" android:layout_height="60dp" android:layout_gravity="end|bottom"
+      android:layout_marginEnd="24dp" android:layout_marginBottom="28dp" android:background="@drawable/blue_fab">
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center" android:text="+" android:textColor="#FFFFFF" android:textSize="30sp"/>
+  </FrameLayout>
+</FrameLayout>

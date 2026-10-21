@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent" android:layout_height="match_parent" android:background="#F2F0EB">
+
+  <View android:layout_width="320dp" android:layout_height="320dp" android:layout_gravity="end|top"
+      android:layout_marginEnd="-110dp" android:layout_marginTop="-30dp" android:background="@drawable/blob_orange" />
+  <View android:layout_width="300dp" android:layout_height="300dp" android:layout_gravity="start|bottom"
+      android:layout_marginStart="-90dp" android:layout_marginBottom="100dp" android:background="@drawable/blob_blue" />
+
+  <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent"
+      android:orientation="vertical" android:paddingStart="16dp" android:paddingEnd="16dp" android:paddingTop="16dp" android:paddingBottom="12dp">
+
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical">
+      <FrameLayout android:layout_width="44dp" android:layout_height="44dp" android:background="@drawable/glass_circle" android:tag="preview_selbst" android:clickable="true" android:focusable="true">
+        <ImageView android:layout_width="22dp" android:layout_height="22dp" android:layout_gravity="center" android:src="@drawable/ic_round_arrow_back" app:tint="#0062CC"/>
+      </FrameLayout>
+      <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical" android:layout_marginStart="14dp">
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Etiketten drucken" android:textColor="#1F1E1D" android:textSize="24sp" android:textStyle="bold"/>
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="4 Gläser eingelagert" android:textColor="#6A6A6A" android:textSize="13sp"/>
+      </LinearLayout>
+    </LinearLayout>
+
+    <ScrollView android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" android:scrollbars="none" android:layout_marginTop="14dp" android:clipToPadding="false" android:paddingBottom="8dp">
+      <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical">
+
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:background="@drawable/glass_card" android:padding="20dp">
+          <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal">
+            <FrameLayout android:layout_width="120dp" android:layout_height="100dp" android:background="@drawable/dashed_box">
+              <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center" android:text="Grocycode" android:textColor="#8A8A8A" android:textSize="13sp" android:textStyle="bold"/>
+            </FrameLayout>
+            <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical" android:layout_marginStart="16dp" android:gravity="center_vertical">
+              <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Zwetschgenmus" android:textColor="#1F1E1D" android:textSize="20sp" android:textStyle="bold"/>
+              <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Eingekocht 21.10.2026" android:textColor="#3A3F4A" android:textSize="14sp"/>
+              <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Haltbar bis 21.10.2027" android:textColor="#1F1E1D" android:textSize="14sp" android:textStyle="bold"/>
+              <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Keller · Glas 1 von 4" android:textColor="#6A6A6A" android:textSize="14sp"/>
+            </LinearLayout>
+          </LinearLayout>
+          <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center_horizontal" android:layout_marginTop="14dp" android:text="Vorschau 62 × 29 mm" android:textColor="#6A6A6A" android:textSize="13sp"/>
+        </LinearLayout>
+
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical" android:layout_marginTop="16dp" android:paddingStart="4dp">
+          <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Anzahl Etiketten" android:textColor="#1F1E1D" android:textSize="18sp"/>
+          <TextView android:layout_width="44dp" android:layout_height="44dp" android:gravity="center" android:text="–" android:textColor="#3A3F4A" android:textSize="22sp" android:background="@drawable/stepper_light"/>
+          <TextView android:layout_width="56dp" android:layout_height="wrap_content" android:gravity="center" android:text="4" android:textColor="#1F1E1D" android:textSize="22sp" android:textStyle="bold"/>
+          <TextView android:layout_width="44dp" android:layout_height="44dp" android:gravity="center" android:text="+" android:textColor="#FFFFFF" android:textSize="22sp" android:background="@drawable/circle_brown"/>
+        </LinearLayout>
+
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="14dp" android:paddingStart="4dp" android:paddingEnd="4dp"
+            android:text="Jedes Glas bekommt ein eigenes Etikett. Beim Scannen wird genau dieses Glas gebucht, mit seinem eigenen Datum." android:textColor="#6A6A6A" android:textSize="14sp" android:lineSpacingExtra="3dp"/>
+
+        <LinearLayout android:layout_width="match_parent" android:layout_height="52dp" android:orientation="horizontal" android:gravity="center_vertical" android:paddingStart="16dp" android:paddingEnd="16dp" android:layout_marginTop="14dp" android:background="@drawable/glass_card">
+          <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Drucker: über den Server" android:textColor="#1F1E1D" android:textSize="16sp"/>
+          <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="bereit" android:textColor="#1F7A4D" android:textSize="15sp" android:textStyle="bold"/>
+        </LinearLayout>
+
+      </LinearLayout>
+    </ScrollView>
+
+    <TextView android:layout_width="match_parent" android:layout_height="58dp" android:gravity="center" android:tag="preview_vorrat" android:clickable="true" android:focusable="true" android:layout_marginTop="4dp"
+        android:text="4 Etiketten drucken" android:textColor="#FFFFFF" android:textSize="17sp" android:textStyle="bold" android:background="@drawable/brown_primary"/>
+
+  </LinearLayout>
+</FrameLayout>

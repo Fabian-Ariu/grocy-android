@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent" android:layout_height="match_parent" android:background="#F2F0EB">
+
+  <View android:layout_width="320dp" android:layout_height="320dp" android:layout_gravity="end|top"
+      android:layout_marginEnd="-110dp" android:layout_marginTop="-30dp" android:background="@drawable/blob_orange" />
+  <View android:layout_width="300dp" android:layout_height="300dp" android:layout_gravity="start|bottom"
+      android:layout_marginStart="-90dp" android:layout_marginBottom="100dp" android:background="@drawable/blob_blue" />
+
+  <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent"
+      android:orientation="vertical" android:paddingStart="16dp" android:paddingEnd="16dp" android:paddingTop="16dp" android:paddingBottom="12dp">
+
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical">
+      <FrameLayout android:layout_width="44dp" android:layout_height="44dp" android:background="@drawable/glass_circle" android:tag="preview_mehr" android:clickable="true" android:focusable="true">
+        <ImageView android:layout_width="22dp" android:layout_height="22dp" android:layout_gravity="center" android:src="@drawable/ic_round_arrow_back" app:tint="#0062CC"/>
+      </FrameLayout>
+      <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical" android:layout_marginStart="14dp">
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Akkus" android:textColor="#1F1E1D" android:textSize="24sp" android:textStyle="bold"/>
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Etikett am Akku scannen = geladen" android:textColor="#6A6A6A" android:textSize="13sp"/>
+      </LinearLayout>
+    </LinearLayout>
+
+    <ScrollView android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" android:scrollbars="none" android:layout_marginTop="14dp" android:clipToPadding="false" android:paddingBottom="8dp">
+      <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:background="@drawable/glass_card">
+
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical" android:paddingStart="16dp" android:paddingEnd="16dp" android:paddingTop="14dp" android:paddingBottom="14dp">
+          <FrameLayout android:layout_width="34dp" android:layout_height="18dp" android:background="@drawable/batt_body">
+            <View android:layout_width="2dp" android:layout_height="8dp" android:layout_gravity="center_vertical" android:layout_marginStart="2dp" android:background="#00000000"/>
+          </FrameLayout>
+          <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical" android:layout_marginStart="14dp">
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Rauchmelder Flur" android:textColor="#1F1E1D" android:textSize="16sp" android:textStyle="bold"/>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Batterie wechseln alle 365 Tage · 3 Wechsel" android:textColor="#6A6A6A" android:textSize="13sp"/>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Überfällig seit 4 Tagen" android:textColor="#C8781E" android:textSize="13sp" android:textStyle="bold"/>
+          </LinearLayout>
+          <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Gewechselt" android:textColor="#0062CC" android:textSize="14sp" android:textStyle="bold" android:background="@drawable/blue_soft" android:paddingStart="14dp" android:paddingEnd="14dp" android:paddingTop="10dp" android:paddingBottom="10dp"/>
+        </LinearLayout>
+        <View style="@style/PreviewDivider"/>
+
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical" android:paddingStart="16dp" android:paddingEnd="16dp" android:paddingTop="14dp" android:paddingBottom="14dp">
+          <FrameLayout android:layout_width="34dp" android:layout_height="18dp" android:background="@drawable/batt_body">
+            <View android:layout_width="7dp" android:layout_height="12dp" android:layout_gravity="start|center_vertical" android:layout_marginStart="2dp" android:background="@drawable/batt_fill_orange"/>
+          </FrameLayout>
+          <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical" android:layout_marginStart="14dp">
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Akkuschrauber Akku 1" android:textColor="#1F1E1D" android:textSize="16sp" android:textStyle="bold"/>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Laden alle 90 Tage · 14 Ladezyklen" android:textColor="#6A6A6A" android:textSize="13sp"/>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Fällig in 6 Tagen" android:textColor="#C8781E" android:textSize="13sp" android:textStyle="bold"/>
+          </LinearLayout>
+          <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Geladen" android:textColor="#0062CC" android:textSize="14sp" android:textStyle="bold" android:background="@drawable/blue_soft" android:paddingStart="14dp" android:paddingEnd="14dp" android:paddingTop="10dp" android:paddingBottom="10dp"/>
+        </LinearLayout>
+        <View style="@style/PreviewDivider"/>
+
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical" android:paddingStart="16dp" android:paddingEnd="16dp" android:paddingTop="14dp" android:paddingBottom="14dp">
+          <FrameLayout android:layout_width="34dp" android:layout_height="18dp" android:background="@drawable/batt_body">
+            <View android:layout_width="14dp" android:layout_height="12dp" android:layout_gravity="start|center_vertical" android:layout_marginStart="2dp" android:background="@drawable/batt_fill_green"/>
+          </FrameLayout>
+          <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical" android:layout_marginStart="14dp">
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Akkuschrauber Akku 2" android:textColor="#1F1E1D" android:textSize="16sp" android:textStyle="bold"/>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Laden alle 90 Tage · 11 Ladezyklen" android:textColor="#6A6A6A" android:textSize="13sp"/>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Fällig in 41 Tagen" android:textColor="#6A6A6A" android:textSize="13sp" android:textStyle="bold"/>
+          </LinearLayout>
+          <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Geladen" android:textColor="#0062CC" android:textSize="14sp" android:textStyle="bold" android:background="@drawable/blue_soft" android:paddingStart="14dp" android:paddingEnd="14dp" android:paddingTop="10dp" android:paddingBottom="10dp"/>
+        </LinearLayout>
+        <View style="@style/PreviewDivider"/>
+
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical" android:paddingStart="16dp" android:paddingEnd="16dp" android:paddingTop="14dp" android:paddingBottom="14dp">
+          <FrameLayout android:layout_width="34dp" android:layout_height="18dp" android:background="@drawable/batt_body">
+            <View android:layout_width="18dp" android:layout_height="12dp" android:layout_gravity="start|center_vertical" android:layout_marginStart="2dp" android:background="@drawable/batt_fill_green"/>
+          </FrameLayout>
+          <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical" android:layout_marginStart="14dp">
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="AA-Akkus, 4er-Set" android:textColor="#1F1E1D" android:textSize="16sp" android:textStyle="bold"/>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Laden alle 60 Tage · 28 Ladezyklen" android:textColor="#6A6A6A" android:textSize="13sp"/>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Fällig in 22 Tagen" android:textColor="#6A6A6A" android:textSize="13sp" android:textStyle="bold"/>
+          </LinearLayout>
+          <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Geladen" android:textColor="#0062CC" android:textSize="14sp" android:textStyle="bold" android:background="@drawable/blue_soft" android:paddingStart="14dp" android:paddingEnd="14dp" android:paddingTop="10dp" android:paddingBottom="10dp"/>
+        </LinearLayout>
+        <View style="@style/PreviewDivider"/>
+
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical" android:paddingStart="16dp" android:paddingEnd="16dp" android:paddingTop="14dp" android:paddingBottom="14dp">
+          <FrameLayout android:layout_width="34dp" android:layout_height="18dp" android:background="@drawable/batt_body">
+            <View android:layout_width="16dp" android:layout_height="12dp" android:layout_gravity="start|center_vertical" android:layout_marginStart="2dp" android:background="@drawable/batt_fill_green"/>
+          </FrameLayout>
+          <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical" android:layout_marginStart="14dp">
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Fahrradlicht" android:textColor="#1F1E1D" android:textSize="16sp" android:textStyle="bold"/>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Laden alle 30 Tage · 9 Ladezyklen" android:textColor="#6A6A6A" android:textSize="13sp"/>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Fällig in 12 Tagen" android:textColor="#6A6A6A" android:textSize="13sp" android:textStyle="bold"/>
+          </LinearLayout>
+          <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Geladen" android:textColor="#0062CC" android:textSize="14sp" android:textStyle="bold" android:background="@drawable/blue_soft" android:paddingStart="14dp" android:paddingEnd="14dp" android:paddingTop="10dp" android:paddingBottom="10dp"/>
+        </LinearLayout>
+
+      </LinearLayout>
+    </ScrollView>
+
+  </LinearLayout>
+</FrameLayout>
