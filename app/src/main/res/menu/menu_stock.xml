@@ -34,12 +34,12 @@
     android:id="@+id/action_stock_journal"
     android:title="@string/title_stock_journal"
     android:icon="@drawable/ic_round_history_anim"
-    app:showAsAction="always" />
+    app:showAsAction="never" />
 
   <item
     android:id="@+id/action_stock_entries"
     android:title="@string/title_stock_entries"
     android:icon="@drawable/ic_round_format_list_numbered"
-    app:showAsAction="ifRoom" />
+    app:showAsAction="never" />
 
 </menu>

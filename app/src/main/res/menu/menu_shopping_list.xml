@@ -34,7 +34,7 @@
     android:id="@+id/action_shopping_mode"
     android:title="@string/title_shopping_mode"
     android:icon="@drawable/ic_round_storefront"
-    app:showAsAction="always" />
+    app:showAsAction="never" />
 
   <item
     android:id="@+id/action_add_missing"

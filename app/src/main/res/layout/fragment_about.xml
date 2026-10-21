@@ -159,6 +159,30 @@
 
           </LinearLayout>
 
+          <!-- GPLv3-Hinweis: Grocy Android ist die Basis dieses Forks -->
+          <LinearLayout
+            android:id="@+id/linear_based_on"
+            style="@style/Widget.Grocy.LinearLayout.ListItem.TwoLine.Clickable">
+
+            <ImageView
+              style="@style/Widget.Grocy.ImageView.ListItem.Icon"
+              android:src="@drawable/ic_round_grocy_anim"
+              tools:ignore="ContentDescription" />
+
+            <LinearLayout style="@style/Widget.Grocy.LinearLayout.ListItem.TextBox">
+
+              <TextView
+                style="@style/Widget.Grocy.TextView.ListItem.OverLine"
+                android:text="@string/info_based_on" />
+
+              <TextView
+                style="@style/Widget.Grocy.TextView.ListItem.Title"
+                android:text="@string/about_based_on" />
+
+            </LinearLayout>
+
+          </LinearLayout>
+
           <LinearLayout
             android:id="@+id/linear_github"
             style="@style/Widget.Grocy.LinearLayout.ListItem.TwoLine.Clickable">
