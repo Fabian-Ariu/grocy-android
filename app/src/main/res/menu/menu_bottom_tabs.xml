@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+  <item
+    android:id="@+id/menu_tab_scan"
+    android:icon="@drawable/ic_round_barcode_scan"
+    android:title="@string/action_scan" />
+  <item
+    android:id="@+id/menu_tab_stock"
+    android:icon="@drawable/ic_round_inventory"
+    android:title="@string/tab_stock" />
+  <item
+    android:id="@+id/menu_tab_shopping"
+    android:icon="@drawable/ic_round_local_grocery_store"
+    android:title="@string/tab_shopping" />
+  <item
+    android:id="@+id/menu_tab_recipes"
+    android:icon="@drawable/ic_round_restaurant_menu"
+    android:title="@string/title_recipes" />
+  <item
+    android:id="@+id/menu_tab_more"
+    android:icon="@drawable/ic_round_widgets"
+    android:title="@string/title_more" />
+</menu>

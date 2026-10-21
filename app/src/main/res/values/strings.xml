@@ -579,6 +579,9 @@
   <string name="error_settings_restore">Restore failed</string>
 
   <string name="title_overview">Overview</string>
+  <string name="title_more">More</string>
+  <string name="tab_stock">Stock</string>
+  <string name="tab_shopping">Shopping</string>
   <string name="title_stock_overview">Stock overview</string>
   <string name="title_purchase">Purchase</string>
   <string name="title_consume">Consume</string>

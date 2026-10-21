@@ -60,7 +60,10 @@ import androidx.appcompat.content.res.AppCompatResources;
 import androidx.appcompat.widget.Toolbar.OnMenuItemClickListener;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.res.ResourcesCompat;
+import android.view.MenuItem;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator;
 import androidx.preference.PreferenceManager;
@@ -239,6 +242,7 @@ public class MainActivity extends AppCompatActivity {
     uiUtil = new UiUtil(this);
     uiUtil.setUpBottomAppBar();
     updateBottomNavigationMenuButton();
+    setUpBottomTabNavigation();
 
     scrollBehavior = new BottomScrollBehavior(
         this,
@@ -599,6 +603,61 @@ public class MainActivity extends AppCompatActivity {
       if (debug) {
         Log.i(TAG, "replaceFabIcon: not replaced, tags are identical");
       }
+    }
+  }
+
+  /** Neues 5-Tab-Design: verdrahtet die untere Navigationsleiste mit der echten Navigation. */
+  private void setUpBottomTabNavigation() {
+    NavController controller = null;
+    Fragment navHost = fragmentManager.findFragmentById(R.id.fragment_main_nav_host);
+    if (navHost instanceof NavHostFragment) {
+      controller = ((NavHostFragment) navHost).getNavController();
+    }
+    final NavController navController = controller;
+    binding.bottomNavigation.setOnItemSelectedListener(item -> {
+      int id = item.getItemId();
+      if (id == R.id.menu_tab_scan) {
+        if (navController != null) {
+          navController.popBackStack(R.id.overviewStartFragment, false);
+        }
+        return true;
+      } else if (id == R.id.menu_tab_stock) {
+        navUtil.navigateDeepLink(getString(R.string.deep_link_stockOverviewFragment));
+        return true;
+      } else if (id == R.id.menu_tab_shopping) {
+        navUtil.navigateDeepLink(getString(R.string.deep_link_shoppingListFragment));
+        return true;
+      } else if (id == R.id.menu_tab_recipes) {
+        navUtil.navigateDeepLink(getString(R.string.deep_link_recipesFragment));
+        return true;
+      } else if (id == R.id.menu_tab_more) {
+        navUtil.navigate(NavigationMainDirections.actionGlobalDrawerBottomSheetDialogFragment());
+        return false;
+      }
+      return false;
+    });
+    if (navController != null) {
+      navController.addOnDestinationChangedListener((c, dest, args) -> updateSelectedTab(dest.getId()));
+    }
+  }
+
+  /** Haelt den markierten Tab mit dem aktuellen Ziel synchron, ohne erneut zu navigieren. */
+  private void updateSelectedTab(int destId) {
+    int itemId;
+    if (destId == R.id.overviewStartFragment) {
+      itemId = R.id.menu_tab_scan;
+    } else if (destId == R.id.stockOverviewFragment) {
+      itemId = R.id.menu_tab_stock;
+    } else if (destId == R.id.shoppingListFragment) {
+      itemId = R.id.menu_tab_shopping;
+    } else if (destId == R.id.recipesFragment) {
+      itemId = R.id.menu_tab_recipes;
+    } else {
+      return;
+    }
+    MenuItem item = binding.bottomNavigation.getMenu().findItem(itemId);
+    if (item != null) {
+      item.setChecked(true);
     }
   }
 

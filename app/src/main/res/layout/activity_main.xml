@@ -40,18 +40,32 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_gravity="bottom"
+    android:visibility="gone"
     app:paddingBottomSystemWindowInsets="false"
     app:elevation="0dp"
     app:menu="@menu/menu_empty" />
+
+  <!-- Neues 5-Tab-Design (Scannen / Vorrat / Einkauf / Rezepte / Mehr). Ersetzt die untere App-Bar. -->
+  <com.google.android.material.bottomnavigation.BottomNavigationView
+    android:id="@+id/bottom_navigation"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="bottom"
+    android:background="?attr/colorSurfaceContainer"
+    app:elevation="3dp"
+    app:labelVisibilityMode="labeled"
+    app:menu="@menu/menu_bottom_tabs" />
 
   <com.google.android.material.floatingactionbutton.FloatingActionButton
     android:id="@+id/fab_main"
     style="@style/Widget.Material3.FloatingActionButton.Secondary"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    android:layout_gravity="bottom|end"
+    android:layout_marginEnd="16dp"
+    android:layout_marginBottom="80dp"
     android:src="@drawable/ic_round_barcode_scan"
     android:contentDescription="@string/action_scan"
-    app:layout_anchor="@id/bottom_app_bar"
     app:fabSize="auto" />
 
   <com.google.android.material.floatingactionbutton.FloatingActionButton
