@@ -467,35 +467,59 @@
                         <com.google.android.material.button.MaterialButton
                           android:id="@+id/button_inventory_text"
                           style="@style/Widget.Grocy.Button.TonalButton"
+                          android:minWidth="0dp"
+                          android:insetLeft="0dp"
+                          android:insetRight="0dp"
+                          android:paddingStart="14dp"
+                          android:paddingEnd="14dp"
+                          app:iconPadding="0dp"
                           android:layout_marginEnd="8dp"
-                          android:text="@string/title_inventory"
                           android:onClick="@{() -> activity.navUtil.navigate(R.id.inventoryFragment)}"
                           app:clickUtil="@{clickUtil}"
+                          android:contentDescription="@string/title_inventory"
                           app:icon="@drawable/ic_round_inventory" />
 
                         <com.google.android.material.button.MaterialButton
                           android:id="@+id/button_transfer_text"
                           style="@style/Widget.Grocy.Button.TonalButton"
+                          android:minWidth="0dp"
+                          android:insetLeft="0dp"
+                          android:insetRight="0dp"
+                          android:paddingStart="14dp"
+                          android:paddingEnd="14dp"
+                          app:iconPadding="0dp"
                           android:layout_marginEnd="8dp"
-                          android:text="@string/title_transfer"
                           android:visibility="@{viewModel.isFeatureEnabled(Constants.PREF.FEATURE_STOCK_LOCATION_TRACKING) ? View.VISIBLE : View.GONE}"
                           android:onClick="@{() -> activity.navUtil.navigate(R.id.transferFragment)}"
                           app:clickUtil="@{clickUtil}"
+                          android:contentDescription="@string/title_transfer"
                           app:icon="@drawable/ic_round_swap_horiz" />
 
                         <com.google.android.material.button.MaterialButton
                           style="@style/Widget.Grocy.Button.TonalButton"
+                          android:minWidth="0dp"
+                          android:insetLeft="0dp"
+                          android:insetRight="0dp"
+                          android:paddingStart="14dp"
+                          android:paddingEnd="14dp"
+                          app:iconPadding="0dp"
                           android:layout_marginEnd="8dp"
-                          android:text="@string/title_consume"
                           android:onClick="@{() -> activity.navUtil.navigate(R.id.consumeFragment)}"
                           app:clickUtil="@{clickUtil}"
+                          android:contentDescription="@string/title_consume"
                           app:icon="@drawable/ic_round_consume_product" />
 
                         <com.google.android.material.button.MaterialButton
                           style="@style/Widget.Grocy.Button.TonalButton"
-                          android:text="@string/title_purchase"
+                          android:minWidth="0dp"
+                          android:insetLeft="0dp"
+                          android:insetRight="0dp"
+                          android:paddingStart="14dp"
+                          android:paddingEnd="14dp"
+                          app:iconPadding="0dp"
                           android:onClick="@{() -> activity.navUtil.navigate(R.id.purchaseFragment)}"
                           app:clickUtil="@{clickUtil}"
+                          android:contentDescription="@string/title_purchase"
                           app:icon="@drawable/ic_round_local_grocery_store" />
 
                       </com.google.android.material.button.MaterialButtonGroup>
