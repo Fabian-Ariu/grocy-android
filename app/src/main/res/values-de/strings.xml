@@ -68,6 +68,7 @@
   <string name="action_send">Senden</string>
   <string name="action_close">Schließen</string>
   <string name="action_scan">Scannen</string>
+  <string name="msg_scan_hero_hint">Seitentaste scannt · lang drücken zum Einlagern</string>
   <string name="action_cancel">Abbrechen</string>
   <string name="action_add">Hinzufügen</string>
   <string name="action_clear">Leeren</string>

@@ -215,6 +215,26 @@ public class OverviewStartFragment extends BaseFragment {
     outState.putBoolean(DIALOG_FAB_INFO, isShowing);
   }
 
+  /** Scan-Hero (neues Design): Tippen startet den Scanner zum Verbrauchen,
+   *  langes Druecken zum Einlagern. Gleiche Aktion wie der FAB. */
+  public void startConsumeScan() {
+    if (showFabInfoDialogIfAppropriate()) {
+      return;
+    }
+    activity.navUtil.navigate(
+        R.id.consumeFragment,
+        new ConsumeFragmentArgs.Builder().setStartWithScanner(true).build().toBundle()
+    );
+  }
+
+  public boolean startPurchaseScan() {
+    activity.navUtil.navigate(
+        R.id.purchaseFragment,
+        new PurchaseFragmentArgs.Builder().setStartWithScanner(true).build().toBundle()
+    );
+    return true;
+  }
+
   public void navigateToSettingsCatBehavior() {
     Bundle bundle = new SettingsFragmentArgs.Builder()
         .setShowCategory(Constants.SETTINGS.BEHAVIOR.class.getSimpleName())
