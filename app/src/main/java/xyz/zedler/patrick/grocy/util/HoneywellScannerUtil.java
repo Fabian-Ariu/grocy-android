@@ -72,6 +72,13 @@ public class HoneywellScannerUtil {
         public void onReceive(Context context, Intent intent) {
             String barcode = intent.getStringExtra("data");
             byte[] barcodeBytes = intent.getByteArrayExtra("dataBytes");
+            if (barcode == null) {
+                // Zebra DataWedge intent output delivers the scanned barcode here
+                barcode = intent.getStringExtra("com.symbol.datawedge.data_string");
+            }
+            if (barcode == null) {
+                return;
+            }
             Log.i(TAG, "Received barcode: " + barcode);
             HoneywellScannerUtil.this.barcodeListener.onBarcodeRecognized(barcode, barcodeBytes);
         }
