@@ -330,6 +330,18 @@
     tools:layout="@layout/fragment_quick_add">
     <deepLink app:uri="grocy://quickAddFragment" />
   </fragment>
+  <fragment
+    android:id="@+id/equipmentFragment"
+    android:name="xyz.zedler.patrick.grocy.fragment.EquipmentFragment"
+    android:label="EquipmentFragment"
+    tools:layout="@layout/fragment_equipment">
+    <deepLink app:uri="grocy://equipmentFragment" />
+  </fragment>
+  <fragment
+    android:id="@+id/maintenanceEditFragment"
+    android:name="xyz.zedler.patrick.grocy.fragment.MaintenanceEditFragment"
+    android:label="MaintenanceEditFragment"
+    tools:layout="@layout/fragment_maintenance_edit" />
   <navigation
     android:id="@+id/navigation_login"
     app:startDestination="@id/loginIntroFragment">

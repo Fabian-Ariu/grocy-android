@@ -582,6 +582,34 @@
 
   <string name="title_overview">Overview</string>
   <string name="title_more">More</string>
+  <string name="title_equipment">Equipment</string>
+  <string name="equipment_hint">Maintenance as Grocy chores: due items also appear under chores and on the wall panel.</string>
+  <string name="equipment_empty">No equipment yet. Add one with the + button.</string>
+  <string name="equipment_add">Add equipment</string>
+  <string name="equipment_name_hint">Name, e.g. coffee machine</string>
+  <string name="equipment_manual">Manual: %1$s</string>
+  <string name="more_sub_equipment">Maintenance by manufacturer</string>
+  <string name="maint_section">Maintenance per manufacturer</string>
+  <string name="maint_none">No maintenance yet</string>
+  <string name="maint_add">Add maintenance from manual</string>
+  <string name="maint_done">Done</string>
+  <string name="maint_interval">Every %1$d days</string>
+  <string name="maint_manual">Manually</string>
+  <string name="maint_title">Add maintenance</string>
+  <string name="maint_name_hint">Maintenance, e.g. descale</string>
+  <string name="maint_rhythm">Rhythm per manufacturer</string>
+  <string name="maint_after_last">After last maintenance</string>
+  <string name="maint_fixed">Fixed schedule</string>
+  <string name="maint_every">Every</string>
+  <string name="maint_unit_days">days</string>
+  <string name="maint_unit_weeks">weeks</string>
+  <string name="maint_unit_months">months</string>
+  <string name="maint_note_hint">Reference, e.g. manual p. 24</string>
+  <string name="maint_explain_after_last">%1$s every %2$d %3$s, counted from the last maintenance. Due items appear on the wall panel and in reminders.</string>
+  <string name="maint_explain_fixed">%1$s every %2$d %3$s on a fixed schedule. Due items appear on the wall panel and in reminders.</string>
+  <string name="maint_save">Save maintenance</string>
+  <string name="maint_saved">Maintenance saved</string>
+  <string-array name="maint_suggestions"><item>Descale</item><item>Clean brew group</item><item>Water filter</item><item>Clean</item></string-array>
   <string name="quick_add_title">Fruit &amp; vegetables</string>
   <string name="quick_add_hint">Tap = +1 \u00b7 long press = \u22121 \u00b7 due date from product defaults</string>
   <string name="quick_add_search">Search variety</string>
