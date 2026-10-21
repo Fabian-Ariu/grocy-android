@@ -111,29 +111,8 @@ public class OverviewStartFragment extends BaseFragment {
       binding.linearContainer.setLayoutTransition(transition);
     });
 
-    ViewUtil.setOnlyOverScrollStretchEnabled(binding.scrollHorizActionsStockOverview);
-    binding.scrollHorizActionsStockOverview.post(
-        () -> {
-          if (binding == null) return;
-          binding.scrollHorizActionsStockOverview.fullScroll(
-              UiUtil.isLayoutRtl(activity)
-                  ? HorizontalScrollView.FOCUS_LEFT
-                  : HorizontalScrollView.FOCUS_RIGHT
-          );
-        }
-    );
-
-    ViewUtil.setOnlyOverScrollStretchEnabled(binding.scrollHorizActionsShoppingList);
-    binding.scrollHorizActionsShoppingList.post(
-        () -> {
-          if (binding == null) return;
-          binding.scrollHorizActionsShoppingList.fullScroll(
-              UiUtil.isLayoutRtl(activity)
-                  ? HorizontalScrollView.FOCUS_LEFT
-                  : HorizontalScrollView.FOCUS_RIGHT
-          );
-        }
-    );
+    // Das alte Dashboard (Bestand-/Einkaufszettel-Karten mit Aktionsleisten) ist von der
+    // Startseite entfernt; diese Bereiche haben eigene Tabs. Keine Scroll-Leisten mehr hier.
 
     clickUtil = new ClickUtil(1000);
 
@@ -145,34 +124,14 @@ public class OverviewStartFragment extends BaseFragment {
       }
     });
 
-    binding.toolbar.setOnMenuItemClickListener(item -> {
-      int id = item.getItemId();
-      if (id == R.id.action_settings) {
-        activity.navUtil.navigateDeepLink(getString(R.string.deep_link_settingsFragment));
-      } else if (id == R.id.action_help) {
-        activity.showHelpBottomSheet();
-      } else if (id == R.id.action_about) {
-        activity.navUtil.navigateDeepLink(getString(R.string.deep_link_aboutFragment));
-      } else if (id == R.id.action_feedback) {
-        activity.showBottomSheet(new FeedbackBottomSheet());
-      }
-      return false;
-    });
+    // Kein Toolbar-Menue mehr auf der Startseite (Vorlage): Einstellungen, Hilfe und
+    // Feedback sind ueber den Tab "Mehr" erreichbar.
 
     if (savedInstanceState == null || !viewModel.isAlreadyLoadedFromDatabase()) {
       viewModel.loadFromDatabase(true);
     }
 
-    // DEBUG LABEL
-
-    if (BuildConfig.DEBUG) {
-      binding.imageLabelDebug.setColorFilter(
-          ResUtil.getColor(activity, R.attr.colorOnCustomYellow)
-      );
-      binding.imageLabelDebugBg.setColorFilter(
-          ResUtil.getColor(activity, R.attr.colorCustomYellow)
-      );
-    }
+    // (DEBUG-Label der alten Titelleiste entfaellt mit der Titelleiste.)
 
     // UPDATE UI
 
@@ -285,12 +244,7 @@ public class OverviewStartFragment extends BaseFragment {
     return true;
   }
 
-  public void startLogoAnimation() {
-    if (clickUtil.isDisabled()) {
-      return;
-    }
-    ViewUtil.startIcon(binding.imageLogo);
-  }
+  // startLogoAnimation() entfaellt: die Startseite hat laut Vorlage kein Logo mehr.
 
   @Override
   public void updateConnectivity(boolean online) {

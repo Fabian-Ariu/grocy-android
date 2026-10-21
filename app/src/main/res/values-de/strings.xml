@@ -575,6 +575,8 @@
   <string name="title_more">Mehr</string>
   <string name="tab_stock">Vorrat</string>
   <string name="tab_shopping">Einkauf</string>
+  <string name="home_chip_produce">Obst &amp; Gemüse</string>
+  <string name="home_chip_homemade">Selbstgemacht</string>
   <string name="title_stock_overview">Bestand</string>
   <string name="title_purchase">Einkauf</string>
   <string name="title_consume">Verbrauch</string>

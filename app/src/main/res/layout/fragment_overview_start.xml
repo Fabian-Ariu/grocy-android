@@ -53,70 +53,6 @@
       android:layout_height="wrap_content"
       android:orientation="vertical">
 
-      <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:onClick="@{() -> fragment.startLogoAnimation()}">
-
-        <ImageView
-          android:id="@+id/image_logo"
-          android:layout_width="30dp"
-          android:layout_height="30dp"
-          android:layout_marginStart="16dp"
-          android:layout_gravity="start|center_vertical"
-          android:src="@drawable/ic_round_grocy_anim"
-          tools:ignore="ContentDescription" />
-
-        <LinearLayout
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_gravity="center"
-          android:orientation="horizontal"
-          tools:ignore="UseCompoundDrawables">
-
-          <TextView
-            style="@style/Widget.Grocy.TextView.Toolbar"
-            android:text="@string/app_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
-          <FrameLayout
-            android:id="@+id/frame_label_debug"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_marginStart="4dp"
-            android:layout_gravity="center_vertical"
-            android:visibility="@{BuildConfig.DEBUG ? View.VISIBLE : View.GONE}">
-
-            <ImageView
-              android:id="@+id/image_label_debug_bg"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:src="@drawable/ic_round_dev_bg"
-              app:tint="?attr/colorSecondary"
-              tools:ignore="ContentDescription" />
-
-            <ImageView
-              android:id="@+id/image_label_debug"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:src="@drawable/ic_round_dev"
-              app:tint="?attr/colorOnSecondary"
-              tools:ignore="ContentDescription" />
-
-          </FrameLayout>
-
-        </LinearLayout>
-
-        <com.google.android.material.appbar.MaterialToolbar
-          android:id="@+id/toolbar"
-          android:layout_width="wrap_content"
-          android:layout_height="match_parent"
-          android:layout_gravity="end"
-          app:contentInsetStart="0dp"
-          app:menu="@menu/menu_overview" />
-
-      </FrameLayout>
 
       <FrameLayout
         android:layout_width="match_parent"
@@ -175,6 +111,33 @@
               app:layout_constraintStart_toStartOf="parent"
               app:layout_constraintEnd_toEndOf="parent">
 
+              <!-- Vorlage: kein Logo/Titel/Menue auf der Startseite, nur ein Verbindungs-Status oben rechts.
+                   Einstellungen, Hilfe, Feedback liegen unter "Mehr". -->
+              <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="end"
+                android:paddingTop="12dp"
+                android:paddingEnd="20dp"
+                android:paddingStart="20dp">
+                <Space
+                  android:layout_width="0dp"
+                  android:layout_height="1dp"
+                  android:layout_weight="1" />
+                <FrameLayout
+                  android:layout_width="38dp"
+                  android:layout_height="38dp"
+                  android:background="@drawable/glass_chip"
+                  android:contentDescription="@string/error_offline">
+                  <View
+                    android:layout_width="12dp"
+                    android:layout_height="12dp"
+                    android:layout_gravity="center"
+                    android:background="@{viewModel.offlineLive ? @drawable/status_dot_grey : @drawable/status_dot_green}" />
+                </FrameLayout>
+              </LinearLayout>
+
               <!-- Scan-Hero (neues Design): grosser Scan-Knopf, scharf an den realen Scanner angebunden.
                    Tippen = Verbrauchen mit Scanner, lang druecken = Einlagern mit Scanner. -->
               <LinearLayout
@@ -184,6 +147,8 @@
                 android:gravity="center_horizontal"
                 android:paddingTop="8dp"
                 android:paddingBottom="20dp"
+                android:paddingStart="24dp"
+                android:paddingEnd="24dp"
                 android:clickable="true"
                 android:focusable="true"
                 android:onClick="@{() -> fragment.startConsumeScan()}"
@@ -225,366 +190,14 @@
                   android:layout_height="wrap_content"
                   android:layout_marginTop="2dp"
                   android:textColor="?attr/colorOnSurfaceVariant"
+                  android:gravity="center"
                   android:text="@string/msg_scan_hero_hint" />
 
               </LinearLayout>
 
-              <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:clipToPadding="false"
-                android:visibility="@{viewModel.beginnerModeEnabled || viewModel.isDemoInstance || !viewModel.isFeatureEnabled(Constants.PREF.FEATURE_STOCK) ? View.VISIBLE : View.GONE}">
-
-                <com.google.android.material.card.MaterialCardView
-                  style="@style/Widget.Grocy.Card.Text"
-                  android:layout_marginStart="16dp"
-                  android:layout_marginEnd="16dp"
-                  android:layout_marginBottom="8dp"
-                  android:visibility="@{viewModel.beginnerModeEnabled ? View.VISIBLE : View.GONE}"
-                  android:onClick="@{() -> fragment.navigateToSettingsCatBehavior()}"
-                  app:clickUtil="@{clickUtil}">
-
-                  <TextView
-                    style="@style/Widget.Grocy.TextView.Paragraph"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textColor="?attr/colorOnSurfaceVariant"
-                    android:text="@string/msg_help_start" />
-
-                </com.google.android.material.card.MaterialCardView>
-
-                <com.google.android.material.card.MaterialCardView
-                  style="@style/Widget.Grocy.Card.Text.Error"
-                  android:visibility="@{viewModel.isDemoInstance ? View.VISIBLE : View.GONE}"
-                  android:onClick="@{() -> fragment.navigateToSettingsCatServer()}"
-                  android:layout_marginStart="16dp"
-                  android:layout_marginEnd="16dp"
-                  android:layout_marginBottom="8dp"
-                  app:clickUtil="@{clickUtil}">
-
-                  <TextView
-                    style="@style/Widget.Grocy.TextView"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textColor="?attr/colorOnErrorContainer"
-                    android:text="@string/msg_logout_demo_short" />
-
-                </com.google.android.material.card.MaterialCardView>
-
-                <com.google.android.material.divider.MaterialDivider
-                  style="@style/Widget.Grocy.Divider.Small"
-                  android:layout_marginBottom="16dp" />
-
-              </LinearLayout>
-
-              <com.google.android.material.card.MaterialCardView
-                style="@style/Widget.Grocy.Card.Outlined"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginBottom="8dp"
-                android:onClick="@{() -> activity.navUtil.navigate(R.id.stockOverviewFragment)}"
-                app:clickUtil="@{clickUtil}"
-                app:contentPaddingLeft="0dp"
-                app:contentPaddingRight="0dp"
-                app:contentPaddingBottom="12dp"
-                android:visibility="@{viewModel.isFeatureEnabled(Constants.PREF.FEATURE_STOCK) ? View.VISIBLE : View.GONE}">
-
-                <LinearLayout
-                  android:layout_width="match_parent"
-                  android:layout_height="wrap_content"
-                  android:orientation="vertical">
-
-                  <TextView
-                    style="@style/Widget.Grocy.TextView.TitleLarge"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginEnd="16dp"
-                    android:layout_marginBottom="4dp"
-                    android:text="@string/title_stock_overview" />
-
-                  <TextView
-                    style="@style/Widget.Grocy.TextView"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginEnd="16dp"
-                    android:layout_marginBottom="4dp"
-                    android:text="@{viewModel.stockDescriptionTextLive}" />
-
-                  <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginEnd="16dp"
-                    android:orientation="vertical"
-                    android:visibility="@{viewModel.isFeatureEnabled(Constants.PREF.FEATURE_STOCK_BBD_TRACKING) ? View.VISIBLE : View.GONE}">
-
-                    <LinearLayout
-                      android:orientation="horizontal"
-                      android:layout_width="match_parent"
-                      android:layout_height="wrap_content"
-                      android:gravity="top"
-                      android:visibility="@{viewModel.stockDescriptionDueNextTextLive != null ? View.VISIBLE : View.GONE}">
-
-                      <FrameLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        tools:ignore="TooDeepLayout">
-
-                        <View
-                          android:layout_width="4dp"
-                          android:layout_height="4dp"
-                          android:layout_marginStart="6dp"
-                          android:layout_marginEnd="6dp"
-                          android:layout_gravity="center_vertical"
-                          android:background="@drawable/shape_circle"
-                          android:backgroundTint="?attr/colorOnSurface" />
-
-                        <TextView
-                          style="@style/Widget.Grocy.TextView"
-                          android:layout_width="wrap_content"
-                          android:layout_height="wrap_content"
-                          android:text="E"
-                          android:visibility="invisible"
-                          tools:ignore="HardcodedText" />
-
-                      </FrameLayout>
-
-                      <TextView
-                        style="@style/Widget.Grocy.TextView"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="@{viewModel.stockDescriptionDueNextTextLive}" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                      android:orientation="horizontal"
-                      android:layout_width="match_parent"
-                      android:layout_height="wrap_content"
-                      android:gravity="top"
-                      android:visibility="@{viewModel.stockDescriptionOverdueTextLive != null ? View.VISIBLE : View.GONE}">
-
-                      <FrameLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        tools:ignore="TooDeepLayout">
-
-                        <View
-                          android:layout_width="4dp"
-                          android:layout_height="4dp"
-                          android:layout_marginStart="6dp"
-                          android:layout_marginEnd="6dp"
-                          android:layout_gravity="center_vertical"
-                          android:background="@drawable/shape_circle"
-                          android:backgroundTint="?attr/colorOnSurface" />
-
-                        <TextView
-                          style="@style/Widget.Grocy.TextView"
-                          android:layout_width="wrap_content"
-                          android:layout_height="wrap_content"
-                          android:text="E"
-                          android:visibility="invisible"
-                          tools:ignore="HardcodedText" />
-
-                      </FrameLayout>
-
-                      <TextView
-                        style="@style/Widget.Grocy.TextView"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="@{viewModel.stockDescriptionOverdueTextLive}" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                      android:orientation="horizontal"
-                      android:layout_width="match_parent"
-                      android:layout_height="wrap_content"
-                      android:gravity="top"
-                      android:visibility="@{viewModel.stockDescriptionExpiredTextLive != null ? View.VISIBLE : View.GONE}">
-
-                      <FrameLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        tools:ignore="TooDeepLayout">
-
-                        <View
-                          android:layout_width="4dp"
-                          android:layout_height="4dp"
-                          android:layout_marginStart="6dp"
-                          android:layout_marginEnd="6dp"
-                          android:layout_gravity="center_vertical"
-                          android:background="@drawable/shape_circle"
-                          android:backgroundTint="?attr/colorOnSurface" />
-
-                        <TextView
-                          style="@style/Widget.Grocy.TextView"
-                          android:layout_width="wrap_content"
-                          android:layout_height="wrap_content"
-                          android:text="E"
-                          android:visibility="invisible"
-                          tools:ignore="HardcodedText" />
-
-                      </FrameLayout>
-
-                      <TextView
-                        style="@style/Widget.Grocy.TextView"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="@{viewModel.stockDescriptionExpiredTextLive}" />
-
-                    </LinearLayout>
-
-                  </LinearLayout>
-
-                  <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginEnd="16dp"
-                    android:gravity="top"
-                    android:visibility="@{viewModel.stockDescriptionMissingTextLive != null ? View.VISIBLE : View.GONE}">
-
-                    <FrameLayout
-                      android:layout_width="wrap_content"
-                      android:layout_height="wrap_content"
-                      tools:ignore="TooDeepLayout">
-
-                      <View
-                        android:layout_width="4dp"
-                        android:layout_height="4dp"
-                        android:layout_marginStart="6dp"
-                        android:layout_marginEnd="6dp"
-                        android:layout_gravity="center_vertical"
-                        android:background="@drawable/shape_circle"
-                        android:backgroundTint="?attr/colorOnSurface" />
-
-                      <TextView
-                        style="@style/Widget.Grocy.TextView"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="E"
-                        android:visibility="invisible"
-                        tools:ignore="HardcodedText" />
-
-                    </FrameLayout>
-
-                    <TextView
-                      style="@style/Widget.Grocy.TextView"
-                      android:layout_width="0dp"
-                      android:layout_height="wrap_content"
-                      android:layout_weight="1"
-                      android:text="@{viewModel.stockDescriptionMissingTextLive}" />
-
-                  </LinearLayout>
-
-                  <TextView
-                    style="@style/Widget.Grocy.TextView"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="32dp"
-                    android:layout_marginEnd="16dp"
-                    android:visibility="@{viewModel.stockDescriptionMissingTextLive != null &amp;&amp; viewModel.stockDescriptionMissingShoppingListTextLive != null ? View.VISIBLE : View.GONE}"
-                    android:text="@{viewModel.stockDescriptionMissingShoppingListTextLive}" />
-
-                  <HorizontalScrollView
-                    android:id="@+id/scroll_horiz_actions_stock_overview"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:overScrollMode="never"
-                    android:layout_marginTop="8dp"
-                    android:scrollbars="none">
-
-                    <LinearLayout
-                      android:id="@+id/linear_stock_actions_container"
-                      android:layout_width="wrap_content"
-                      android:layout_height="wrap_content"
-                      android:orientation="horizontal"
-                      android:paddingStart="16dp"
-                      android:paddingEnd="16dp"
-                      android:layout_gravity="end">
-
-                      <com.google.android.material.button.MaterialButtonGroup
-                        style="@style/Widget.Material3.MaterialButtonGroup"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:spacing="8dp"
-                        app:buttonSizeChange="@xml/selector_button_group_size_change">
-
-                        <com.google.android.material.button.MaterialButton
-                          android:id="@+id/button_inventory_text"
-                          style="@style/Widget.Grocy.Button.TonalButton"
-                          android:minWidth="0dp"
-                          android:insetLeft="0dp"
-                          android:insetRight="0dp"
-                          android:paddingStart="14dp"
-                          android:paddingEnd="14dp"
-                          app:iconPadding="0dp"
-                          android:layout_marginEnd="8dp"
-                          android:onClick="@{() -> activity.navUtil.navigate(R.id.inventoryFragment)}"
-                          app:clickUtil="@{clickUtil}"
-                          android:contentDescription="@string/title_inventory"
-                          app:icon="@drawable/ic_round_inventory" />
-
-                        <com.google.android.material.button.MaterialButton
-                          android:id="@+id/button_transfer_text"
-                          style="@style/Widget.Grocy.Button.TonalButton"
-                          android:minWidth="0dp"
-                          android:insetLeft="0dp"
-                          android:insetRight="0dp"
-                          android:paddingStart="14dp"
-                          android:paddingEnd="14dp"
-                          app:iconPadding="0dp"
-                          android:layout_marginEnd="8dp"
-                          android:visibility="@{viewModel.isFeatureEnabled(Constants.PREF.FEATURE_STOCK_LOCATION_TRACKING) ? View.VISIBLE : View.GONE}"
-                          android:onClick="@{() -> activity.navUtil.navigate(R.id.transferFragment)}"
-                          app:clickUtil="@{clickUtil}"
-                          android:contentDescription="@string/title_transfer"
-                          app:icon="@drawable/ic_round_swap_horiz" />
-
-                        <com.google.android.material.button.MaterialButton
-                          style="@style/Widget.Grocy.Button.TonalButton"
-                          android:minWidth="0dp"
-                          android:insetLeft="0dp"
-                          android:insetRight="0dp"
-                          android:paddingStart="14dp"
-                          android:paddingEnd="14dp"
-                          app:iconPadding="0dp"
-                          android:layout_marginEnd="8dp"
-                          android:onClick="@{() -> activity.navUtil.navigate(R.id.consumeFragment)}"
-                          app:clickUtil="@{clickUtil}"
-                          android:contentDescription="@string/title_consume"
-                          app:icon="@drawable/ic_round_consume_product" />
-
-                        <com.google.android.material.button.MaterialButton
-                          style="@style/Widget.Grocy.Button.TonalButton"
-                          android:minWidth="0dp"
-                          android:insetLeft="0dp"
-                          android:insetRight="0dp"
-                          android:paddingStart="14dp"
-                          android:paddingEnd="14dp"
-                          app:iconPadding="0dp"
-                          android:onClick="@{() -> activity.navUtil.navigate(R.id.purchaseFragment)}"
-                          app:clickUtil="@{clickUtil}"
-                          android:contentDescription="@string/title_purchase"
-                          app:icon="@drawable/ic_round_local_grocery_store" />
-
-                      </com.google.android.material.button.MaterialButtonGroup>
-
-                    </LinearLayout>
-
-                  </HorizontalScrollView>
-
-                </LinearLayout>
-
-              </com.google.android.material.card.MaterialCardView>
+              <!-- Vorlage: Startseite = Scan-Hero + zwei Schnellzugriffe + kompakter Vorrats-Status.
+                   Das alte Dashboard (Karten fuer Bestand/Einkauf/Rezepte/Hausarbeiten/Aufgaben/Stammdaten)
+                   ist entfernt: diese Bereiche haben jetzt eigene Tabs. -->
 
               <com.google.android.material.card.MaterialCardView
                 style="@style/Widget.Grocy.Card.Text.Error"
@@ -604,495 +217,72 @@
 
               </com.google.android.material.card.MaterialCardView>
 
-              <com.google.android.material.card.MaterialCardView
-                style="@style/Widget.Grocy.Card.Outlined"
+              <!-- Schnellzugriffe (Vorlage): beide fuehren in den echten Einlagern-Ablauf -->
+              <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="54dp"
+                android:orientation="horizontal"
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
-                android:layout_marginBottom="8dp"
-                app:contentPaddingLeft="0dp"
-                app:contentPaddingRight="0dp"
-                app:contentPaddingBottom="12dp"
-                android:visibility="@{viewModel.isFeatureEnabled(Constants.PREF.FEATURE_SHOPPING_LIST) ? View.VISIBLE : View.GONE}"
-                android:onClick="@{() -> activity.navUtil.navigateDeepLink(@string/deep_link_shoppingListFragment)}"
-                app:clickUtil="@{clickUtil}">
-
-                <LinearLayout
-                  android:layout_width="match_parent"
-                  android:layout_height="wrap_content"
-                  android:orientation="vertical">
-
-                  <TextView
-                    style="@style/Widget.Grocy.TextView.TitleLarge"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginEnd="16dp"
-                    android:layout_marginBottom="4dp"
-                    android:text="@string/title_shopping_list" />
-
-                  <TextView
-                    style="@style/Widget.Grocy.TextView"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginEnd="16dp"
-                    android:text="@{viewModel.shoppingListDescriptionTextLive}" />
-
-                  <HorizontalScrollView
-                    android:id="@+id/scroll_horiz_actions_shopping_list"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:overScrollMode="never"
-                    android:layout_marginTop="8dp"
-                    android:scrollbars="none">
-
-                    <LinearLayout
-                      android:id="@+id/linear_shopping_list_actions_container"
-                      android:layout_width="wrap_content"
-                      android:layout_height="wrap_content"
-                      android:orientation="horizontal"
-                      android:paddingStart="16dp"
-                      android:paddingEnd="16dp"
-                      android:layout_gravity="end">
-
-                      <com.google.android.material.button.MaterialButtonGroup
-                        style="@style/Widget.Material3.MaterialButtonGroup"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:spacing="8dp"
-                        app:buttonSizeChange="@xml/selector_button_group_size_change">
-
-                        <com.google.android.material.button.MaterialButton
-                          android:id="@+id/button_shopping_text"
-                          style="@style/Widget.Grocy.Button.TonalButton"
-                          android:layout_marginEnd="8dp"
-                          android:text="@string/title_shopping_mode"
-                          android:onClick="@{() -> activity.navUtil.navigateDeepLink(@string/deep_link_shoppingModeFragment)}"
-                          app:clickUtil="@{clickUtil}"
-                          app:icon="@drawable/ic_round_storefront" />
-
-                        <com.google.android.material.button.MaterialButton
-                          android:id="@+id/button_add_shopping_list_item"
-                          style="@style/Widget.Grocy.Button.TonalButton"
-                          android:text="@string/title_entry_new"
-                          android:onClick="@{() -> activity.navUtil.navigateDeepLink(@string/deep_link_shoppingListItemEditFragmentCreate)}"
-                          app:icon="@drawable/ic_round_add_anim" />
-
-                      </com.google.android.material.button.MaterialButtonGroup>
-
-                    </LinearLayout>
-
-                  </HorizontalScrollView>
-
-                </LinearLayout>
-
-              </com.google.android.material.card.MaterialCardView>
-
-              <com.google.android.material.card.MaterialCardView
-                style="@style/Widget.Grocy.Card.Outlined"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginBottom="8dp"
-                app:contentPaddingLeft="0dp"
-                app:contentPaddingRight="0dp"
-                app:contentPaddingBottom="12dp"
-                android:visibility="@{viewModel.isFeatureEnabled(Constants.PREF.FEATURE_RECIPES) ? View.VISIBLE : View.GONE}"
-                android:onClick="@{() -> activity.navUtil.navigateDeepLink(@string/deep_link_recipesFragment)}"
-                app:clickUtil="@{clickUtil}">
-
-                <LinearLayout
-                  android:layout_width="match_parent"
-                  android:layout_height="wrap_content"
-                  android:orientation="vertical">
-
-                  <TextView
-                    style="@style/Widget.Grocy.TextView.TitleLarge"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginEnd="16dp"
-                    android:layout_marginBottom="4dp"
-                    android:text="@string/title_recipes" />
-
-                  <TextView
-                    style="@style/Widget.Grocy.TextView"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginEnd="16dp"
-                    android:text="@{viewModel.recipesDescriptionTextLive}" />
-
-                  <HorizontalScrollView
-                    android:id="@+id/scroll_horiz_actions_recipes"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:overScrollMode="never"
-                    android:layout_marginTop="8dp"
-                    android:scrollbars="none">
-
-                    <LinearLayout
-                      android:layout_width="wrap_content"
-                      android:layout_height="wrap_content"
-                      android:orientation="horizontal"
-                      android:paddingStart="16dp"
-                      android:paddingEnd="16dp"
-                      android:layout_gravity="end">
-
-                      <com.google.android.material.button.MaterialButton
-                        android:id="@+id/button_meal_plan"
-                        style="@style/Widget.Grocy.Button.TonalButton"
-                        android:text="@string/title_meal_plan"
-                        android:onClick="@{() -> activity.navUtil.navigateDeepLink(@string/deep_link_mealPlanFragment)}"
-                        android:layout_marginStart="8dp"
-                        app:icon="@drawable/ic_round_date_range" />
-
-                    </LinearLayout>
-
-                  </HorizontalScrollView>
-
-                </LinearLayout>
-
-              </com.google.android.material.card.MaterialCardView>
-
-              <com.google.android.material.divider.MaterialDivider
-                style="@style/Widget.Grocy.Divider.Small"
-                android:layout_marginBottom="16dp"
-                android:visibility="@{viewModel.isFeatureEnabled(Constants.PREF.FEATURE_RECIPES) ? View.VISIBLE : View.GONE}" />
-
-              <com.google.android.material.card.MaterialCardView
-                style="@style/Widget.Grocy.Card.Outlined"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginBottom="8dp"
-                android:visibility="@{viewModel.isFeatureEnabled(Constants.PREF.FEATURE_CHORES) ? View.VISIBLE : View.GONE}"
-                android:onClick="@{() -> activity.navUtil.navigateDeepLink(@string/deep_link_choresFragment)}"
-                app:clickUtil="@{clickUtil}">
-
-                <LinearLayout
-                  android:layout_width="match_parent"
-                  android:layout_height="wrap_content"
-                  android:orientation="vertical">
-
-                  <TextView
-                    style="@style/Widget.Grocy.TextView.TitleLarge"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="4dp"
-                    android:text="@string/title_chores" />
-
-                  <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="top"
-                    android:visibility="@{viewModel.choresDescriptionOverdueTextLive != null ? View.VISIBLE : View.GONE}">
-
-                    <FrameLayout
-                      android:layout_width="wrap_content"
-                      android:layout_height="wrap_content"
-                      tools:ignore="TooDeepLayout">
-
-                      <View
-                        android:layout_width="4dp"
-                        android:layout_height="4dp"
-                        android:layout_marginStart="6dp"
-                        android:layout_marginEnd="6dp"
-                        android:layout_gravity="center_vertical"
-                        android:background="@drawable/shape_circle"
-                        android:backgroundTint="?attr/colorOnSurface" />
-
-                      <TextView
-                        style="@style/Widget.Grocy.TextView"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="E"
-                        android:visibility="invisible"
-                        tools:ignore="HardcodedText" />
-
-                    </FrameLayout>
-
-                    <TextView
-                      style="@style/Widget.Grocy.TextView"
-                      android:layout_width="0dp"
-                      android:layout_height="wrap_content"
-                      android:layout_weight="1"
-                      android:text="@{viewModel.choresDescriptionOverdueTextLive}" />
-
-                  </LinearLayout>
-
-                  <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="top"
-                    android:visibility="@{viewModel.choresDescriptionDueTodayTextLive != null ? View.VISIBLE : View.GONE}">
-
-                    <FrameLayout
-                      android:layout_width="wrap_content"
-                      android:layout_height="wrap_content"
-                      tools:ignore="TooDeepLayout">
-
-                      <View
-                        android:layout_width="4dp"
-                        android:layout_height="4dp"
-                        android:layout_marginStart="6dp"
-                        android:layout_marginEnd="6dp"
-                        android:layout_gravity="center_vertical"
-                        android:background="@drawable/shape_circle"
-                        android:backgroundTint="?attr/colorOnSurface" />
-
-                      <TextView
-                        style="@style/Widget.Grocy.TextView"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="E"
-                        android:visibility="invisible"
-                        tools:ignore="HardcodedText" />
-
-                    </FrameLayout>
-
-                    <TextView
-                      style="@style/Widget.Grocy.TextView"
-                      android:layout_width="0dp"
-                      android:layout_height="wrap_content"
-                      android:layout_weight="1"
-                      android:text="@{viewModel.choresDescriptionDueTodayTextLive}" />
-
-                  </LinearLayout>
-
-                  <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="top"
-                    android:visibility="@{viewModel.choresDescriptionDueSoonTextLive != null ? View.VISIBLE : View.GONE}">
-
-                    <FrameLayout
-                      android:layout_width="wrap_content"
-                      android:layout_height="wrap_content"
-                      tools:ignore="TooDeepLayout">
-
-                      <View
-                        android:layout_width="4dp"
-                        android:layout_height="4dp"
-                        android:layout_marginStart="6dp"
-                        android:layout_marginEnd="6dp"
-                        android:layout_gravity="center_vertical"
-                        android:background="@drawable/shape_circle"
-                        android:backgroundTint="?attr/colorOnSurface" />
-
-                      <TextView
-                        style="@style/Widget.Grocy.TextView"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="E"
-                        android:visibility="invisible"
-                        tools:ignore="HardcodedText" />
-
-                    </FrameLayout>
-
-                    <TextView
-                      style="@style/Widget.Grocy.TextView"
-                      android:layout_width="0dp"
-                      android:layout_height="wrap_content"
-                      android:layout_weight="1"
-                      android:text="@{viewModel.choresDescriptionDueSoonTextLive}" />
-
-                  </LinearLayout>
-
-                  <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="top"
-                    android:visibility="@{viewModel.choresDescriptionAssignedTextLive != null ? View.VISIBLE : View.GONE}">
-
-                    <FrameLayout
-                      android:layout_width="wrap_content"
-                      android:layout_height="wrap_content"
-                      tools:ignore="TooDeepLayout">
-
-                      <View
-                        android:layout_width="4dp"
-                        android:layout_height="4dp"
-                        android:layout_marginStart="6dp"
-                        android:layout_marginEnd="6dp"
-                        android:layout_gravity="center_vertical"
-                        android:background="@drawable/shape_circle"
-                        android:backgroundTint="?attr/colorOnSurface" />
-
-                      <TextView
-                        style="@style/Widget.Grocy.TextView"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="E"
-                        android:visibility="invisible"
-                        tools:ignore="HardcodedText" />
-
-                    </FrameLayout>
-
-                    <TextView
-                      style="@style/Widget.Grocy.TextView"
-                      android:layout_width="0dp"
-                      android:layout_height="wrap_content"
-                      android:layout_weight="1"
-                      android:text="@{viewModel.choresDescriptionAssignedTextLive}" />
-
-                  </LinearLayout>
-
-                </LinearLayout>
-
-              </com.google.android.material.card.MaterialCardView>
-
-              <com.google.android.material.card.MaterialCardView
-                style="@style/Widget.Grocy.Card.Outlined"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginBottom="8dp"
-                app:contentPaddingBottom="12dp"
-                android:visibility="@{viewModel.isFeatureEnabled(Constants.PREF.FEATURE_TASKS) ? View.VISIBLE : View.GONE}"
-                android:onClick="@{() -> activity.navUtil.navigateDeepLink(@string/deep_link_tasksFragment)}"
-                app:clickUtil="@{clickUtil}">
-
-                <LinearLayout
-                  android:layout_width="match_parent"
-                  android:layout_height="wrap_content"
-                  android:orientation="vertical">
-
-                  <TextView
-                    style="@style/Widget.Grocy.TextView.TitleLarge"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="4dp"
-                    android:text="@string/title_tasks" />
-
-                  <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="top"
-                    android:visibility="@{viewModel.tasksDescriptionTextLive != null ? View.VISIBLE : View.GONE}">
-
-                    <FrameLayout
-                      android:layout_width="wrap_content"
-                      android:layout_height="wrap_content"
-                      tools:ignore="TooDeepLayout">
-
-                      <View
-                        android:layout_width="4dp"
-                        android:layout_height="4dp"
-                        android:layout_marginStart="6dp"
-                        android:layout_marginEnd="6dp"
-                        android:layout_gravity="center_vertical"
-                        android:background="@drawable/shape_circle"
-                        android:backgroundTint="?attr/colorOnSurface" />
-
-                      <TextView
-                        style="@style/Widget.Grocy.TextView"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="E"
-                        android:visibility="invisible"
-                        tools:ignore="HardcodedText" />
-
-                    </FrameLayout>
-
-                    <TextView
-                      style="@style/Widget.Grocy.TextView"
-                      android:layout_width="0dp"
-                      android:layout_height="wrap_content"
-                      android:layout_weight="1"
-                      android:text="@{viewModel.tasksDescriptionTextLive}" />
-
-                  </LinearLayout>
-
-                  <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="top"
-                    android:visibility="@{viewModel.tasksUserDescriptionTextLive != null ? View.VISIBLE : View.GONE}">
-
-                    <FrameLayout
-                      android:layout_width="wrap_content"
-                      android:layout_height="wrap_content"
-                      tools:ignore="TooDeepLayout">
-
-                      <View
-                        android:layout_width="4dp"
-                        android:layout_height="4dp"
-                        android:layout_marginStart="6dp"
-                        android:layout_marginEnd="6dp"
-                        android:layout_gravity="center_vertical"
-                        android:background="@drawable/shape_circle"
-                        android:backgroundTint="?attr/colorOnSurface" />
-
-                      <TextView
-                        style="@style/Widget.Grocy.TextView"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="E"
-                        android:visibility="invisible"
-                        tools:ignore="HardcodedText" />
-
-                    </FrameLayout>
-
-                    <TextView
-                      style="@style/Widget.Grocy.TextView"
-                      android:layout_width="0dp"
-                      android:layout_height="wrap_content"
-                      android:layout_weight="1"
-                      android:text="@{viewModel.tasksUserDescriptionTextLive}" />
-
-                  </LinearLayout>
-
-                  <com.google.android.material.button.MaterialButton
-                    style="@style/Widget.Grocy.Button.TonalButton"
-                    android:layout_gravity="end"
-                    android:layout_marginTop="8dp"
-                    android:text="@string/title_task_new"
-                    android:onClick="@{() -> activity.navUtil.navigateDeepLink(@string/deep_link_taskEntryEditFragmentCreate)}"
-                    app:clickUtil="@{clickUtil}"
-                    app:icon="@drawable/ic_round_add_anim" />
-
-                </LinearLayout>
-
-              </com.google.android.material.card.MaterialCardView>
-
-              <com.google.android.material.divider.MaterialDivider
-                style="@style/Widget.Grocy.Divider.Small"
-                android:layout_marginBottom="16dp"
-                android:visibility="@{viewModel.isFeatureEnabled(Constants.PREF.FEATURE_TASKS) || viewModel.isFeatureEnabled(Constants.PREF.FEATURE_CHORES) ? View.VISIBLE : View.GONE}" />
-
-              <com.google.android.material.card.MaterialCardView
-                style="@style/Widget.Grocy.Card.Outlined"
+                android:layout_marginBottom="14dp">
+              <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
+                android:layout_marginEnd="10dp"
+                android:background="@drawable/glass_card"
+                android:clickable="true"
+                android:focusable="true"
+                android:onClick="@{() -> activity.navUtil.navigate(R.id.purchaseFragment)}">
+                <FrameLayout android:layout_width="30dp" android:layout_height="30dp" android:background="@drawable/icon_circle_green">
+                  <ImageView android:layout_width="18dp" android:layout_height="18dp" android:layout_gravity="center" android:src="@drawable/ic_round_restaurant_menu" app:tint="#1F7A4D" tools:ignore="ContentDescription" />
+                </FrameLayout>
+                <TextView style="@style/Widget.Grocy.TextView" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:layout_marginStart="10dp" android:maxLines="2" android:textSize="13sp" android:textStyle="bold" android:text="@string/home_chip_produce" />
+              </LinearLayout>
+
+              <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
+                android:background="@drawable/glass_card"
+                android:clickable="true"
+                android:focusable="true"
+                android:onClick="@{() -> activity.navUtil.navigate(R.id.purchaseFragment)}">
+                <FrameLayout android:layout_width="30dp" android:layout_height="30dp" android:background="@drawable/icon_circle_brown">
+                  <ImageView android:layout_width="18dp" android:layout_height="18dp" android:layout_gravity="center" android:src="@drawable/ic_round_inventory" app:tint="#8A5A00" tools:ignore="ContentDescription" />
+                </FrameLayout>
+                <TextView style="@style/Widget.Grocy.TextView" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:layout_marginStart="10dp" android:maxLines="2" android:textSize="13sp" android:textStyle="bold" android:text="@string/home_chip_homemade" />
+              </LinearLayout>
+              </LinearLayout>
+
+              <!-- Kompakter Vorrats-Status mit echten Daten, fuehrt in den Vorrat -->
+              <TextView style="@style/PreviewSectionHeader" android:layout_marginStart="20dp" android:text="@string/title_stock_overview" />
+              <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginBottom="16dp"
-                android:onClick="@{() -> activity.navUtil.navigateDeepLink(@string/deep_link_masterDataOverviewFragment)}"
-                app:clickUtil="@{clickUtil}">
-
-                <LinearLayout
-                  android:layout_width="match_parent"
-                  android:layout_height="wrap_content"
-                  android:orientation="vertical">
-
-                  <TextView
-                    style="@style/Widget.Grocy.TextView.TitleLarge"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="4dp"
-                    android:text="@string/title_master_data" />
-
-                  <TextView
-                    style="@style/Widget.Grocy.TextView"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@{viewModel.masterDataDescriptionTextLive}" />
-
-                </LinearLayout>
-
-              </com.google.android.material.card.MaterialCardView>
+                android:padding="14dp"
+                android:background="@drawable/glass_card"
+                android:clickable="true"
+                android:focusable="true"
+                android:onClick="@{() -> activity.navUtil.navigate(R.id.stockOverviewFragment)}">
+                <TextView style="@style/Widget.Grocy.TextView" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@{viewModel.stockDescriptionTextLive}" />
+                <TextView style="@style/Widget.Grocy.TextView" android:layout_width="match_parent" android:layout_height="wrap_content" android:textColor="?attr/colorOnSurfaceVariant" android:visibility="@{viewModel.stockDescriptionDueNextTextLive != null ? View.VISIBLE : View.GONE}" android:text="@{viewModel.stockDescriptionDueNextTextLive}" />
+                <TextView style="@style/Widget.Grocy.TextView" android:layout_width="match_parent" android:layout_height="wrap_content" android:textColor="?attr/colorOnSurfaceVariant" android:visibility="@{viewModel.stockDescriptionOverdueTextLive != null ? View.VISIBLE : View.GONE}" android:text="@{viewModel.stockDescriptionOverdueTextLive}" />
+                <TextView style="@style/Widget.Grocy.TextView" android:layout_width="match_parent" android:layout_height="wrap_content" android:textColor="?attr/colorOnSurfaceVariant" android:visibility="@{viewModel.stockDescriptionExpiredTextLive != null ? View.VISIBLE : View.GONE}" android:text="@{viewModel.stockDescriptionExpiredTextLive}" />
+                <TextView style="@style/Widget.Grocy.TextView" android:layout_width="match_parent" android:layout_height="wrap_content" android:textColor="?attr/colorOnSurfaceVariant" android:visibility="@{viewModel.stockDescriptionMissingTextLive != null ? View.VISIBLE : View.GONE}" android:text="@{viewModel.stockDescriptionMissingTextLive}" />
+              </LinearLayout>
 
             </LinearLayout>
 
