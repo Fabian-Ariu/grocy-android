@@ -867,6 +867,8 @@
   <style name="Widget.Grocy.AppBarLayout" parent="Widget.Material3.AppBarLayout">
     <item name="android:background">@android:color/transparent</item>
     <item name="liftOnScroll">false</item>
+    <item name="liftOnScrollColor">@android:color/transparent</item>
+    <item name="backgroundTint">@android:color/transparent</item>
     <item name="elevation">0dp</item>
   </style>
   <!-- Vorlage: aktiver Tab als weisser Chip -->
