@@ -64,7 +64,7 @@
     android:layout_height="wrap_content"
     android:layout_gravity="bottom|end"
     android:layout_marginEnd="16dp"
-    android:layout_marginBottom="80dp"
+    android:layout_marginBottom="16dp"
     android:src="@drawable/ic_round_barcode_scan"
     android:contentDescription="@string/action_scan"
     app:fabSize="auto" />

@@ -182,25 +182,10 @@ public class OverviewStartFragment extends BaseFragment {
     activity.getScrollBehavior().setNestedOverScrollFixEnabled(true);
     activity.getScrollBehavior().setUpScroll(binding.appBar, false, binding.scroll);
     activity.getScrollBehavior().setBottomBarVisibility(true);
-    activity.updateBottomAppBar(viewModel.isFeatureEnabled(PREF.FEATURE_STOCK), R.menu.menu_empty);
-    activity.updateFab(
-        R.drawable.ic_round_barcode_scan,
-        R.string.action_scan,
-        Constants.FAB.TAG.SCAN,
-        animated,
-        () -> {
-          if (showFabInfoDialogIfAppropriate()) {
-            return;
-          }
-          activity.navUtil.navigate(
-              R.id.consumeFragment,
-              new ConsumeFragmentArgs.Builder().setStartWithScanner(true).build().toBundle()
-          );
-        }, () -> activity.navUtil.navigate(
-            R.id.purchaseFragment,
-            new PurchaseFragmentArgs.Builder().setStartWithScanner(true).build().toBundle()
-        )
-    );
+    // Startseite: KEIN Scan-FAB. Der Scan-Hero auf der Seite ist die einzige
+    // Scan-Flaeche (plus die Hardware-Seitentaste). Das beseitigt die dreifache
+    // Scan-Redundanz (Hero + FAB + Tab).
+    activity.updateBottomAppBar(false, R.menu.menu_empty);
 
     if (savedInstanceState != null && savedInstanceState.getBoolean(DIALOG_FAB_INFO)) {
       new Handler(Looper.getMainLooper()).postDelayed(

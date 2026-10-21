@@ -110,6 +110,7 @@ public class MainActivity extends AppCompatActivity {
   public HapticUtil hapticUtil;
   private SharedPreferences sharedPrefs;
   private FragmentManager fragmentManager;
+  private int lastBottomNavHeight = -1;
   private GrocyApi grocyApi;
   private ClickUtil clickUtil;
   private BroadcastReceiver networkReceiver;
@@ -639,6 +640,18 @@ public class MainActivity extends AppCompatActivity {
     if (navController != null) {
       navController.addOnDestinationChangedListener((c, dest, args) -> updateSelectedTab(dest.getId()));
     }
+    // Tab-Leiste gelayoutet: Haupt-FAB ueber UiUtil (absolute Y) neu platzieren, Scroll-FAB per
+    // Rand ueber die Tabs heben. Nur bei Hoehenaenderung, damit keine Layout-Schleife entsteht.
+    binding.bottomNavigation.getViewTreeObserver().addOnGlobalLayoutListener(() -> {
+      int navHeight = binding.bottomNavigation.getHeight();
+      if (navHeight <= 0 || navHeight == lastBottomNavHeight) return;
+      lastBottomNavHeight = navHeight;
+      androidx.coordinatorlayout.widget.CoordinatorLayout.LayoutParams lpScroll =
+          (androidx.coordinatorlayout.widget.CoordinatorLayout.LayoutParams) binding.fabMainScroll.getLayoutParams();
+      lpScroll.bottomMargin = navHeight + UiUtil.dpToPx(this, 16);
+      binding.fabMainScroll.setLayoutParams(lpScroll);
+      androidx.core.view.ViewCompat.requestApplyInsets(binding.coordinatorMain);
+    });
   }
 
   /** Haelt den markierten Tab mit dem aktuellen Ziel synchron, ohne erneut zu navigieren. */

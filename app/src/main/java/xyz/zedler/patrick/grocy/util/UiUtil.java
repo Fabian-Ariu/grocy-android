@@ -130,14 +130,24 @@ public class UiUtil {
           Log.e(TAG, "onCreate: ", e);
         }
       }
-      // Calculate initial FAB y position for restoring after shifted by keyboard
-      int babHeight = UiUtil.dpToPx(activity, 80);
-      int fabHeight = UiUtil.dpToPx(activity, 56);
-      int bottom = UiUtil.getDisplayHeight(activity);
-      fabBaseY = bottom - bottomInset - (babHeight / 2f) - (fabHeight / 2f);
+      // FAB-Grundposition: frei ueber der 5-Tab-Leiste, nicht mehr im Cradle der alten App-Bar
+      fabBaseY = computeFabBaseY(bottomInset);
       return insets;
     });
     ViewUtil.setTooltipText(binding.fabMainScroll, R.string.action_top_scroll);
+  }
+
+  /** Y-Position des Haupt-FABs: 16dp ueber der Oberkante der 5-Tab-Leiste.
+   *  Nutzt die echte Position der Leiste, damit keine Inset-Annahmen noetig sind. */
+  private float computeFabBaseY(int bottomInsetUnused) {
+    int margin = UiUtil.dpToPx(activity, 16);
+    int fabHeight = UiUtil.dpToPx(activity, 56);
+    float navTop = binding.bottomNavigation.getY();
+    if (navTop <= 0) {
+      // noch nicht gelayoutet: Fallback ueber Fensterhoehe (ohne System-Inset)
+      navTop = UiUtil.getDisplayHeight(activity) - binding.bottomNavigation.getHeight();
+    }
+    return navTop - margin - fabHeight;
   }
 
   public void updateBottomAppBar(
@@ -154,11 +164,10 @@ public class UiUtil {
         binding.fabMain.hide();
       }
 
-      // Neues 5-Tab-Design: die untere App-Bar dient nur noch als Aktionsleiste
-      // ueber der Tab-Leiste und erscheint nur, wenn ein Screen eigene Menuepunkte hat.
-      binding.bottomAppBar.setVisibility(
-          newMenuId == R.menu.menu_empty ? View.GONE : View.VISIBLE
-      );
+      // Neues 5-Tab-Design: nur EINE untere Leiste (die Tab-Navigation). Die alte
+      // App-Bar bleibt ausgeblendet; Screen-Aktionen wandern beim Umbau jedes Screens
+      // in dessen obere Toolbar statt in eine zweite untere Leiste.
+      binding.bottomAppBar.setVisibility(View.GONE);
 
       Drawable overflowIcon = binding.bottomAppBar.getOverflowIcon();
 
@@ -394,6 +403,8 @@ public class UiUtil {
           focusedScrollOffset = 0;
         }
       } else {
+        // frisch berechnen: die Tab-Leiste ist jetzt sicher gelayoutet
+        fabBaseY = computeFabBaseY(bottomInsetBars);
         binding.fabMain.setY(fabBaseY);
         scrollBehavior.updateSnackbarAnchor();
         ViewCompat.setElevation(binding.fabMain, 0);
