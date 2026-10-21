@@ -40,6 +40,10 @@
         android:layout_gravity="center"
         android:textColor="?attr/colorOnSurfaceVariant"
         android:textSize="16sp"
+        android:layout_marginBottom="96dp"
+        android:paddingStart="32dp"
+        android:paddingEnd="32dp"
+        android:gravity="center"
         android:visibility="gone"
         android:text="@string/batteries_empty" />
     </FrameLayout>

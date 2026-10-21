@@ -62,8 +62,11 @@
     app:itemIconTint="@color/nav_item_tint"
     app:itemTextColor="@color/nav_item_tint"
     app:itemIconSize="22dp"
-    app:itemPaddingTop="8dp"
-    app:itemPaddingBottom="10dp"
+    android:minHeight="0dp"
+    android:paddingStart="8dp"
+    android:paddingEnd="8dp"
+    app:itemPaddingTop="10dp"
+    app:itemPaddingBottom="6dp"
     app:labelVisibilityMode="labeled"
     app:menu="@menu/menu_bottom_tabs" />
 
@@ -79,6 +82,7 @@
     android:contentDescription="@string/action_scan"
     app:backgroundTint="?attr/colorPrimary"
     app:tint="?attr/colorOnPrimary"
+    app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.Corner.Full"
     app:fabSize="auto" />
 
   <com.google.android.material.floatingactionbutton.FloatingActionButton

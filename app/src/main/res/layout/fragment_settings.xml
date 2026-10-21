@@ -109,7 +109,7 @@
           <LinearLayout
             style="@style/Widget.Grocy.LinearLayout.ListItem.SingleLine.Clickable"
             android:onClick="@{v -> activity.navUtil.navigate(SettingsFragmentDirections.actionSettingsFragmentToSettingsCatServerFragment())}"
-            android:background="@{fragment.shouldNavigateToServer ? @drawable/ripple_list_item_bg_selected : @drawable/ripple_list_item_bg}"
+            android:background="@{fragment.shouldNavigateToServer ? @drawable/ripple_list_item_bg_selected : @drawable/ripple_list_item_glass}"
             app:clickUtil="@{clickUtil}">
 
             <ImageView
@@ -214,7 +214,7 @@
           <LinearLayout
             style="@style/Widget.Grocy.LinearLayout.ListItem.SingleLine.Clickable"
             android:onClick="@{v -> activity.navUtil.navigate(SettingsFragmentDirections.actionSettingsFragmentToSettingsCatBehaviorFragment())}"
-            android:background="@{fragment.shouldNavigateToBehavior ? @drawable/ripple_list_item_bg_selected : @drawable/ripple_list_item_bg}"
+            android:background="@{fragment.shouldNavigateToBehavior ? @drawable/ripple_list_item_bg_selected : @drawable/ripple_list_item_glass}"
             app:clickUtil="@{clickUtil}">
 
             <ImageView

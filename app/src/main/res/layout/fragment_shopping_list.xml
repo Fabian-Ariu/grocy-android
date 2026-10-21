@@ -137,7 +137,9 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="4dp"
         android:scrollbars="none"
-        android:overScrollMode="ifContentScrolls">
+        android:overScrollMode="ifContentScrolls"
+          android:requiresFadingEdge="horizontal"
+          android:fadingEdgeLength="24dp">
 
         <LinearLayout
           android:layout_width="wrap_content"
@@ -213,7 +215,7 @@
           android:layout_width="match_parent"
           android:layout_height="match_parent"
           android:paddingTop="8dp"
-          android:paddingBottom="@dimen/global_scroll_bottom_padding"
+          android:paddingBottom="@dimen/global_scroll_bottom_padding_fab"
           android:clipToPadding="false"
           android:layoutAnimation="@anim/recycler_layout" />
 

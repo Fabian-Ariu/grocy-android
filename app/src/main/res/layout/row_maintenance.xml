@@ -7,7 +7,7 @@
     <TextView android:id="@+id/interval" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textColor="?attr/colorOnSurfaceVariant" android:textSize="13sp" tools:text="Alle 90 Tage"/>
     <TextView android:id="@+id/due" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textSize="13sp" android:textStyle="bold" tools:text="Faellig in 5 Tagen"/>
   </LinearLayout>
-  <FrameLayout android:id="@+id/button_done" android:layout_width="40dp" android:layout_height="40dp" android:background="@drawable/white_circle" android:clickable="true" android:focusable="true" android:contentDescription="@string/maint_done">
+  <FrameLayout android:id="@+id/button_done" android:layout_width="44dp" android:layout_height="44dp" android:background="@drawable/white_circle" android:foreground="?attr/selectableItemBackgroundBorderless" android:clickable="true" android:focusable="true" android:contentDescription="@string/maint_done">
     <ImageView android:layout_width="20dp" android:layout_height="20dp" android:layout_gravity="center" android:src="@drawable/ic_round_done" app:tint="?attr/colorSecondary" tools:ignore="ContentDescription"/>
   </FrameLayout>
 </LinearLayout>

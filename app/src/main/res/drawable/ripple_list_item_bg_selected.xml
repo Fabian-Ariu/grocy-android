@@ -25,8 +25,8 @@
   android:color="@color/selector_highlight">
 
   <item
-    android:left="8dp"
-    android:right="8dp"
+    android:left="16dp"
+    android:right="16dp"
     android:top="2dp"
     android:bottom="2dp">
     <shape android:shape="rectangle">

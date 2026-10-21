@@ -36,7 +36,7 @@
     android:layout_height="36dp"
     app:cardCornerRadius="18dp"
     app:strokeWidth="1dp"
-    app:strokeColor="#14000000"
+    app:strokeColor="?attr/colorOutlineVariant"
     app:cardElevation="0dp"
     app:cardBackgroundColor="@color/transparent">
 

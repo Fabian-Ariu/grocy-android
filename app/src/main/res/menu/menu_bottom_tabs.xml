@@ -6,7 +6,7 @@
     android:title="@string/action_scan" />
   <item
     android:id="@+id/menu_tab_stock"
-    android:icon="@drawable/ic_round_inventory"
+    android:icon="@drawable/ic_round_kitchen"
     android:title="@string/tab_stock" />
   <item
     android:id="@+id/menu_tab_shopping"

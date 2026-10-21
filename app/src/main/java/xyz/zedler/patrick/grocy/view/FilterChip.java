@@ -80,7 +80,7 @@ public class FilterChip extends LinearLayout {
     // Vorlage: aktiver Filter = dunkle Pill, inaktiv = Glas-Pill
     int bgColorTo = data.isActive()
         ? ResUtil.getColor(getContext(), R.attr.colorOnSurface)
-        : 0x80FFFFFF;
+        : androidx.core.content.ContextCompat.getColor(getContext(), R.color.glass_chip_bg);
     ValueAnimator colorAnimation = ValueAnimator.ofArgb(bgColorFrom, bgColorTo);
     colorAnimation.setDuration(250);
     colorAnimation.addUpdateListener(

@@ -28,6 +28,8 @@ import androidx.lifecycle.MutableLiveData;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.Single;
 import io.reactivex.rxjava3.schedulers.Schedulers;
+import android.os.Handler;
+import android.os.Looper;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Deque;
@@ -50,7 +52,7 @@ public class InventorySwipeViewModel extends BaseViewModel {
 
   private static final String TAG = InventorySwipeViewModel.class.getSimpleName();
 
-  public static class Step { final StockItem item; final double oldAmount; final double newAmount;
+  public static class Step { final StockItem item; final double oldAmount; final double newAmount; Runnable pending; boolean posted;
     Step(StockItem i, double o, double n) { item = i; oldAmount = o; newAmount = n; } }
 
   private final DownloadHelper dlHelper;
@@ -64,6 +66,8 @@ public class InventorySwipeViewModel extends BaseViewModel {
   private final Map<Integer, QuantityUnit> units = new HashMap<>();
   private final Map<Integer, Product> products = new HashMap<>();
   private int total = 0, done = 0, corrected = 0;
+  private final Handler handler = new Handler(Looper.getMainLooper());
+  public static final long UNDO_WINDOW_MS = 4000;
 
   public InventorySwipeViewModel(@NonNull Application application) {
     super(application);
@@ -123,22 +127,40 @@ public class InventorySwipeViewModel extends BaseViewModel {
     double old = item.getAmountAggregatedDouble();
     boolean changed = Math.abs(newAmount - old) > 0.0001;
     done++; if (changed) corrected++;
-    history.push(new Step(item, old, newAmount));
-    post(item, newAmount, null);
+    Step step = new Step(item, old, newAmount);
+    history.push(step);
+    // Grocy lehnt eine Inventur mit unveraenderter Menge ab: "stimmt" blaettert nur weiter.
+    // Korrekturen gehen verzoegert ab, damit "Rueckgaengig" ohne Serverbuchung moeglich ist.
+    if (changed) {
+      step.pending = () -> { step.pending = null; step.posted = true; post(item, newAmount, null); };
+      handler.postDelayed(step.pending, UNDO_WINDOW_MS);
+    }
     next();
   }
 
   public void undo() {
     Step s = history.poll();
     if (s == null) return;
-    done--; if (Math.abs(s.newAmount - s.oldAmount) > 0.0001) { corrected--; post(s.item, s.oldAmount, null); }
+    done--;
+    if (Math.abs(s.newAmount - s.oldAmount) > 0.0001) {
+      corrected--;
+      if (s.pending != null) { handler.removeCallbacks(s.pending); s.pending = null; }
+      else if (s.posted) post(s.item, s.oldAmount, null);
+    }
     queue.addFirst(s.item);
     next();
   }
 
   private void post(StockItem item, double newAmount, Runnable onDone) {
     JSONObject body = new JSONObject();
-    try { body.put("new_amount", newAmount); } catch (Exception e) { Log.e(TAG, "post: ", e); }
+    try {
+      body.put("new_amount", newAmount);
+      // bei Zugang verlangt Grocy Datum (und ggf. Standort): vorhandenes MHD, sonst unbegrenzt
+      String bbd = item.getBestBeforeDate();
+      body.put("best_before_date", bbd == null || bbd.isEmpty() ? xyz.zedler.patrick.grocy.Constants.DATE.NEVER_OVERDUE : bbd);
+      Product pr = products.get(item.getProductId());
+      if (pr != null && pr.getLocationIdInt() > 0) body.put("location_id", String.valueOf(pr.getLocationIdInt()));
+    } catch (Exception e) { Log.e(TAG, "post: ", e); }
     dlHelper.postWithArray(grocyApi.inventoryProduct(item.getProductId()), body,
         r -> { if (onDone != null) onDone.run(); },
         error -> { Log.e(TAG, "inventory: " + error); showNetworkErrorMessage(error); });
@@ -147,5 +169,10 @@ public class InventorySwipeViewModel extends BaseViewModel {
   public MutableLiveData<StockItem> getCurrentLive() { return currentLive; }
   public MutableLiveData<String> getProgressLive() { return progressLive; }
   public int getTotal() { return total; } public int getDone() { return done; }
-  @Override protected void onCleared() { dlHelper.destroy(); super.onCleared(); }
+  /** Beim Verlassen ausstehende Korrekturen sofort buchen. */
+  public void flushPending() {
+    for (Step st : history) if (st.pending != null) { handler.removeCallbacks(st.pending); st.pending.run(); }
+  }
+
+  @Override protected void onCleared() { flushPending(); dlHelper.destroy(); super.onCleared(); }
 }

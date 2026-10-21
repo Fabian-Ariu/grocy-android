@@ -535,7 +535,8 @@ public class StockOverviewItemAdapter extends
           grocyAuthHeaders,
           false
       );
-    } else if (activeFields.contains(StockOverviewViewModel.FIELD_PICTURE) && containsPictures) {
+    } else if (activeFields.contains(StockOverviewViewModel.FIELD_PICTURE)) {
+      // Platzhalter fuer jede Zeile, damit die Spalte ruhig bleibt
       holder.binding.picture.setVisibility(View.GONE);
       holder.binding.picturePlaceholder.setVisibility(View.VISIBLE);
     } else {

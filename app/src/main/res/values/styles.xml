@@ -566,7 +566,7 @@
     <item name="android:paddingStart">0dp</item>
     <item name="android:paddingEnd">0dp</item>
     <item name="android:clickable">true</item>
-    <item name="android:background">@drawable/ripple_list_item_bg</item>
+    <item name="android:background">@drawable/ripple_list_item_glass</item>
   </style>
 
   <style
@@ -578,7 +578,9 @@
     name="Widget.Grocy.LinearLayout.ListItem.SingleLine.Clickable"
     parent="Widget.Grocy.LinearLayout.ListItem.SingleLine">
     <item name="android:clickable">true</item>
-    <item name="android:background">@drawable/ripple_list_item_bg</item>
+    <item name="android:background">@drawable/ripple_list_item_glass</item>
+    <item name="android:paddingStart">32dp</item>
+    <item name="android:paddingEnd">32dp</item>
   </style>
 
   <style
@@ -609,7 +611,9 @@
     name="Widget.Grocy.LinearLayout.ListItem.TwoLine.Clickable"
     parent="Widget.Grocy.LinearLayout.ListItem.TwoLine">
     <item name="android:clickable">true</item>
-    <item name="android:background">@drawable/ripple_list_item_bg</item>
+    <item name="android:background">@drawable/ripple_list_item_glass</item>
+    <item name="android:paddingStart">32dp</item>
+    <item name="android:paddingEnd">32dp</item>
   </style>
 
   <style
@@ -634,7 +638,9 @@
     name="Widget.Grocy.LinearLayout.ListItem.ThreeLine.Clickable"
     parent="Widget.Grocy.LinearLayout.ListItem.ThreeLine">
     <item name="android:clickable">true</item>
-    <item name="android:background">@drawable/ripple_list_item_bg</item>
+    <item name="android:background">@drawable/ripple_list_item_glass</item>
+    <item name="android:paddingStart">32dp</item>
+    <item name="android:paddingEnd">32dp</item>
   </style>
 
   <style name="Widget.Grocy.LinearLayout.ListItem.TextBox" parent="">
@@ -873,13 +879,13 @@
   </style>
   <!-- Vorlage: aktiver Tab als weisser Chip -->
   <style name="Widget.Grocy.NavActiveIndicator" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
-    <item name="android:color">?attr/colorSurfaceContainerLowest</item>
-    <item name="android:width">64dp</item>
-    <item name="android:height">36dp</item>
+    <item name="android:color">?attr/colorSecondaryContainer</item>
+    <item name="android:width">56dp</item>
+    <item name="android:height">32dp</item>
     <item name="shapeAppearance">@style/ShapeAppearance.Grocy.NavIndicator</item>
   </style>
   <style name="ShapeAppearance.Grocy.NavIndicator" parent="">
     <item name="cornerFamily">rounded</item>
-    <item name="cornerSize">14dp</item>
+    <item name="cornerSize">50%</item>
   </style>
 </resources>

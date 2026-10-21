@@ -12,7 +12,7 @@
   android:clickable="true"
   android:focusable="true">
   <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical" android:gravity="center_vertical" android:paddingStart="12dp" android:paddingEnd="12dp">
-    <TextView android:id="@+id/name" android:layout_width="match_parent" android:layout_height="wrap_content" android:maxLines="2" android:ellipsize="end" android:textColor="?attr/colorOnSurface" android:textSize="14sp" android:textStyle="bold" tools:text="Aepfel"/>
+    <TextView android:id="@+id/name" android:layout_width="match_parent" android:layout_height="wrap_content" android:maxLines="3" android:ellipsize="end" android:breakStrategy="balanced" android:textColor="?attr/colorOnSurface" android:textSize="13sp" android:textStyle="bold" tools:text="Aepfel"/>
     <TextView android:id="@+id/days" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textColor="?attr/colorOnSurfaceVariant" android:textSize="12sp" tools:text="14 Tage"/>
   </LinearLayout>
   <TextView android:id="@+id/badge" android:layout_width="22dp" android:layout_height="22dp" android:layout_gravity="end|top" android:layout_margin="6dp" android:gravity="center" android:textColor="#FFFFFF" android:textSize="12sp" android:textStyle="bold" android:background="@drawable/count_badge" android:visibility="gone" tools:text="3"/>

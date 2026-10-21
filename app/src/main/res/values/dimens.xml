@@ -29,7 +29,8 @@
 
   <dimen name="max_content_width">640dp</dimen>
 
-  <dimen name="global_scroll_bottom_padding">144dp</dimen>
+  <dimen name="global_scroll_bottom_padding">104dp</dimen>
+  <dimen name="global_scroll_bottom_padding_fab">176dp</dimen>
 
   <dimen name="main_side_margin">16dp</dimen>
 

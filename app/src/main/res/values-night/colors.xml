@@ -603,4 +603,7 @@
   <color name="blue_theme_surfaceContainerHigh_highContrast">#262A2E</color>
   <color name="blue_theme_surfaceContainerHighest_highContrast">#313539</color>
 
+  <color name="glass_chip_bg">#33FFFFFF</color>
+  <color name="glass_card_fill">#2EFFFFFF</color>
+  <color name="glass_card_stroke">#2EFFFFFF</color>
 </resources>

@@ -145,7 +145,7 @@ public class ShoppingListViewModel extends BaseViewModel {
         featurePriceEnabled
             ? new Field(FIELD_PRICE_LAST_UNIT, getString(R.string.property_last_price_unit), false) : null,
         new Field(FIELD_NOTES, getString(R.string.property_notes), true),
-        new Field(FIELD_PICTURE, getString(R.string.property_picture), false)
+        new Field(FIELD_PICTURE, getString(R.string.property_picture), true)
     );
 
     int lastId = sharedPrefs.getInt(Constants.PREF.SHOPPING_LIST_LAST_ID, 1);

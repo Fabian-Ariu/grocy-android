@@ -119,7 +119,7 @@ public class EquipmentFragment extends BaseFragment {
       row.name.setText(e.name);
       List<Maintenance> ms = maint == null ? null : maint.get(e.id);
       String dueText = null; boolean warn = false;
-      if (ms != null) for (Maintenance m : ms) if (m.nextDue != null) { int d = DateUtil.getDaysFromNow(m.nextDue); if (dueText == null || d <= 0) { dueText = m.name + ": " + dateUtil.getHumanForDaysFromNow(m.nextDue); warn = d <= 0; } }
+      if (ms != null) for (Maintenance m : ms) if (m.nextDue != null) { int d = DateUtil.getDaysFromNow(m.nextDue); if (dueText == null || d <= 0) { dueText = m.name.replace(" (" + e.name + ")", "").trim() + ": " + dateUtil.getHumanForDaysFromNow(m.nextDue); warn = d <= 0; } }
       row.subtitle.setText(dueText != null ? (e.description.isEmpty() ? dueText : e.description + " \u00b7 " + dueText) : e.description);
       row.subtitle.setTextColor(warn ? colorWarn : colorOk);
       boolean open = expanded.contains(e.id);
@@ -131,7 +131,7 @@ public class EquipmentFragment extends BaseFragment {
       if (ms == null || ms.isEmpty()) row.textNone.setVisibility(View.VISIBLE);
       else for (Maintenance m : ms) {
         RowMaintenanceBinding mr = RowMaintenanceBinding.inflate(getLayoutInflater(), row.containerMaintenance, false);
-        mr.name.setText(m.name);
+        mr.name.setText(m.name.replace(" (" + e.name + ")", "").trim());
         mr.interval.setText(m.periodDays > 0 ? getString(R.string.maint_interval, m.periodDays) : getString(R.string.maint_manual));
         if (m.nextDue != null) { int d = DateUtil.getDaysFromNow(m.nextDue); mr.due.setText(dateUtil.getHumanForDaysFromNow(m.nextDue)); mr.due.setTextColor(d <= 0 ? colorWarn : colorOk); }
         else mr.due.setVisibility(View.GONE);
