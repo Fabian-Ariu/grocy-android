@@ -1,6 +1,6 @@
 <img src="assets/header.png" />
 
-# Grocy Android
+# Scanory (Fork von Grocy Android)
 
 > **Fork:** Dieses Repository ist ein eigenstaendiger, veraenderter Fork von [patzly/grocy-android](https://github.com/patzly/grocy-android) (GNU GPLv3), umgebaut als Scanner-App fuer den Zebra TC56. Die Basis stammt von Patrick & Dominic Zedler.
 

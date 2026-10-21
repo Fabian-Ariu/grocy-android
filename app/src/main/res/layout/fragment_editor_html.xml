@@ -43,8 +43,7 @@
       <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/toolbar"
         style="@style/Widget.Grocy.Toolbar.Back"
-        app:title="@string/title_editor"
-        app:titleCentered="true" />
+        app:title="@string/title_editor" />
 
     </com.google.android.material.appbar.AppBarLayout>
 

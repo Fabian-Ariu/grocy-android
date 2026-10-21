@@ -41,8 +41,7 @@
 
   <androidx.coordinatorlayout.widget.CoordinatorLayout
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="?attr/colorSurface">
+    android:layout_height="match_parent">
 
     <com.google.android.material.appbar.AppBarLayout
       android:id="@+id/app_bar"
@@ -56,8 +55,7 @@
         <com.google.android.material.appbar.MaterialToolbar
           android:id="@+id/toolbar"
           style="@style/Widget.Grocy.Toolbar.Back"
-          app:title="@string/title_product_cat_quantity_unit"
-          app:titleCentered="true" />
+          app:title="@string/title_product_cat_quantity_unit" />
 
         <FrameLayout
           android:id="@+id/frame_help"

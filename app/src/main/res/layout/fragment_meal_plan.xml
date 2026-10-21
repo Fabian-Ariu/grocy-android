@@ -39,8 +39,7 @@
 
   <RelativeLayout
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="?attr/colorSurface">
+    android:layout_height="match_parent">
 
     <com.google.android.material.appbar.AppBarLayout
       android:id="@+id/app_bar"
@@ -59,8 +58,7 @@
         <com.google.android.material.appbar.MaterialToolbar
           android:id="@+id/toolbar_default"
           style="@style/Widget.Grocy.Toolbar.Back"
-          app:title="@string/title_meal_plan"
-          app:titleCentered="true" />
+          app:title="@string/title_meal_plan" />
 
         <com.google.android.material.button.MaterialButton
           android:id="@+id/fields_menu_button"

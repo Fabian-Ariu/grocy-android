@@ -40,7 +40,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?attr/colorSurface"
     android:animateLayoutChanges="true"
     app:transitionTypeChanging="@{true}">
 
@@ -64,8 +63,7 @@
           <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/toolbar_default"
             style="@style/Widget.Grocy.Toolbar.Back"
-            app:title="@string/title_stock_entries"
-            app:titleCentered="true" />
+            app:title="@string/title_stock_entries" />
 
         </LinearLayout>
 

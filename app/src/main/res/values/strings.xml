@@ -20,7 +20,7 @@
 
 <resources>
 
-  <string name="app_name" translatable="false">Grocy</string>
+  <string name="app_name" translatable="false">Scanory</string>
   <string name="app_developer" translatable="false">Patrick &amp; Dominic Zedler</string>
   <string name="info_based_on">Based on</string>
   <string name="about_based_on">Grocy Android by Patrick &amp; Dominic Zedler (GNU GPLv3). This app is an independent, modified fork.</string>

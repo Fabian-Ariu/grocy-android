@@ -23,7 +23,7 @@
   xmlns:tools="http://schemas.android.com/tools"
   android:id="@+id/linear_container"
   style="@style/Widget.Grocy.LinearLayout.ListItem.TwoLine.Clickable.More"
-  android:background="@drawable/ripple_list_item_swipeable">
+  android:background="@drawable/ripple_list_item_glass">
 
   <LinearLayout style="@style/Widget.Grocy.LinearLayout.ListItem.TextBox.Stretch">
 

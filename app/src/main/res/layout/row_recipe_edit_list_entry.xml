@@ -23,7 +23,7 @@
   android:id="@+id/linear_recipe_ingredient_container"
   style="@style/Widget.Grocy.LinearLayout.ListItem.TwoLine.Clickable.More"
   android:orientation="vertical"
-  android:background="@drawable/ripple_list_item_swipeable">
+  android:background="@drawable/ripple_list_item_glass">
 
   <TextView
     android:id="@+id/title"
