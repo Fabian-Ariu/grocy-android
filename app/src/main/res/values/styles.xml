@@ -873,7 +873,7 @@
   </style>
   <!-- Vorlage: aktiver Tab als weisser Chip -->
   <style name="Widget.Grocy.NavActiveIndicator" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
-    <item name="android:color">@android:color/white</item>
+    <item name="android:color">?attr/colorSurfaceContainerLowest</item>
     <item name="android:width">64dp</item>
     <item name="android:height">36dp</item>
     <item name="shapeAppearance">@style/ShapeAppearance.Grocy.NavIndicator</item>
