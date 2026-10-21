@@ -83,23 +83,23 @@
 
     <LinearLayout android:layout_width="match_parent" android:layout_height="74dp" android:orientation="horizontal"
         android:background="@drawable/glass_card" android:gravity="center_vertical" android:paddingTop="4dp" android:paddingBottom="4dp">
-      <LinearLayout android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:orientation="vertical" android:gravity="center">
+      <LinearLayout android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:orientation="vertical" android:gravity="center" android:tag="preview_home" android:clickable="true" android:focusable="true">
         <ImageView android:layout_width="22dp" android:layout_height="22dp" android:src="@drawable/ic_round_barcode_scan" app:tint="#5A5F6A"/>
         <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Scannen" android:textSize="11sp" android:textColor="#5A5F6A"/>
       </LinearLayout>
-      <LinearLayout android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:orientation="vertical" android:gravity="center">
+      <LinearLayout android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:orientation="vertical" android:gravity="center" android:tag="preview_vorrat" android:clickable="true" android:focusable="true">
         <ImageView android:layout_width="22dp" android:layout_height="22dp" android:src="@drawable/ic_round_inventory" app:tint="#5A5F6A"/>
         <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Vorrat" android:textSize="11sp" android:textColor="#5A5F6A"/>
       </LinearLayout>
-      <LinearLayout android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:orientation="vertical" android:gravity="center">
+      <LinearLayout android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:orientation="vertical" android:gravity="center" android:tag="preview_einkauf" android:clickable="true" android:focusable="true">
         <ImageView android:layout_width="22dp" android:layout_height="22dp" android:src="@drawable/ic_round_local_grocery_store" app:tint="#5A5F6A"/>
         <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Einkauf" android:textSize="11sp" android:textColor="#5A5F6A"/>
       </LinearLayout>
-      <LinearLayout android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:orientation="vertical" android:gravity="center">
+      <LinearLayout android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:orientation="vertical" android:gravity="center" android:tag="preview_rezepte" android:clickable="true" android:focusable="true">
         <ImageView android:layout_width="22dp" android:layout_height="22dp" android:src="@drawable/ic_round_restaurant_menu" app:tint="#5A5F6A"/>
         <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Rezepte" android:textSize="11sp" android:textColor="#5A5F6A"/>
       </LinearLayout>
-      <LinearLayout android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:orientation="vertical" android:gravity="center" android:background="@drawable/glass_chip">
+      <LinearLayout android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:orientation="vertical" android:gravity="center" android:background="@drawable/glass_chip" android:tag="preview_mehr" android:clickable="true" android:focusable="true">
         <ImageView android:layout_width="22dp" android:layout_height="22dp" android:src="@drawable/ic_round_widgets" app:tint="#0062CC"/>
         <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Mehr" android:textSize="11sp" android:textColor="#0062CC"/>
       </LinearLayout>
