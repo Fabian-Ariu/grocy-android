@@ -200,6 +200,10 @@ public class GrocyApi {
   /**
    * Returns information about the installed grocy, PHP and SQLite version
    */
+  public String getExternalBarcodeLookup(String barcode) {
+    return getUrl("/stock/barcodes/external-lookup/" + barcode);
+  }
+
   public String getSystemInfo() {
     return getUrl("/system/info");
   }

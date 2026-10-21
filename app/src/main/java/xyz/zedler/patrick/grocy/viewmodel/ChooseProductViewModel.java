@@ -36,6 +36,8 @@ import xyz.zedler.patrick.grocy.R;
 import xyz.zedler.patrick.grocy.helper.DownloadHelper;
 import xyz.zedler.patrick.grocy.model.Event;
 import xyz.zedler.patrick.grocy.model.OpenBeautyFactsProduct;
+import org.json.JSONException;
+import org.json.JSONObject;
 import xyz.zedler.patrick.grocy.model.OpenFoodFactsProduct;
 import xyz.zedler.patrick.grocy.model.PendingProduct;
 import xyz.zedler.patrick.grocy.model.Product;
@@ -214,33 +216,35 @@ public class ChooseProductViewModel extends BaseViewModel {
     boolean productNameFilled = productNameLive.getValue() != null
         && !productNameLive.getValue().isEmpty();
     if(isOpenFoodFactsEnabled() && !productNameFilled) {
-      OpenFoodFactsProduct.getOpenFoodFactsProduct(
-          dlHelper,
-          barcode,
-          product -> {
-            productNameLive.setValue(product.getLocalizedProductName(getApplication()));
-            nameFromOnlineSource = product.getLocalizedProductName(getApplication());
-            offHelpText.setValue(getString(R.string.msg_product_name_off));
-          },
-          error -> OpenBeautyFactsProduct.getOpenBeautyFactsProduct(
-              dlHelper,
-              barcode,
-              product -> {
-                String productName = product.getLocalizedProductName(getApplication());
-                if (productName != null && !productName.isEmpty()) {
-                  productNameLive.setValue(productName);
-                  nameFromOnlineSource = productName;
-                  offHelpText.setValue(getString(R.string.msg_product_name_obf));
-                } else {
-                  offHelpText.setValue(getString(R.string.msg_product_name_lookup_empty));
-                  sendEvent(Event.FOCUS_INVALID_VIEWS);
-                }
-              },
-              error1 -> {
-                offHelpText.setValue(getString(R.string.msg_product_name_lookup_error));
+      dlHelper.get(
+          dlHelper.grocyApi.getExternalBarcodeLookup(barcode),
+          response -> {
+            String trimmed = response != null ? response.trim() : "";
+            if (trimmed.isEmpty() || trimmed.equals("null")) {
+              offHelpText.setValue(getString(R.string.msg_product_name_lookup_empty));
+              sendEvent(Event.FOCUS_INVALID_VIEWS);
+              return;
+            }
+            try {
+              JSONObject json = new JSONObject(trimmed);
+              String name = json.optString("name", "");
+              if (!name.isEmpty()) {
+                productNameLive.setValue(name);
+                nameFromOnlineSource = name;
+                offHelpText.setValue(getString(R.string.msg_product_name_off));
+              } else {
+                offHelpText.setValue(getString(R.string.msg_product_name_lookup_empty));
                 sendEvent(Event.FOCUS_INVALID_VIEWS);
               }
-          )
+            } catch (JSONException e) {
+              offHelpText.setValue(getString(R.string.msg_product_name_lookup_error));
+              sendEvent(Event.FOCUS_INVALID_VIEWS);
+            }
+          },
+          error -> {
+            offHelpText.setValue(getString(R.string.msg_product_name_lookup_error));
+            sendEvent(Event.FOCUS_INVALID_VIEWS);
+          }
       );
     } else if (!productNameFilled) {
       sendEvent(Event.FOCUS_INVALID_VIEWS);
