@@ -575,6 +575,34 @@
 
   <string name="title_overview">Übersicht</string>
   <string name="title_more">Mehr</string>
+  <string name="quick_add_frequent">Häufig</string>
+  <string name="quick_add_other">Weitere</string>
+  <string name="home_tile_due">Fällig</string>
+  <string name="home_nothing">Noch nichts</string>
+  <string name="home_nothing_due">Nichts fällig</string>
+  <string name="hm_title">Selbstgemacht</string>
+  <string name="hm_cat_0">Eingekocht</string><string name="hm_cat_0_sub">Konfitüre, Sirup</string>
+  <string name="hm_cat_1">Eingefroren</string><string name="hm_cat_1_sub">Gerichte, Brühe</string>
+  <string name="hm_cat_2">Eingelegt</string><string name="hm_cat_2_sub">Essig, Gärung, Öl</string>
+  <string name="hm_cat_3">Getrocknet</string><string name="hm_cat_3_sub">Dörrobst, Kräuter</string>
+  <string name="hm_name_hint">Was hast du gemacht?</string>
+  <string name="hm_jars">Gläser</string>
+  <string name="hm_location">Ort</string>
+  <string name="hm_location_none">Kein Ort</string>
+  <string name="hm_due">Haltbar bis</string>
+  <string name="hm_due_auto">%1$s \u00b7 auto</string>
+  <string name="hm_recipe">Rezept verknüpfen</string>
+  <string name="hm_recipe_none">Keins</string>
+  <string name="hm_no_recipes">Noch keine Rezepte in Grocy</string>
+  <string name="hm_label">Etikett mit Code</string>
+  <string name="hm_label_sub">Später einfach scannen</string>
+  <string name="hm_save">Einlagern</string>
+  <string name="hm_missing">Bitte Name und mindestens ein Glas angeben</string>
+  <string name="hm_print_failed">Etikettendruck fehlgeschlagen (Drucker am Server eingerichtet?)</string>
+  <plurals name="hm_save_n"><item quantity="one">%d Glas einlagern</item><item quantity="other">%d Gläser einlagern</item></plurals>
+  <plurals name="hm_save_labels"><item quantity="one">%d Glas einlagern und Etikett</item><item quantity="other">%d Gläser einlagern und Etiketten</item></plurals>
+  <plurals name="hm_done"><item quantity="one">%d Glas eingelagert</item><item quantity="other">%d Gläser eingelagert</item></plurals>
+  <plurals name="hm_done_labels"><item quantity="one">%d Glas eingelagert, Etikett an den Drucker</item><item quantity="other">%d Gläser eingelagert, Etiketten an den Drucker</item></plurals>
   <string name="inv_progress">%1$d von %2$d geprüft \u00b7 %3$d korrigiert</string>
   <string name="inv_scanned">Produkt</string>
   <string name="inv_according_to_grocy">Laut Grocy: %1$s</string>

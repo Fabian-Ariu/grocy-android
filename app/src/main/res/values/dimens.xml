@@ -31,6 +31,8 @@
 
   <dimen name="global_scroll_bottom_padding">104dp</dimen>
   <dimen name="global_scroll_bottom_padding_fab">176dp</dimen>
+  <!-- Untere Button-Leisten ausserhalb des Scroll-Containers (kein Inset): Pill 126dp + 16dp Abstand -->
+  <dimen name="global_bottom_bar_padding">142dp</dimen>
 
   <dimen name="main_side_margin">16dp</dimen>
 

@@ -22,6 +22,7 @@
 package xyz.zedler.patrick.grocy.viewmodel;
 
 import android.app.Application;
+import android.content.SharedPreferences;
 import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
@@ -30,33 +31,55 @@ import io.reactivex.rxjava3.core.Single;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import org.json.JSONObject;
 import xyz.zedler.patrick.grocy.Constants;
 import xyz.zedler.patrick.grocy.R;
 import xyz.zedler.patrick.grocy.api.GrocyApi;
+import xyz.zedler.patrick.grocy.api.GrocyApi.ENTITY;
 import xyz.zedler.patrick.grocy.database.AppDatabase;
 import xyz.zedler.patrick.grocy.helper.DownloadHelper;
+import xyz.zedler.patrick.grocy.model.Location;
 import xyz.zedler.patrick.grocy.model.Product;
 import xyz.zedler.patrick.grocy.model.ProductGroup;
+import xyz.zedler.patrick.grocy.model.QuantityUnit;
 import xyz.zedler.patrick.grocy.util.DateUtil;
+import xyz.zedler.patrick.grocy.util.ProduceCatalog;
 
-/** Schnellerfassung (Vorlage 04): Antippen = +1, Haltbarkeit aus den Produkt-Standardtagen,
- *  "einlagern" bucht jedes Produkt ueber POST /stock/products/{id}/add. */
+/**
+ * Schnellerfassung Obst & Gemuese (Vorlage 04): eingebauter Katalog + Grocy-Produkte,
+ * "Haeufig" nach Gewohnheit (Nutzungszaehler), fehlende Produkte werden beim Einlagern angelegt.
+ */
 public class QuickAddViewModel extends BaseViewModel {
 
   private static final String TAG = QuickAddViewModel.class.getSimpleName();
+  private static final String PREFS_USAGE = "quick_add_usage";
+  public static final String GROUP_NAME = "Obst & Gemüse";
+  public static final int CAT_FREQUENT = -1;
+  public static final int CAT_OTHER = ProduceCatalog.CATEGORIES.length;
+
+  public static final class Item {
+    public final String key, name; public final int category; public int days; public Product product;
+    Item(String name, int category, int days, Product product) {
+      this.key = ProduceCatalog.key(name); this.name = name; this.category = category; this.days = days; this.product = product;
+    }
+  }
 
   private final DownloadHelper dlHelper;
   private final GrocyApi grocyApi;
   private final AppDatabase appDatabase;
+  private final SharedPreferences usage;
   private final MutableLiveData<Boolean> isLoadingLive;
-  private final MutableLiveData<List<Product>> productsLive;      // gefiltert (Gruppe + Suche)
-  private final MutableLiveData<List<ProductGroup>> groupsLive;
-  private final MutableLiveData<Map<Integer, Integer>> countsLive;
-  private List<Product> allProducts = new ArrayList<>();
-  private int selectedGroupId = -1;
+  private final MutableLiveData<List<Item>> itemsLive = new MutableLiveData<>(new ArrayList<>());   // gefiltert
+  private final MutableLiveData<Map<String, Integer>> countsLive = new MutableLiveData<>(new HashMap<>());
+  private final MutableLiveData<Boolean> hasOtherLive = new MutableLiveData<>(false);
+  private final LinkedHashMap<String, Item> allItems = new LinkedHashMap<>();
+  private List<ProductGroup> groups = new ArrayList<>();
+  private List<QuantityUnit> units = new ArrayList<>();
+  private List<Location> locations = new ArrayList<>();
+  private int selectedCategory = CAT_FREQUENT;
   private String search = "";
 
   public QuickAddViewModel(@NonNull Application application) {
@@ -65,144 +88,169 @@ public class QuickAddViewModel extends BaseViewModel {
     dlHelper = new DownloadHelper(getApplication(), TAG, isLoadingLive::setValue, getOfflineLive());
     grocyApi = new GrocyApi(getApplication());
     appDatabase = AppDatabase.getAppDatabase(getApplication());
-    productsLive = new MutableLiveData<>(new ArrayList<>());
-    groupsLive = new MutableLiveData<>(new ArrayList<>());
-    countsLive = new MutableLiveData<>(new HashMap<>());
+    usage = application.getSharedPreferences(PREFS_USAGE, 0);
   }
 
   public void loadFromDatabase() {
-    Single.zip(
-        appDatabase.productDao().getProducts(),
-        appDatabase.productGroupDao().getProductGroups(),
-        (products, groups) -> new Object[]{products, groups}
-    )
-        .subscribeOn(Schedulers.io())
-        .observeOn(AndroidSchedulers.mainThread())
-        .doOnSuccess(data -> {
-          @SuppressWarnings("unchecked") List<Product> products = (List<Product>) data[0];
-          @SuppressWarnings("unchecked") List<ProductGroup> groups = (List<ProductGroup>) data[1];
-          allProducts = products;
-          groupsLive.setValue(groups);
-          if (selectedGroupId == -1) {
-            // Vorlage: Obst & Gemuese als Startgruppe, falls vorhanden
-            for (ProductGroup g : groups) {
-              String n = g.getName() == null ? "" : g.getName().toLowerCase();
-              if (n.contains("obst") || n.contains("gem") || n.contains("fruit") || n.contains("veg")) {
-                selectedGroupId = g.getId();
-                break;
-              }
-            }
-          }
-          applyFilter();
-        })
-        .doOnError(e -> Log.e(TAG, "loadFromDatabase: ", e))
-        .onErrorComplete()
-        .subscribe();
+    Single.zip(appDatabase.productDao().getProducts(), appDatabase.productGroupDao().getProductGroups(),
+        appDatabase.quantityUnitDao().getQuantityUnits(), appDatabase.locationDao().getLocations(),
+        (p, g, q, l) -> new Object[]{p, g, q, l})
+        .subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+        .doOnSuccess(d -> { groups = cast(d[1]); units = cast(d[2]); locations = cast(d[3]); buildItems(cast(d[0])); applyFilter(); })
+        .doOnError(e -> Log.e(TAG, "loadFromDatabase: ", e)).onErrorComplete().subscribe();
   }
 
-  public void selectGroup(int groupId) {
-    selectedGroupId = groupId;
-    applyFilter();
+  @SuppressWarnings("unchecked") private static <T> List<T> cast(Object o) { return (List<T>) o; }
+
+  /** Katalog zuerst, dann Grocy-Produkte: gleicher Name -> verknuepfen, sonst als "Weitere" (nur Obst-&-Gemuese-Gruppe). */
+  private void buildItems(List<Product> products) {
+    allItems.clear();
+    for (ProduceCatalog.Entry e : ProduceCatalog.ENTRIES) allItems.put(ProduceCatalog.key(e.name), new Item(e.name, e.category, e.days, null));
+    Integer gid = groupId();
+    boolean other = false;
+    for (Product p : products) {
+      if (p.getName() == null || !p.isActive()) continue;
+      String key = ProduceCatalog.key(p.getName());
+      Item item = allItems.get(key);
+      if (item != null) {
+        item.product = p;
+        if (p.getDefaultDueDaysInt() > 0) item.days = p.getDefaultDueDaysInt();
+      } else if (gid != null && String.valueOf(gid).equals(p.getProductGroupId())) {
+        allItems.put(key, new Item(p.getName(), CAT_OTHER, p.getDefaultDueDaysInt(), p));
+        other = true;
+      }
+    }
+    hasOtherLive.setValue(other);
   }
 
-  public int getSelectedGroupId() {
-    return selectedGroupId;
+  private Integer groupId() {
+    for (ProductGroup g : groups) {
+      String n = g.getName() == null ? "" : g.getName().toLowerCase();
+      if (n.equals(GROUP_NAME.toLowerCase()) || n.contains("obst") || n.contains("gemüse") || n.contains("gemuese")) return g.getId();
+    }
+    return null;
   }
 
-  public void setSearch(String s) {
-    search = s == null ? "" : s.trim().toLowerCase();
-    applyFilter();
-  }
+  public void selectCategory(int category) { selectedCategory = category; applyFilter(); }
+  public int getSelectedCategory() { return selectedCategory; }
+  public void setSearch(String s) { search = s == null ? "" : s.trim().toLowerCase(); applyFilter(); }
+
+  private int usageOf(Item i) { return usage.getInt(i.key, 0); }
 
   private void applyFilter() {
-    List<Product> out = new ArrayList<>();
-    for (Product p : allProducts) {
-      if (selectedGroupId > 0) {
-        String gid = p.getProductGroupId();
-        if (gid == null || !gid.equals(String.valueOf(selectedGroupId))) continue;
+    List<Item> out = new ArrayList<>();
+    if (!search.isEmpty()) {
+      for (Item i : allItems.values()) if (i.name.toLowerCase().contains(search)) out.add(i);
+    } else if (selectedCategory == CAT_FREQUENT) {
+      // Gewohnheit: meistgenutzte zuerst, aufgefuellt mit der Standardauswahl
+      for (Item i : allItems.values()) if (usageOf(i) > 0) out.add(i);
+      out.sort((a, b) -> Integer.compare(usageOf(b), usageOf(a)));
+      for (String n : ProduceCatalog.DEFAULT_FREQUENT) {
+        Item i = allItems.get(ProduceCatalog.key(n));
+        if (i != null && !out.contains(i) && out.size() < 9) out.add(i);
       }
-      if (!search.isEmpty() && (p.getName() == null || !p.getName().toLowerCase().contains(search))) continue;
-      out.add(p);
+    } else {
+      for (Item i : allItems.values()) if (i.category == selectedCategory) out.add(i);
+      out.sort((a, b) -> Integer.compare(usageOf(b), usageOf(a)));   // stabil: Katalogreihenfolge bleibt bei Gleichstand
     }
-    productsLive.setValue(out);
+    itemsLive.setValue(out);
   }
 
-  public void increment(Product p) {
-    Map<Integer, Integer> m = new HashMap<>(countsLive.getValue() == null ? new HashMap<>() : countsLive.getValue());
-    Integer c = m.get(p.getId());
-    m.put(p.getId(), c == null ? 1 : c + 1);
-    countsLive.setValue(m);
-  }
+  public void increment(Item i) { change(i, 1); }
+  public void decrement(Item i) { change(i, -1); }
 
-  public void decrement(Product p) {
-    Map<Integer, Integer> m = new HashMap<>(countsLive.getValue() == null ? new HashMap<>() : countsLive.getValue());
-    Integer c = m.get(p.getId());
-    if (c == null) return;
-    if (c <= 1) m.remove(p.getId()); else m.put(p.getId(), c - 1);
+  private void change(Item i, int delta) {
+    Map<String, Integer> m = new HashMap<>(countsLive.getValue() == null ? new HashMap<>() : countsLive.getValue());
+    int c = (m.containsKey(i.key) ? m.get(i.key) : 0) + delta;
+    if (c <= 0) m.remove(i.key); else m.put(i.key, c);
     countsLive.setValue(m);
   }
 
   public int totalCount() {
-    int t = 0;
-    Map<Integer, Integer> m = countsLive.getValue();
+    int t = 0; Map<String, Integer> m = countsLive.getValue();
     if (m != null) for (int c : m.values()) t += c;
     return t;
   }
 
-  public Product productById(int id) {
-    for (Product p : allProducts) if (p.getId() == id) return p;
-    return null;
-  }
+  public Item itemByKey(String key) { return allItems.get(key); }
 
-  /** Alle gezaehlten Produkte nacheinander einlagern (echte Einkaufsbuchungen). */
+  /** Alle gezaehlten Sorten nacheinander einlagern; fehlende Produkte werden vorher in Grocy angelegt. */
   public void purchaseAll() {
-    Map<Integer, Integer> m = countsLive.getValue();
+    Map<String, Integer> m = countsLive.getValue();
     if (m == null || m.isEmpty()) return;
-    List<Integer> ids = new ArrayList<>(m.keySet());
-    purchaseNext(ids, 0, m, 0);
+    List<String> keys = new ArrayList<>(m.keySet());
+    ensureGroup(gid -> purchaseNext(keys, 0, m, 0, gid));
   }
 
-  private void purchaseNext(List<Integer> ids, int index, Map<Integer, Integer> counts, int done) {
-    if (index >= ids.size()) {
+  private void purchaseNext(List<String> keys, int index, Map<String, Integer> counts, int done, Integer gid) {
+    if (index >= keys.size()) {
       countsLive.setValue(new HashMap<>());
+      applyFilter();
       showMessage(getApplication().getString(R.string.quick_add_done, done));
       return;
     }
-    int id = ids.get(index);
-    Product p = productById(id);
-    Integer amount = counts.get(id);
-    if (p == null || amount == null) {
-      purchaseNext(ids, index + 1, counts, done);
-      return;
+    Item item = allItems.get(keys.get(index));
+    Integer amount = counts.get(keys.get(index));
+    if (item == null || amount == null) { purchaseNext(keys, index + 1, counts, done, gid); return; }
+    ensureProduct(item, gid, () -> {
+      JSONObject body = new JSONObject();
+      try {
+        body.put("amount", amount);
+        body.put("best_before_date", item.days > 0 ? DateUtil.getTodayWithDaysAdded(item.days) : Constants.DATE.NEVER_OVERDUE);
+        body.put("transaction_type", "purchase");
+        if (item.product.getLocationIdInt() > 0) body.put("location_id", String.valueOf(item.product.getLocationIdInt()));
+      } catch (Exception e) { Log.e(TAG, "purchaseNext: ", e); }
+      dlHelper.postWithArray(grocyApi.purchaseProduct(item.product.getId()), body,
+          response -> { usage.edit().putInt(item.key, usageOf(item) + amount).apply(); purchaseNext(keys, index + 1, counts, done + amount, gid); },
+          error -> { Log.e(TAG, "purchaseNext: " + error); showNetworkErrorMessage(error); purchaseNext(keys, index + 1, counts, done, gid); });
+    });
+  }
+
+  private void ensureGroup(java.util.function.Consumer<Integer> next) {
+    Integer gid = groupId();
+    if (gid != null) { next.accept(gid); return; }
+    JSONObject body = new JSONObject();
+    try { body.put("name", GROUP_NAME); body.put("description", ""); } catch (Exception e) { Log.e(TAG, "group: ", e); }
+    dlHelper.post(grocyApi.getObjects(ENTITY.PRODUCT_GROUPS), body,
+        r -> next.accept(r.optInt("created_object_id", 0) > 0 ? r.optInt("created_object_id") : null),
+        error -> { Log.e(TAG, "group: " + error); showNetworkErrorMessage(error); next.accept(null); });
+  }
+
+  private int unitId() {
+    for (QuantityUnit q : units) {
+      String n = q.getName() == null ? "" : q.getName().toLowerCase();
+      if (n.startsWith("stück") || n.startsWith("stueck") || n.equals("stk") || n.startsWith("piece")) return q.getId();
     }
+    return units.isEmpty() ? 1 : units.get(0).getId();
+  }
+
+  private void ensureProduct(Item item, Integer gid, Runnable next) {
+    if (item.product != null) { next.run(); return; }
     JSONObject body = new JSONObject();
     try {
-      body.put("amount", amount);
-      int days = p.getDefaultDueDaysInt();
-      body.put("best_before_date", days > 0 ? DateUtil.getTodayWithDaysAdded(days) : Constants.DATE.NEVER_OVERDUE);
-      body.put("transaction_type", "purchase");
-      if (p.getLocationIdInt() > 0) body.put("location_id", String.valueOf(p.getLocationIdInt()));
-    } catch (Exception e) {
-      Log.e(TAG, "purchaseNext: ", e);
-    }
-    dlHelper.postWithArray(grocyApi.purchaseProduct(id), body,
-        response -> purchaseNext(ids, index + 1, counts, done + amount),
-        error -> {
-          Log.e(TAG, "purchaseNext: " + error);
-          showNetworkErrorMessage(error);
-          purchaseNext(ids, index + 1, counts, done);
-        }
-    );
+      body.put("name", item.name); body.put("description", "");
+      if (gid != null) body.put("product_group_id", String.valueOf(gid));
+      if (!locations.isEmpty()) body.put("location_id", String.valueOf(locations.get(0).getId()));
+      int qu = unitId();
+      body.put("qu_id_purchase", String.valueOf(qu)); body.put("qu_id_stock", String.valueOf(qu));
+      body.put("qu_factor_purchase_to_stock", "1"); body.put("min_stock_amount", "0");
+      body.put("default_best_before_days", String.valueOf(item.days)); body.put("active", "1");
+    } catch (Exception e) { Log.e(TAG, "product: ", e); }
+    dlHelper.post(grocyApi.getObjects(ENTITY.PRODUCTS), body, r -> {
+      int id = r.optInt("created_object_id", 0);
+      if (id <= 0) { showErrorMessage(); return; }
+      dlHelper.get(grocyApi.getObject(ENTITY.PRODUCTS, id), TAG, resp -> {
+        try { Product p = new com.google.gson.Gson().fromJson(resp, Product.class); if (p != null) { item.product = p; next.run(); return; } }
+        catch (Exception e) { Log.e(TAG, "product parse: ", e); }
+        showErrorMessage();
+      }, error -> { Log.e(TAG, "product get: " + error); showNetworkErrorMessage(error); });
+    }, error -> { Log.e(TAG, "product create: " + error); showNetworkErrorMessage(error); });
   }
 
-  public MutableLiveData<List<Product>> getProductsLive() { return productsLive; }
-  public MutableLiveData<List<ProductGroup>> getGroupsLive() { return groupsLive; }
-  public MutableLiveData<Map<Integer, Integer>> getCountsLive() { return countsLive; }
+  public MutableLiveData<List<Item>> getItemsLive() { return itemsLive; }
+  public MutableLiveData<Map<String, Integer>> getCountsLive() { return countsLive; }
+  public MutableLiveData<Boolean> getHasOtherLive() { return hasOtherLive; }
   public MutableLiveData<Boolean> getIsLoadingLive() { return isLoadingLive; }
 
-  @Override
-  protected void onCleared() {
-    dlHelper.destroy();
-    super.onCleared();
-  }
+  @Override protected void onCleared() { dlHelper.destroy(); super.onCleared(); }
 }

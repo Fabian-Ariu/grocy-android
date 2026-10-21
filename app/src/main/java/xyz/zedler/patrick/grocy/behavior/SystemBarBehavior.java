@@ -129,7 +129,16 @@ public class SystemBarBehavior {
         // STATUS BAR INSET
         if (applyStatusBarInsetOnAppBar) {
           appBarLayout.setPadding(0, statusBarInset, 0, appBarLayout.getPaddingBottom());
-          appBarLayout.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
+          // Mit echter Breite messen: UNSPECIFIED liess Toolbar/Titel auf "wrap" schrumpfen,
+          // wenn danach kein vollstaendiger Mess-Durchlauf mehr folgte (abgeschnittene Titel).
+          int width = appBarLayout.getWidth() > 0
+              ? appBarLayout.getWidth()
+              : appBarLayout.getResources().getDisplayMetrics().widthPixels;
+          appBarLayout.measure(
+              View.MeasureSpec.makeMeasureSpec(width, View.MeasureSpec.EXACTLY),
+              View.MeasureSpec.UNSPECIFIED
+          );
+          appBarLayout.requestLayout();
         }
 
         // APP BAR INSET

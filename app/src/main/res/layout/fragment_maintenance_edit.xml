@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
   android:id="@+id/relative" android:layout_width="match_parent" android:layout_height="match_parent">
   <com.google.android.material.appbar.AppBarLayout android:id="@+id/app_bar" android:background="@android:color/transparent" android:layout_width="match_parent" android:layout_height="wrap_content">
-    <com.google.android.material.appbar.MaterialToolbar android:id="@+id/toolbar" style="@style/Widget.Grocy.Toolbar.Back" app:title="@string/maint_title"/>
+    <com.google.android.material.appbar.MaterialToolbar android:id="@+id/toolbar" android:layout_width="match_parent" android:layout_height="?attr/actionBarSize" style="@style/Widget.Grocy.Toolbar.Back" app:title="@string/maint_title"/>
     <TextView android:id="@+id/text_equipment" android:layout_width="match_parent" android:layout_height="wrap_content" android:paddingStart="20dp" android:paddingEnd="20dp" android:paddingBottom="8dp" android:textColor="?attr/colorOnSurfaceVariant" android:textSize="13sp"/>
   </com.google.android.material.appbar.AppBarLayout>
   <LinearLayout android:id="@+id/bottom" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_alignParentBottom="true" android:orientation="vertical" android:paddingStart="16dp" android:paddingEnd="16dp" android:paddingBottom="@dimen/global_scroll_bottom_padding">

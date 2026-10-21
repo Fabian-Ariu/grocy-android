@@ -582,6 +582,34 @@
 
   <string name="title_overview">Overview</string>
   <string name="title_more">More</string>
+  <string name="quick_add_frequent">Frequent</string>
+  <string name="quick_add_other">Others</string>
+  <string name="home_tile_due">Due</string>
+  <string name="home_nothing">Nothing yet</string>
+  <string name="home_nothing_due">Nothing due</string>
+  <string name="hm_title">Homemade</string>
+  <string name="hm_cat_0">Preserved</string><string name="hm_cat_0_sub">Jam, syrup</string>
+  <string name="hm_cat_1">Frozen</string><string name="hm_cat_1_sub">Dishes, broth</string>
+  <string name="hm_cat_2">Pickled</string><string name="hm_cat_2_sub">Vinegar, ferment, oil</string>
+  <string name="hm_cat_3">Dried</string><string name="hm_cat_3_sub">Dried fruit, herbs</string>
+  <string name="hm_name_hint">What did you make?</string>
+  <string name="hm_jars">Jars</string>
+  <string name="hm_location">Location</string>
+  <string name="hm_location_none">No location</string>
+  <string name="hm_due">Best before</string>
+  <string name="hm_due_auto">%1$s \u00b7 auto</string>
+  <string name="hm_recipe">Link recipe</string>
+  <string name="hm_recipe_none">None</string>
+  <string name="hm_no_recipes">No recipes in Grocy yet</string>
+  <string name="hm_label">Label with code</string>
+  <string name="hm_label_sub">Scan later to book this jar</string>
+  <string name="hm_save">Add to stock</string>
+  <string name="hm_missing">Please enter a name and at least one jar</string>
+  <string name="hm_print_failed">Label printing failed (printer configured on the server?)</string>
+  <plurals name="hm_save_n"><item quantity="one">Add %d jar to stock</item><item quantity="other">Add %d jars to stock</item></plurals>
+  <plurals name="hm_save_labels"><item quantity="one">Add %d jar and print label</item><item quantity="other">Add %d jars and print labels</item></plurals>
+  <plurals name="hm_done"><item quantity="one">%d jar added to stock</item><item quantity="other">%d jars added to stock</item></plurals>
+  <plurals name="hm_done_labels"><item quantity="one">%d jar added, label sent to printer</item><item quantity="other">%d jars added, labels sent to printer</item></plurals>
   <string name="inv_progress">%1$d of %2$d checked \u00b7 %3$d corrected</string>
   <string name="inv_scanned">Product</string>
   <string name="inv_according_to_grocy">According to Grocy: %1$s</string>

@@ -24,6 +24,8 @@
   xmlns:app="http://schemas.android.com/apk/res-auto"
   android:id="@+id/container_row"
   style="@style/Widget.Grocy.LinearLayout.ListItem.TwoLine.Clickable.More"
+  android:paddingStart="32dp"
+  android:paddingEnd="32dp"
   android:background="@drawable/ripple_list_item_glass">
 
   <LinearLayout
@@ -87,6 +89,6 @@
     android:layout_marginStart="12dp"
     android:layout_gravity="center_vertical"
     tools:ignore="ContentDescription"
-    app:radius="12dp"/>
+    app:radius="6dp"/>
 
 </LinearLayout>

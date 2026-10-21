@@ -550,6 +550,39 @@ public class OverviewStartViewModel extends BaseViewModel {
     return stockDescriptionTextLive;
   }
 
+  // Scanory-Dashboard: erster nicht-leerer Text gewinnt, sonst Fallback (verkettetes ?? im Binding ist fehlerhaft)
+  private MediatorLiveData<String> homeDueTextLive, homeChoresTextLive;
+
+  public LiveData<String> getHomeDueTextLive() {
+    if (homeDueTextLive == null) {
+      homeDueTextLive = firstNonNull(getString(R.string.home_nothing_due),
+          stockDescriptionOverdueTextLive, stockDescriptionExpiredTextLive, stockDescriptionDueNextTextLive);
+    }
+    return homeDueTextLive;
+  }
+
+  public LiveData<String> getHomeChoresTextLive() {
+    if (homeChoresTextLive == null) {
+      homeChoresTextLive = firstNonNull(getString(R.string.home_nothing_due),
+          choresDescriptionOverdueTextLive, choresDescriptionDueTodayTextLive, choresDescriptionDueSoonTextLive);
+    }
+    return homeChoresTextLive;
+  }
+
+  @SafeVarargs
+  private static MediatorLiveData<String> firstNonNull(String fallback, LiveData<String>... sources) {
+    MediatorLiveData<String> result = new MediatorLiveData<>();
+    Runnable update = () -> {
+      for (LiveData<String> source : sources) {
+        if (source.getValue() != null) { result.setValue(source.getValue()); return; }
+      }
+      result.setValue(fallback);
+    };
+    for (LiveData<String> source : sources) result.addSource(source, v -> update.run());
+    update.run();
+    return result;
+  }
+
   public LiveData<String> getStockDescriptionDueNextTextLive() {
     return stockDescriptionDueNextTextLive;
   }

@@ -40,12 +40,12 @@ import xyz.zedler.patrick.grocy.adapter.QuickAddAdapter;
 import xyz.zedler.patrick.grocy.behavior.SystemBarBehavior;
 import xyz.zedler.patrick.grocy.databinding.FragmentQuickAddBinding;
 import xyz.zedler.patrick.grocy.model.Event;
-import xyz.zedler.patrick.grocy.model.Product;
-import xyz.zedler.patrick.grocy.model.ProductGroup;
+import xyz.zedler.patrick.grocy.util.ProduceCatalog;
 import xyz.zedler.patrick.grocy.model.SnackbarMessage;
 import xyz.zedler.patrick.grocy.util.ResUtil;
 import xyz.zedler.patrick.grocy.util.UiUtil;
 import xyz.zedler.patrick.grocy.viewmodel.QuickAddViewModel;
+import xyz.zedler.patrick.grocy.viewmodel.QuickAddViewModel.Item;
 
 /** Schnellerfassung (Vorlage 04): Antippen = +1, lang = -1, dann alles einlagern. */
 public class QuickAddFragment extends BaseFragment implements QuickAddAdapter.Listener {
@@ -92,14 +92,14 @@ public class QuickAddFragment extends BaseFragment implements QuickAddAdapter.Li
       @Override public void afterTextChanged(Editable s) { viewModel.setSearch(s.toString()); }
     });
 
-    viewModel.getProductsLive().observe(getViewLifecycleOwner(), items ->
+    viewModel.getItemsLive().observe(getViewLifecycleOwner(), items ->
         adapter.updateData(items, viewModel.getCountsLive().getValue()));
     viewModel.getCountsLive().observe(getViewLifecycleOwner(), counts -> {
-      List<Product> items = viewModel.getProductsLive().getValue();
+      List<Item> items = viewModel.getItemsLive().getValue();
       if (items != null) adapter.updateData(items, counts);
       renderSummary(counts);
     });
-    viewModel.getGroupsLive().observe(getViewLifecycleOwner(), this::renderGroups);
+    viewModel.getHasOtherLive().observe(getViewLifecycleOwner(), hasOther -> renderCategories());
     viewModel.getEventHandler().observeEvent(getViewLifecycleOwner(), event -> {
       if (event.getType() == Event.SNACKBAR_MESSAGE) {
         activity.showSnackbar(((SnackbarMessage) event).getSnackbar(activity.binding.coordinatorMain));
@@ -114,16 +114,17 @@ public class QuickAddFragment extends BaseFragment implements QuickAddAdapter.Li
     viewModel.loadFromDatabase();
   }
 
-  private void renderGroups(List<ProductGroup> groups) {
-    if (binding == null || groups == null) return;
+  private void renderCategories() {
+    if (binding == null) return;
     binding.linearGroups.removeAllViews();
-    addGroupPill(getString(R.string.quick_add_all), -1);
-    for (ProductGroup g : groups) addGroupPill(g.getName(), g.getId());
+    addGroupPill(getString(R.string.quick_add_frequent), QuickAddViewModel.CAT_FREQUENT);
+    for (int i = 0; i < ProduceCatalog.CATEGORIES.length; i++) addGroupPill(ProduceCatalog.CATEGORIES[i], i);
+    if (Boolean.TRUE.equals(viewModel.getHasOtherLive().getValue())) addGroupPill(getString(R.string.quick_add_other), QuickAddViewModel.CAT_OTHER);
   }
 
   private void addGroupPill(String label, int groupId) {
     TextView t = new TextView(activity);
-    boolean sel = viewModel.getSelectedGroupId() == groupId;
+    boolean sel = viewModel.getSelectedCategory() == groupId;
     t.setText(label);
     t.setTextSize(14);
     t.setTextColor(sel ? ResUtil.getColor(activity, R.attr.colorSurface) : ResUtil.getColor(activity, R.attr.colorOnSurface));
@@ -133,11 +134,11 @@ public class QuickAddFragment extends BaseFragment implements QuickAddAdapter.Li
     ViewGroup.MarginLayoutParams lp = new ViewGroup.MarginLayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
     lp.setMarginEnd(UiUtil.dpToPx(activity, 8));
     t.setLayoutParams(lp);
-    t.setOnClickListener(v -> { viewModel.selectGroup(groupId); renderGroups(viewModel.getGroupsLive().getValue()); });
+    t.setOnClickListener(v -> { viewModel.selectCategory(groupId); renderCategories(); });
     binding.linearGroups.addView(t);
   }
 
-  private void renderSummary(Map<Integer, Integer> counts) {
+  private void renderSummary(Map<String, Integer> counts) {
     if (binding == null) return;
     int total = viewModel.totalCount();
     binding.buttonAdd.setEnabled(total > 0);
@@ -145,16 +146,16 @@ public class QuickAddFragment extends BaseFragment implements QuickAddAdapter.Li
     binding.buttonAdd.setText(getResources().getQuantityString(R.plurals.quick_add_button_n, total, total));
     if (counts == null || counts.isEmpty()) { binding.textSummary.setVisibility(View.GONE); return; }
     StringBuilder sb = new StringBuilder();
-    for (Map.Entry<Integer, Integer> e : counts.entrySet()) {
-      Product p = viewModel.productById(e.getKey());
+    for (Map.Entry<String, Integer> e : counts.entrySet()) {
+      Item p = viewModel.itemByKey(e.getKey());
       if (p == null) continue;
       if (sb.length() > 0) sb.append(" \u00b7 ");
-      sb.append(p.getName()).append(' ').append(e.getValue());
+      sb.append(p.name).append(' ').append(e.getValue());
     }
     binding.textSummary.setText(sb.toString());
     binding.textSummary.setVisibility(View.VISIBLE);
   }
 
-  @Override public void onTap(Product product) { viewModel.increment(product); }
-  @Override public void onLongTap(Product product) { viewModel.decrement(product); }
+  @Override public void onTap(Item item) { viewModel.increment(item); }
+  @Override public void onLongTap(Item item) { viewModel.decrement(item); }
 }

@@ -345,6 +345,13 @@
     <deepLink app:uri="grocy://inventorySwipeFragment" />
   </fragment>
   <fragment
+    android:id="@+id/homemadeFragment"
+    android:name="xyz.zedler.patrick.grocy.fragment.HomemadeFragment"
+    android:label="HomemadeFragment"
+    tools:layout="@layout/fragment_homemade">
+    <deepLink app:uri="grocy://homemadeFragment" />
+  </fragment>
+  <fragment
     android:id="@+id/maintenanceEditFragment"
     android:name="xyz.zedler.patrick.grocy.fragment.MaintenanceEditFragment"
     android:label="MaintenanceEditFragment"

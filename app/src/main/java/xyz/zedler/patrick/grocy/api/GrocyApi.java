@@ -431,6 +431,11 @@ public class GrocyApi {
     return getUrl("/calendar/ical/sharing-link");
   }
 
+  /** Etikett fuer einen Bestandseintrag am Server-Drucker ausgeben (Grocy Label-Printer) */
+  public String printStockEntryLabel(int stockEntryId) {
+    return getUrl("/stock/entry/" + stockEntryId + "/printlabel");
+  }
+
   public String getChores() {
     return getUrl("/chores");
   }

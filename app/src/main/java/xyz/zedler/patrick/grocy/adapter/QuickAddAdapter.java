@@ -33,19 +33,19 @@ import java.util.List;
 import java.util.Map;
 import xyz.zedler.patrick.grocy.R;
 import xyz.zedler.patrick.grocy.databinding.RowQuickAddBinding;
-import xyz.zedler.patrick.grocy.model.Product;
+import xyz.zedler.patrick.grocy.viewmodel.QuickAddViewModel.Item;
 
 public class QuickAddAdapter extends RecyclerView.Adapter<QuickAddAdapter.ViewHolder> {
 
   public interface Listener {
-    void onTap(Product product);
-    void onLongTap(Product product);
+    void onTap(Item item);
+    void onLongTap(Item item);
   }
 
   private final Context context;
   private final Listener listener;
-  private final List<Product> items = new ArrayList<>();
-  private Map<Integer, Integer> counts = new HashMap<>();
+  private final List<Item> items = new ArrayList<>();
+  private Map<String, Integer> counts = new HashMap<>();
 
   public QuickAddAdapter(Context context, Listener listener) {
     this.context = context;
@@ -65,14 +65,14 @@ public class QuickAddAdapter extends RecyclerView.Adapter<QuickAddAdapter.ViewHo
 
   @Override
   public void onBindViewHolder(@NonNull ViewHolder h, int position) {
-    Product p = items.get(position);
-    h.binding.name.setText(p.getName());
-    int days = p.getDefaultDueDaysInt();
+    Item p = items.get(position);
+    h.binding.name.setText(p.name);
+    int days = p.days;
     String daysText = days > 0
         ? context.getResources().getQuantityString(R.plurals.quick_add_days, days, days)
         : context.getString(R.string.quick_add_no_due);
     h.binding.days.setText(daysText);
-    Integer c = counts.get(p.getId());
+    Integer c = counts.get(p.key);
     boolean sel = c != null && c > 0;
     h.binding.badge.setVisibility(sel ? View.VISIBLE : View.GONE);
     if (sel) h.binding.badge.setText(String.valueOf(c));
@@ -84,7 +84,7 @@ public class QuickAddAdapter extends RecyclerView.Adapter<QuickAddAdapter.ViewHo
   @Override
   public int getItemCount() { return items.size(); }
 
-  public void updateData(List<Product> products, Map<Integer, Integer> newCounts) {
+  public void updateData(List<Item> products, Map<String, Integer> newCounts) {
     items.clear(); items.addAll(products);
     counts = newCounts == null ? new HashMap<>() : newCounts;
     notifyDataSetChanged();

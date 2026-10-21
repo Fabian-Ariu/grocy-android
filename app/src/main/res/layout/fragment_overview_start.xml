@@ -99,7 +99,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingTop="0dp"
-            android:paddingBottom="@dimen/global_scroll_bottom_padding">
+            android:paddingBottom="24dp">
 
             <LinearLayout
               android:id="@+id/linear_container"
@@ -247,7 +247,7 @@
                 android:background="@drawable/glass_card"
                 android:clickable="true"
                 android:focusable="true"
-                android:onClick="@{() -> activity.navUtil.navigate(R.id.purchaseFragment)}">
+                android:onClick="@{() -> activity.navUtil.navigate(R.id.homemadeFragment)}">
                 <FrameLayout android:layout_width="30dp" android:layout_height="30dp" android:background="@drawable/icon_circle_brown">
                   <ImageView android:layout_width="18dp" android:layout_height="18dp" android:layout_gravity="center" android:src="@drawable/ic_round_inventory" app:tint="#8A5A00" tools:ignore="ContentDescription" />
                 </FrameLayout>
@@ -255,25 +255,94 @@
               </LinearLayout>
               </LinearLayout>
 
-              <!-- Kompakter Vorrats-Status mit echten Daten, fuehrt in den Vorrat -->
-              <TextView style="@style/PreviewSectionHeader" android:layout_marginStart="16dp" android:textAllCaps="true" android:text="@string/tab_stock" />
-              <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginBottom="0dp"
-                android:padding="12dp"
-                android:background="@drawable/glass_card"
-                android:clickable="true"
-                android:focusable="true"
-                android:onClick="@{() -> activity.navUtil.navigate(R.id.stockOverviewFragment)}">
-                <TextView style="@style/Widget.Grocy.TextView" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@{viewModel.stockDescriptionTextLive}" />
-                <TextView style="@style/Widget.Grocy.TextView" android:layout_width="match_parent" android:layout_height="wrap_content" android:textColor="?attr/colorOnSurfaceVariant" android:visibility="@{viewModel.stockDescriptionDueNextTextLive != null ? View.VISIBLE : View.GONE}" android:text="@{viewModel.stockDescriptionDueNextTextLive}" />
-                <TextView style="@style/Widget.Grocy.TextView" android:layout_width="match_parent" android:layout_height="wrap_content" android:textColor="?attr/colorOnSurfaceVariant" android:visibility="@{viewModel.stockDescriptionOverdueTextLive != null ? View.VISIBLE : View.GONE}" android:text="@{viewModel.stockDescriptionOverdueTextLive}" />
-                <TextView style="@style/Widget.Grocy.TextView" android:layout_width="match_parent" android:layout_height="wrap_content" android:textColor="?attr/colorOnSurfaceVariant" android:visibility="@{viewModel.stockDescriptionExpiredTextLive != null ? View.VISIBLE : View.GONE}" android:text="@{viewModel.stockDescriptionExpiredTextLive}" />
-                <TextView style="@style/Widget.Grocy.TextView" android:layout_width="match_parent" android:layout_height="wrap_content" android:textColor="?attr/colorOnSurfaceVariant" android:visibility="@{viewModel.stockDescriptionMissingTextLive != null ? View.VISIBLE : View.GONE}" android:text="@{viewModel.stockDescriptionMissingTextLive}" />
+              <!-- Dashboard (Vorlage-Stil): vier Kacheln mit Live-Daten, antippbar -->
+              <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:baselineAligned="false" android:layout_marginStart="16dp" android:layout_marginEnd="16dp" android:layout_marginBottom="10dp">
+                <LinearLayout
+                  android:layout_width="0dp"
+                  android:layout_height="match_parent"
+                  android:layout_weight="1"
+                  android:orientation="vertical"
+                  android:minHeight="82dp"
+                  android:padding="12dp"
+                  android:layout_marginEnd="10dp"
+                  android:background="@drawable/glass_card"
+                  android:foreground="?attr/selectableItemBackground"
+                  android:clickable="true"
+                  android:focusable="true"
+                  android:onClick="@{() -> activity.navUtil.navigate(R.id.stockOverviewFragment)}">
+                  <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical">
+                    <FrameLayout android:layout_width="26dp" android:layout_height="26dp" android:background="@drawable/icon_circle_green">
+                      <ImageView android:layout_width="15dp" android:layout_height="15dp" android:layout_gravity="center" android:src="@drawable/ic_round_inventory" app:tint="#1F7A4D" tools:ignore="ContentDescription" />
+                    </FrameLayout>
+                    <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:layout_marginStart="8dp" android:text="@string/tab_stock" android:textColor="?attr/colorOnSurface" android:textSize="14sp" android:textStyle="bold" android:maxLines="1" android:ellipsize="end" />
+                  </LinearLayout>
+                  <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="6dp" android:textColor="?attr/colorOnSurfaceVariant" android:textSize="12sp" android:maxLines="2" android:ellipsize="end" android:text="@{viewModel.stockDescriptionTextLive ?? @string/home_nothing}" />
+                </LinearLayout>
+                <LinearLayout
+                  android:layout_width="0dp"
+                  android:layout_height="match_parent"
+                  android:layout_weight="1"
+                  android:orientation="vertical"
+                  android:minHeight="82dp"
+                  android:padding="12dp"
+                  
+                  android:background="@drawable/glass_card"
+                  android:foreground="?attr/selectableItemBackground"
+                  android:clickable="true"
+                  android:focusable="true"
+                  android:onClick="@{() -> activity.navUtil.navigate(R.id.stockOverviewFragment)}">
+                  <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical">
+                    <FrameLayout android:layout_width="26dp" android:layout_height="26dp" android:background="@drawable/icon_circle_orange">
+                      <ImageView android:layout_width="15dp" android:layout_height="15dp" android:layout_gravity="center" android:src="@drawable/ic_round_hourglass_bottom" app:tint="#C8781E" tools:ignore="ContentDescription" />
+                    </FrameLayout>
+                    <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:layout_marginStart="8dp" android:text="@string/home_tile_due" android:textColor="?attr/colorOnSurface" android:textSize="14sp" android:textStyle="bold" android:maxLines="1" android:ellipsize="end" />
+                  </LinearLayout>
+                  <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="6dp" android:textColor="?attr/colorOnSurfaceVariant" android:textSize="12sp" android:maxLines="2" android:ellipsize="end" android:text="@{viewModel.homeDueTextLive}" />
+                </LinearLayout>
+              </LinearLayout>
+              <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:baselineAligned="false" android:layout_marginStart="16dp" android:layout_marginEnd="16dp">
+                <LinearLayout
+                  android:layout_width="0dp"
+                  android:layout_height="match_parent"
+                  android:layout_weight="1"
+                  android:orientation="vertical"
+                  android:minHeight="82dp"
+                  android:padding="12dp"
+                  android:layout_marginEnd="10dp"
+                  android:background="@drawable/glass_card"
+                  android:foreground="?attr/selectableItemBackground"
+                  android:clickable="true"
+                  android:focusable="true"
+                  android:onClick="@{() -> activity.navUtil.navigateDeepLink(@string/deep_link_shoppingListFragment)}">
+                  <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical">
+                    <FrameLayout android:layout_width="26dp" android:layout_height="26dp" android:background="@drawable/icon_circle_blue">
+                      <ImageView android:layout_width="15dp" android:layout_height="15dp" android:layout_gravity="center" android:src="@drawable/ic_round_local_grocery_store" app:tint="#0062CC" tools:ignore="ContentDescription" />
+                    </FrameLayout>
+                    <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:layout_marginStart="8dp" android:text="@string/tab_shopping" android:textColor="?attr/colorOnSurface" android:textSize="14sp" android:textStyle="bold" android:maxLines="1" android:ellipsize="end" />
+                  </LinearLayout>
+                  <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="6dp" android:textColor="?attr/colorOnSurfaceVariant" android:textSize="12sp" android:maxLines="2" android:ellipsize="end" android:text="@{viewModel.shoppingListDescriptionTextLive ?? @string/home_nothing}" />
+                </LinearLayout>
+                <LinearLayout
+                  android:layout_width="0dp"
+                  android:layout_height="match_parent"
+                  android:layout_weight="1"
+                  android:orientation="vertical"
+                  android:minHeight="82dp"
+                  android:padding="12dp"
+                  
+                  android:background="@drawable/glass_card"
+                  android:foreground="?attr/selectableItemBackground"
+                  android:clickable="true"
+                  android:focusable="true"
+                  android:onClick="@{() -> activity.navUtil.navigateDeepLink(@string/deep_link_choresFragment)}">
+                  <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical">
+                    <FrameLayout android:layout_width="26dp" android:layout_height="26dp" android:background="@drawable/icon_circle_violet">
+                      <ImageView android:layout_width="15dp" android:layout_height="15dp" android:layout_gravity="center" android:src="@drawable/ic_round_checklist" app:tint="#7C5CFF" tools:ignore="ContentDescription" />
+                    </FrameLayout>
+                    <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:layout_marginStart="8dp" android:text="@string/title_chores" android:textColor="?attr/colorOnSurface" android:textSize="14sp" android:textStyle="bold" android:maxLines="1" android:ellipsize="end" />
+                  </LinearLayout>
+                  <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="6dp" android:textColor="?attr/colorOnSurfaceVariant" android:textSize="12sp" android:maxLines="2" android:ellipsize="end" android:text="@{viewModel.homeChoresTextLive}" />
+                </LinearLayout>
               </LinearLayout>
 
             </LinearLayout>
